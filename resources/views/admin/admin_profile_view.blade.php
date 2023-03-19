@@ -9,7 +9,7 @@
         <div class="box  bg-img" style="background-color: #e2e8f0">
             <div class="flexbox px-20 pt-20">
                 <div></div>
-               <a href="{{ route('admin.profile.edit') }}" style="float: right; color:#6b7280"><button type="button"class="btn btn-rounded btn-secondary mb-5">Edit Profile</button></a>
+               <a href="{{ route('admin.profile.edit') }}" style="float: right; color:#6b7280"><input type="button"class="btn btn-rounded btn-secondary mb-5" value="Edit Profile"></a>
             </div>
 
             <div class="box-body text-center pb-50">
