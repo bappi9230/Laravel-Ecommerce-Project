@@ -20,13 +20,13 @@
 
       <!-- sidebar menu-->
       <ul class="sidebar-menu" data-widget="tree">
-		<li class="{{ ($route == 'dashboard')? 'live':'' }}">
+		<li class="{{ ($route == 'dashboard')? 'active live color':'' }}">
           <a class="color" href="{{ url('admin/dashboard') }}">
             <i  data-feather="pie-chart"></i>
 			<span >Dashboard</span>
           </a>
         </li>
-
+<!-- admin brand  -->
         <li class="treeview {{ ($prefix == '/brand')?'live':'' }} ">
           <a href="#" class="color" >
             <i  data-feather="message-circle"></i>
@@ -36,21 +36,24 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li class="{{ ($route == 'all.brand')? 'color':'' }}"><a class="color" href="{{ route('all.brand') }}"><i class="ti-more"></i>All Brand</a></li>
+            <li class="{{ ($route == 'all.brand')? 'active color':'' }}"><a class="color" href="{{ route('all.brand') }}"><i class="ti-more"></i>All Brand</a></li>
           </ul>
         </li>
 
-        <li class="treeview">
+        <!------------ Admin Category --------- -->
+        <li class="treeview {{ ($prefix == '/category')?'live':'' }}">
           <a href="#" class="color" >
-            <i data-feather="mail"></i> <span>Mailbox</span>
+            <i data-feather="mail"></i> <span>Category</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-right pull-right"></i>
             </span>
           </a>
-          <ul class="treeview-menu" class="color" >
-            <li  ><a class="color" href="mailbox_inbox.html"><i class="ti-more"></i>Inbox</a></li>
-            <li><a href="mailbox_compose.html"><i class="ti-more"></i>Compose</a></li>
-            <li><a href="mailbox_read_mail.html"><i class="ti-more"></i>Read</a></li>
+          <ul class="treeview-menu color">
+            <li class="{{ ($route == 'all.category')? 'active color':'' }}" ><a class="color" href="{{ route('all.category') }}"><i class="ti-more"></i>All Category</a></li>
+
+            <li class="{{ ($route == 'all.subcategory')? 'active color':'' }}"><a class="color" href="{{ route('all.subcategory') }}"><i class="ti-more"></i>All Subcategory</a></li>
+            
+            <li class="{{ ($route == 'all.subSubcategory')? 'active color':'' }}"><a class="color" href="{{ route('all.subSubcategory') }}"><i class="ti-more"></i>All Sub->Subcategory</a></li>
           </ul>
         </li>
 
@@ -125,7 +128,7 @@
    .live{
      border: 1px solid gray;
      color: white;
-     box-shadow: 1px 2px 3px white;
+     box-shadow: 1px 2px gray;
      background-color: gray;
    }
    .color{
