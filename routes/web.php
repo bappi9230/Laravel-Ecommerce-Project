@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\AdminProfileController;
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
+use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Models\Admin;
@@ -72,6 +73,7 @@ Route::prefix('brand')->group(function(){
 
     Route::get('/delete/{id}',[BrandController::class,'BrandDelete'])->name('brand.delete');
 });
+
 // Admin all category Route
 Route::prefix('category')->group(function(){
     Route::get('/view',[CategoryController::class,'CategoryView'])->name('all.category');
@@ -95,12 +97,14 @@ Route::prefix('category')->group(function(){
     Route::post('/sub/update',[SubCategoryController::class,'SubCategoryUpdate'])->name('subcategory.update');
 
     Route::get('/sub/delete/{id}',[SubCategoryController::class,'SubCategoryDelete'])->name('subcategory.delete');
-    
+
 
    // Admin all sub->SubCategory route
     Route::get('/sub/sub/view',[SubCategoryController::class,'SubSubCategoryView'])->name('all.subSubcategory');
-    ///sub sub category show
+    ///sub category show
     Route::get('/subcategory/ajax/{category_id}', [SubCategoryController::class, 'GetSubCategory']);
+    ///sub sub category show
+    Route::get('/subSubcategory/ajax/{subcategory_id}', [SubCategoryController::class, 'GetSubSubCategory']);
 
     Route::post('/sub/sub/store',[SubCategoryController::class,'SubSubCategoryStore'])->name('subSubcategory.store');
 
@@ -109,4 +113,18 @@ Route::prefix('category')->group(function(){
     Route::post('/sub/sub/update',[SubCategoryController::class,'SubSubCategoryUpdate'])->name('subSubcategory.update');
 
     Route::get('/sub/sub/delete/{id}',[SubCategoryController::class,'SubSubCategoryDelete'])->name('subSubcategory.delete');
+});
+
+// Admin all Product Route
+
+Route::prefix('product')->group(function(){
+    Route::get('/add',[ProductController::class,'AddProduct'])->name('add.product');
+
+    Route::post('/store',[ProductController::class,'BrandStore'])->name('brand.store');
+
+    Route::get('/edit/{id}',[ProductController::class,'BrandEdit'])->name('brand.edit');
+
+    Route::post('/update',[ProductController::class,'BrandUpdate'])->name('brand.update');
+
+    Route::get('/delete/{id}',[ProductController::class,'BrandDelete'])->name('brand.delete');
 });

@@ -52,8 +52,23 @@
             <li class="{{ ($route == 'all.category')? 'active color':'' }}" ><a class="color" href="{{ route('all.category') }}"><i class="ti-more"></i>All Category</a></li>
 
             <li class="{{ ($route == 'all.subcategory')? 'active color':'' }}"><a class="color" href="{{ route('all.subcategory') }}"><i class="ti-more"></i>All Subcategory</a></li>
-            
+
             <li class="{{ ($route == 'all.subSubcategory')? 'active color':'' }}"><a class="color" href="{{ route('all.subSubcategory') }}"><i class="ti-more"></i>All Sub->Subcategory</a></li>
+          </ul>
+        </li>
+
+        <!------------ deals with  Product --------- -->
+        <li class="treeview {{ ($prefix == '/product')?'live':'' }}">
+          <a href="#" class="color" >
+            <i data-feather="mail"></i> <span>Product</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu color">
+            <li class="{{ ($route == 'add.product')? 'active color':'' }}" ><a class="color" href="{{ route('add.product') }}"><i class="ti-more"></i>Add Product</a></li>
+
+            <li class="{{ ($route == 'all.subcategory')? 'active color':'' }}"><a class="color" href="{{ route('all.subcategory') }}"><i class="ti-more"></i>Manage Product</a></li>
           </ul>
         </li>
 

@@ -102,13 +102,13 @@
                 @foreach($subSubcategories as $item)
                    <tr>
                        <td style="width:30px;">{{ $item->category->category_name_en }}</td>
-                       <td>{{ $item->subcategory->subcategory_name_en}}</td>
+                       <td style="width:30px;">{{ $item->subcategory->subcategory_name_en}}</td>
                         <td>{{ $item->subSubcategory_name_en }}</td>
                         <td>{{ $item->subSubcategory_name_bn }}</td>
                             <td>
                                 <!-- <a href="" class="btn btn-info sm" title="Edit" ><i class="fas fa-edit">Edit</i></a> -->
-                                <a href="{{ route('subcategory.edit',$item->id) }}" class="btn btn-info sm" title="Edit" ><i class="fa fa-pencil"></i></a>
-                                <a href="{{ route('subcategory.delete',$item->id) }}" class="btn btn-danger sm" title="Delete" id="delete" ><i class="fa fa-trash" ></i></a>
+                                <a href="{{ route('subSubcategory.edit',$item->id) }}" class="btn btn-info sm" title="Edit" ><i class="fa fa-pencil"></i></a>
+                                <a href="{{ route('subSubcategory.delete',$item->id) }}" class="btn btn-danger sm" title="Delete" id="delete" ><i class="fa fa-trash" ></i></a>
                             </td>
                     </tr>
                 @endforeach
