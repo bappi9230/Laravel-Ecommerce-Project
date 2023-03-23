@@ -68,7 +68,20 @@
           <ul class="treeview-menu color">
             <li class="{{ ($route == 'add.product')? 'active color':'' }}" ><a class="color" href="{{ route('add.product') }}"><i class="ti-more"></i>Add Product</a></li>
 
-            <li class="{{ ($route == 'all.subcategory')? 'active color':'' }}"><a class="color" href="{{ route('all.subcategory') }}"><i class="ti-more"></i>Manage Product</a></li>
+            <li class="{{ ($route == 'product.view')? 'active color':'' }}"><a class="color" href="{{ route('product.view') }}"><i class="ti-more"></i>Manage Product</a></li>
+          </ul>
+        </li>
+
+        <!------------ Slider--------- -->
+        <li class="treeview {{ ($prefix == '/slider')?'live':'' }}">
+          <a href="#" class="color" >
+            <i data-feather="mail"></i> <span>Slider</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu color">
+            <li class="{{ ($route == 'manage-slider')? 'active color':'' }}" ><a class="color" href="{{ route('manage-slider') }}"><i class="ti-more"></i>Manage Slider</a></li>
           </ul>
         </li>
 

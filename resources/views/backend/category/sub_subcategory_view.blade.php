@@ -101,7 +101,7 @@
             <tbody>
                 @foreach($subSubcategories as $item)
                    <tr>
-                       <td style="width:30px;">{{ $item->category->category_name_en }}</td>
+                       <td style="width:20px;">{{ $item->category->category_name_en }}</td>
                        <td style="width:30px;">{{ $item->subcategory->subcategory_name_en}}</td>
                         <td>{{ $item->subSubcategory_name_en }}</td>
                         <td>{{ $item->subSubcategory_name_bn }}</td>
