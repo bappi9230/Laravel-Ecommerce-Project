@@ -144,7 +144,7 @@
                                 <div class="form-group">
                                     <h5>Product Tags English<span class="text-danger">*</span></h5>
                                     <div class="controls">
-                                        <input type="text" name="product_tags_en" value="Lorem,Ipsum,Amet" data-role="tagsinput" class="form-control" required="" >
+                                        <input type="text" name="product_tags_en" value="back,Ipsum,Amet" data-role="tagsinput" class="form-control" required="" >
                                         <div class="help-block"></div>
                                         @error('product_tags_en')
                                             <span class="text-danger"> {{$message}} </span>
@@ -159,7 +159,7 @@
                                 <div class="form-group">
                                     <h5>Product Tags Bangla<span class="text-danger">*</span></h5>
                                     <div class="controls">
-                                        <input type="text" name="product_tags_bn" value="Lorem,Ipsum,Amet" data-role="tagsinput" class="form-control" required="" >
+                                        <input type="text" name="product_tags_bn" value="ভাল,ব্যবহারযোগ্য" data-role="tagsinput" class="form-control" required="" >
                                         <div class="help-block"></div>
                                         @error('product_tags_bn')
                                             <span class="text-danger"> {{$message}} </span>
@@ -183,7 +183,7 @@
                                 <div class="form-group">
                                     <h5>Product Size Bangla<span class="text-danger">*</span></h5>
                                     <div class="controls">
-                                        <input type="text" name="product_size_bn" value="Small,Medium,Large" data-role="tagsinput" class="form-control" required="" >
+                                        <input type="text" name="product_size_bn" value="ছোট,মধ্যম,বড়" data-role="tagsinput" class="form-control" required="" >
                                         <div class="help-block"></div>
                                         @error('product_size_bn')
                                             <span class="text-danger"> {{$message}} </span>
@@ -210,7 +210,7 @@
                                 <div class="form-group">
                                     <h5>Product Color Bangla<span class="text-danger">*</span></h5>
                                     <div class="controls">
-                                        <input type="text" name="product_color_bn" value="Red,Black,White" data-role="tagsinput" class="form-control" required="" >
+                                        <input type="text" name="product_color_bn" value="লাল,কালো,সাদা" data-role="tagsinput" class="form-control" required="" >
                                         <div class="help-block"></div>
                                         @error('product_color_bn')
                                             <span class="text-danger"> {{$message}} </span>

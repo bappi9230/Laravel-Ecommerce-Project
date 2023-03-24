@@ -8,6 +8,7 @@ use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Frontend\IndexController;
+use App\Http\Controllers\Frontend\LanguageController;
 use App\Models\Admin;
 use Illuminate\Support\Facades\Route;
 
@@ -52,7 +53,7 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])-
         return view('dashboard');
     })->name('dashboard');
 });
-Route::get('/',[IndexController::class,'Index']);
+Route::get('/',[IndexController::class,'Index'])->name('home');
 Route::get('/user/logout',[IndexController::class,'UserLogout'])->name('user.logout');
 Route::get('/user/profile',[IndexController::class,'UserProfile'])->name('user.profile');
 Route::post('/user/profile/store',[IndexController::class,'UserProfileStore'])->name('user.profile.store');
@@ -159,3 +160,18 @@ Route::prefix('slider')->group(function(){
     ///inactive
     Route::get('/inactive/{id}', [SliderController::class, 'SliderInactive'])->name('slider.inactive');
 });
+
+
+
+
+/////////////////////////////////////Frontend All route/////////////////////////////////////
+
+
+///// Multiple Language Controller Route
+
+    Route::get('language/bangla', [LanguageController::class, 'Bangla'])->name('bangla.language');
+    Route::get('language/english', [LanguageController::class, 'English'])->name('english.language');
+
+
+
+

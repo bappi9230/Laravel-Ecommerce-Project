@@ -81,7 +81,7 @@ class ProductController extends Controller
             'message'   => 'Product Inserted Successfully',
             'alert-type'=> 'info',
         );
-        return redirect()->route('brand.view')->with($notification);
+        return redirect()->route('product.view')->with($notification);
 	}
 
     // produc view

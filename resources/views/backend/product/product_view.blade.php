@@ -2,7 +2,7 @@
 @section('admin')
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <div class="container-full">
-<section class="content pt-0">
+<section class="content p-0">
 <div class="row">
 
 
@@ -44,14 +44,14 @@
                         <td >{{ $item->selling_price }}$</td>
 
                         <td >
-                            @if($item->discount_price == NULL)
-                            <span class="badge badge-pill badge-danger">No Discount</span>
+                            @if($item->discount_price == NULL || $item->discount_price == 0)
+                                <span class="badge badge-pill badge-danger">No Discount</span>
                             @else
                             @php
-                            $amount = $item->selling_price - $item->discount_price;
-                            $discount = $item->selling_price - ($amount / $item->selling_price)*100;
+                            $discount = $item->selling_price - $item->discount_price;
+                            $discount_percentage =($discount/$item->selling_price) * 100;
                             @endphp
-                            <span class="badge badge-pill badge-danger">{{ $discount }}%</span>
+                               <span class="badge badge-pill badge-danger"> {{ round( $discount_percentage) }} %</span>
                             @endif
                         </td>
                         <td >
@@ -61,12 +61,12 @@
                             <span class="badge badge-pill badge-danger">Inactive</span>
                             @endif
                         </td>
-                        <td width="20%">
-                            <a href="" class="btn btn-primary sm" title="View"><i class="fa fa-eye" ></i></a>
+                        <td width="30%">
+                            <!-- <a href="{#" class="btn btn-primary sm" title="View"><i class="fa fa-eye" ></i></a> -->
                             <a href="{{ route('product.edit',$item->id) }}" class="btn btn-info sm" title="Edit" ><i class="fa fa-pencil"></i></a>
                             <a href="{{ route('product.delete',$item->id) }}" class="btn btn-danger sm" title="Delete" id="delete" ><i class="fa fa-trash" ></i></a>
-                        @if($item->status ===1)
-                            <a href="{{ route('product.inactive',$item->id) }}" class="btn btn-danger sm" title="Inactive Now"><i class="fa fa-arrow-down" ></i></a>
+                        @if($item->status == 1)
+                            <a href="{{ route('product.inactive',$item->id) }}" class="btn btn-primary sm" title="Inactive Now"><i class="fa fa-arrow-down" ></i></a>
                         @else
                             <a href="{{ route('product.active',$item->id) }}" class="btn btn-success sm" title="Active Now"><i class="fa fa-arrow-up" ></i></a>
                         @endif
