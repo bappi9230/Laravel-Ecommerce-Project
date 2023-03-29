@@ -11,6 +11,7 @@ use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\LanguageController;
 use App\Models\Admin;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Frontend\CartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -175,5 +176,22 @@ Route::prefix('slider')->group(function(){
 //    produc details page
     Route::get('product/details/{id}/{slug}', [IndexController::class, 'ProductDetails']);
 
+    //product tag view
+    Route::get('product/tags/{tag}', [IndexController::class, 'TagWiseProductView']);
+
+    //subcategory wise product view
+    Route::get('product/subSubcategory/{id}/{slug}', [IndexController::class, 'SubSubCategoryWiseProductView']);
+
+    //subcategory wise product view
+    Route::get('product/subcategory/{id}/{slug}', [IndexController::class, 'SubCategoryWiseProductView']);
+
+    // Product View Modal with Ajax
+    Route::get('/product/view/modal/{id}', [IndexController::class, 'ProductViewAjax']);
+
+    // Product View Modal with Ajax
+    Route::post('/cart/data/store/{id}', [CartController::class, 'AddToCart']);
+
+    // Product View Modal with Ajax
+    Route::get('/product/mini/cart/', [CartController::class, 'AddMiniCart']);
 
 

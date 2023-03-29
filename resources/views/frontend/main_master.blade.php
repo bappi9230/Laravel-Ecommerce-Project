@@ -5,6 +5,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <meta name="description" content="">
+<meta name="csrf-token" content="{{ csrf_token() }}">
 <meta name="author" content="">
 <meta name="keywords" content="MediaCenter, Template, eCommerce">
 <meta name="robots" content="all">
@@ -60,8 +61,11 @@
 <script src="{{ asset('frontend/assets/js/bootstrap-select.min.js') }}"></script>
 <script src="{{ asset('frontend/assets/js/wow.min.js') }}"></script>
 <script src="{{ asset('frontend/assets/js/scripts.js') }}"></script>
+
+     <!-- sweet alert -->
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
      <!-- toster.js -->
-     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
         <script>
             @if(Session::has('message'))
@@ -85,5 +89,229 @@
                 }
             @endif
         </script>
+<!--=========================CART Modal View================================= -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"><strong><span id="pname"></span></strong></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="closeModal">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card" style="width: 18rem;">
+                            <img src=" " class="card-img-top" alt="no image" style="height: 200px; width: 200px;" id="pimage">
+                        </div>
+                    </div><!-- end col 4 -->
+                    <div class="col-md-4">
+                        <ul class="list-group">
+                            <li class="list-group-item">Product Price: <strong class="text-success"><span id="price"></span></strong> <del id="discount_price"></del></li>
+                            <li class="list-group-item">Product Code: <strong id="pcode"></strong></li>
+                            <li class="list-group-item">Category: <strong id="pcategory"></strong></li>
+                            <li class="list-group-item">Brand: <strong id="pbrand"></strong></li>
+                            <li class="list-group-item">stock:
+                                <span class="badge badge-pill badge-success" id="Available" style="background: green; color: white;"></span>
+                                <span class="badge badge-pill badge-danger" id="stockout" style="background: red; color: white;"></span>
+                            </li>
+                        </ul>
+                    </div><!-- end col 4 -->
+
+                    <div class="col-md-4" id="colorArea">
+                        <div class="form-group">
+                            <label for="color">Product Color</label>
+                            <select class="form-control" id="color" name="color">
+                            </select>
+                        </div>
+                        <div class="form-group" id="sizeArea">
+                            <label for="size">Product Size</label>
+                            <select class="form-control" id="size" name="size">
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="qty">Product Quantity</label>
+                              <input type="number" id="qty" value="1" min="1">
+                        </div>
+                    </div><!-- end col 4 -->
+                </div><!-- end row -->
+            </div>
+            <input type="hidden" id="product_id">
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="addToCart()" >Add To Cart</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $.ajaxSetup({
+        headers:{
+            'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
+        }
+    })
+    // Start Product View with Modal
+    function productView(id){
+        // alert(id)
+        $.ajax({
+            type: 'GET',
+            url: '/product/view/modal/'+id,
+            dataType:'json',
+            success:function(data){
+                $('#pname').text(data.product.product_name_en);
+                $('#price').text(data.product.selling_price);
+                $('#pcode').text(data.product.product_code);
+                $('#pcategory').text(data.product.category.category_name_en);
+                $('#pbrand').text(data.product.brand.brand_name_en);
+                $('#pimage').attr('src','/'+data.product.product_thumbnail);
+
+
+                $('#product_id').val(id);
+                $('#qty').val(1);
+
+                // Product Price
+                if (data.product.discount_price == null || data.product.discount_price == 0) {
+                    $('#price').text('');
+                    $('#discount_price').text('');
+                    $('#price').text('$'+data.product.selling_price);
+                }else{
+                    $('#price').text('$'+data.product.discount_price);
+                    $('#discount_price').text('$'+data.product.selling_price);
+                } // end prodcut price
+
+                //product stock
+                if( 0 < data.product.product_qty ){
+                    $('#Available').text('');
+                    $('#stockout').text('');
+                    $('#Available').text('Available');
+                }else {
+                    $('#Available').text('');
+                    $('#stockout').text('');
+                    $('#stockout').text('StockOut');
+                }
+                //end product stock
+
+
+                // Color
+                $('select[name="color"]').empty();
+                $.each(data.color,function(key,value){
+                    $('select[name="color"]').append('<option value=" '+value+' ">'+value+' </option>')
+                    if (data.color == "") {
+                        $('#colorArea').hide();
+                    }else{
+                        $('#colorArea').show();
+                    }
+                }) // end color
+
+                // Size
+                $('select[name="size"]').empty();
+                $.each(data.size,function(key,value){
+                    $('select[name="size"]').append('<option value=" '+value+' ">'+value+' </option>')
+                    if (data.size == "") {
+                        $('#sizeArea').hide();
+                    }else{
+                        $('#sizeArea').show();
+                    }
+                }) // end size
+
+            }
+        })
+    }
+<!--===========================END CART Modal View============================== -->
+
+
+<!--===========================ADD TO CART ============================== -->
+
+    // Start Add To Cart Product
+    function addToCart(){
+        var product_name = $('#pname').text();
+        var id = $('#product_id').val();
+        var color = $('#color option:selected').text();
+        var size = $('#size option:selected').text();
+        var quantity = $('#qty').val();
+        $.ajax({
+            type: "POST",
+            dataType: 'json',
+            data:{
+                color, size, quantity, product_name
+            },
+            url: "/cart/data/store/"+id,
+            success:function(data){
+                addMiniCart();
+                $('#closeModal').click();
+                console.log(data);
+
+                // Start Message
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    icon: 'success',
+                    showConfirmButton: false,
+                    timer: 3000
+                })
+                if ($.isEmptyObject(data.error)) {
+                    Toast.fire({
+                        type: 'success',
+                        title: data.success
+                    })
+                }else{
+                    Toast.fire({
+                        type: 'error',
+                        title: data.error
+                    })
+                }// End Message
+            }
+        })
+    }
+</script>
+<!--===========================END ADD TO CART============================== -->
+
+
+    <!--===========================ADD Mini CART============================== -->
+    <script type="text/javascript">
+        function addMiniCart(){
+            $.ajax({
+                type:'GET',
+                url:'/product/mini/cart',
+                dataType:'json',
+                success:function (response) {
+                    console.log(response);
+
+                    $('span[id="cartTotal"]').text(response.cartTotal);
+                    $('#cartQty').text(response.cartQty);
+
+                    var miniCart = "";
+                    $.each(response.carts, function(key,value){
+
+                        miniCart += `
+                <div class="cart-item product-summary">
+                  <div class="row">
+                    <div class="col-xs-4">
+                       <div class="image"> <a href="detail.html">
+                          <img src="/${value.options.image}" alt=""></a>
+                       </div>
+                    </div>
+                    <div class="col-xs-7">
+                      <h3 class="name"><a href="index.php?page-detail">${value.name}</a></h3>
+                      <div class="price"><span>$</span>${value.price}</div>
+                    </div>
+                    <div class="col-xs-1 action"> <a href="#"><i class="fa fa-trash"></i></a> </div>
+                  </div>
+                </div>
+                <!-- /.cart-item -->
+                <div class="clearfix"></div>
+                <hr>`
+                    });
+                    $('#miniCart').html(miniCart);
+
+                }
+            })
+       }
+        addMiniCart();
+    </script>
+    <!--===========================END Mini CART============================== -->
+
+
 </body>
 </html>

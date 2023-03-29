@@ -1,6 +1,6 @@
 <header class="header-style-1">
 
-  <!-- ============================================== TOP MENU ============================================== -->
+  <!-- ============================== TOP MENU ================================= -->
   <div class="top-bar animate-dropdown">
     <div class="container">
       <div class="header-top-inner">
@@ -55,20 +55,20 @@
     <!-- /.container -->
   </div>
   <!-- /.header-top -->
-  <!-- ============================================== TOP MENU : END ============================================== -->
+  <!-- =================================== TOP MENU : END ============================ -->
   <div class="main-header">
     <div class="container">
       <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-3 logo-holder">
-          <!-- ============================================================= LOGO ============================================================= -->
+          <!-- =========================== LOGO ================================= -->
           <div class="logo"> <a href="{{route('dashboard')}}"> <img src="{{ asset('frontend/assets/images/logo.png') }}" alt="logo"> </a> </div>
           <!-- /.logo -->
-          <!-- ============================================================= LOGO : END ============================================================= --> </div>
+          <!-- ================================= LOGO : END ============================= --> </div>
         <!-- /.logo-holder -->
 
         <div class="col-xs-12 col-sm-12 col-md-7 top-search-holder">
           <!-- /.contact-row -->
-          <!-- ============================================================= SEARCH AREA ============================================================= -->
+          <!-- ========================== SEARCH AREA ======================================== -->
           <div class="search-area">
             <form>
               <div class="control-group">
@@ -88,38 +88,39 @@
             </form>
           </div>
           <!-- /.search-area -->
-          <!-- ============================================================= SEARCH AREA : END ============================================================= --> </div>
+          <!-- =========================== SEARCH AREA : END =========================== --> </div>
         <!-- /.top-search-holder -->
 
-        <div class="col-xs-12 col-sm-12 col-md-2 animate-dropdown top-cart-row">
-          <!-- ============================================================= SHOPPING CART DROPDOWN ============================================================= -->
+        <div class="col-xs-12 col-sm-12 col-md-2 animate-dropdown top-cart-row ">
+          <!-- ======================== SHOPPING CART DROPDOWN ================================ -->
 
           <div class="dropdown dropdown-cart"> <a href="#" class="dropdown-toggle lnk-cart" data-toggle="dropdown">
-            <div class="items-cart-inner">
+            <div class="items-cart-inner" >
               <div class="basket"> <i class="glyphicon glyphicon-shopping-cart"></i> </div>
-              <div class="basket-item-count"><span class="count">2</span></div>
-              <div class="total-price-basket"> <span class="lbl">cart -</span> <span class="total-price"> <span class="sign">$</span><span class="value">600.00</span> </span> </div>
+              <div class="basket-item-count">
+                  <span class="count" id="cartQty"></span>
+              </div>
+              <div class="total-price-basket">
+                  <span class="lbl">cart -</span>
+                  <span class="total-price">
+                      <span class="sign">$</span>
+                      <span class="value" id="cartTotal"></span>
+                  </span>
+              </div>
             </div>
             </a>
             <ul class="dropdown-menu">
               <li>
-                <div class="cart-item product-summary">
-                  <div class="row">
-                    <div class="col-xs-4">
-                      <div class="image"> <a href="detail.html"><img src="{{ asset('frontend/assets/images/cart.jpg') }}" alt=""></a> </div>
-                    </div>
-                    <div class="col-xs-7">
-                      <h3 class="name"><a href="index.php?page-detail">Simple Product</a></h3>
-                      <div class="price">$600.00</div>
-                    </div>
-                    <div class="col-xs-1 action"> <a href="#"><i class="fa fa-trash"></i></a> </div>
-                  </div>
-                </div>
-                <!-- /.cart-item -->
-                <div class="clearfix"></div>
-                <hr>
+                 <div id="miniCart"></div>
                 <div class="clearfix cart-total">
-                  <div class="pull-right"> <span class="text">Sub Total :</span><span class='price'>$600.00</span> </div>
+                  <div class="pull-right">
+                  <span class="total-price">
+                      <span class="text">Sub Total :</span>
+                      <span class="sign">$</span>
+                      <span class='price' id="cartTotal"></span>
+                  </span>
+
+                  </div>
                   <div class="clearfix"></div>
                   <a href="checkout.html" class="btn btn-upper btn-primary btn-block m-t-20">Checkout</a> </div>
                 <!-- /.cart-total-->
@@ -130,7 +131,9 @@
           </div>
           <!-- /.dropdown-cart -->
 
-          <!-- ============================================================= SHOPPING CART DROPDOWN : END============================================================= --> </div>
+          <!-- ================================ SHOPPING CART DROPDOWN : END========================= -->
+
+        </div>
         <!-- /.top-cart-row -->
       </div>
       <!-- /.row -->
@@ -141,7 +144,8 @@
   </div>
   <!-- /.main-header -->
 
-  <!-- ============================================== NAVBAR ============================================== -->
+
+  <!-- ======================================= NAVBAR ========================== -->
   <div class="header-nav animate-dropdown">
     <div class="container">
       <div class="yamm navbar navbar-default" role="navigation">
@@ -153,16 +157,19 @@
           <div class="navbar-collapse collapse" id="mc-horizontal-menu-collapse">
             <div class="nav-outer">
               <ul class="nav navbar-nav">
-                <li class="active dropdown yamm-fw"> <a href="home.html" data-hover="dropdown" class="dropdown-toggle" data-toggle="dropdown">
-                @if(session()->get('language') == 'bangla') হোম  @else Home @endif
-                    </a> </li>
+                <li class="active dropdown yamm-fw">
+                    <a href="{{ url('/')  }}" data-hover="dropdown" class="dropdown-toggle" data-toggle="dropdown">
+                          @if(session()->get('language') == 'bangla') হোম  @else Home @endif
+                    </a>
+                </li>
                 <!-- Category data  -->
             @php
                 $categories = App\models\Category::orderBy('category_name_en','ASC')->get();
             @endphp
             @foreach($categories as $category)
-                <li class="dropdown yamm mega-menu"> <a href="home.html" data-hover="dropdown"  class="dropdown-toggle" data-toggle="dropdown">
-                     @if(session()->get('language') == 'bangla') {{ $category->category_name_bn }}  @else {{ $category->category_name_en }} @endif
+                <li class="dropdown yamm mega-menu">
+                    <a  href="#" data-hover="dropdown"  class="dropdown-toggle" data-toggle="dropdown">
+                       @if(session()->get('language') == 'bangla') {{ $category->category_name_bn }}  @else {{ $category->category_name_en }} @endif
                     </a>
                     <ul class="dropdown-menu container">
                        <li>
@@ -175,8 +182,11 @@
                                         @foreach($subcategories as $subcategory)
 
                                         <div class="col-xs-12 col-sm-6 col-md-2 col-menu">
-                                            <h2 class="title">
-                                                 @if(session()->get('language') == 'bangla') {{$subcategory->subcategory_name_bn}}  @else {{$subcategory->subcategory_name_en}} @endif</h2>
+                                            <a href="{{ url('product/subcategory/'.$subcategory->id.'/'.$subcategory->subcategory_slug_en) }}">
+                                                <h2 class="title">
+                                                    @if(session()->get('language') == 'bangla') {{$subcategory->subcategory_name_bn}}  @else {{$subcategory->subcategory_name_en}} @endif
+                                                </h2>
+                                            </a>
 
                                             <!-- SubSubcategory data  -->
                                             @php
@@ -184,7 +194,7 @@
                                             @endphp
                                             @foreach($subSubcategories as $subSubcategory)
                                                 <ul class="links">
-                                                    <li><a href="#">
+                                                    <li><a href="{{ url('product/subSubcategory/'.$subSubcategory->id.'/'.$subSubcategory->subSubcategory_slug_en) }}">
                                                         @if(session()->get('language') == 'bangla') {{$subSubcategory->subSubcategory_name_bn}}  @else {{$subSubcategory->subSubcategory_name_en}}@endif
                                                         </a></li>
                                                 </ul>
@@ -217,6 +227,6 @@
 
   </div>
   <!-- /.header-nav -->
-  <!-- ============================================== NAVBAR : END ============================================== -->
+  <!-- ================================== NAVBAR : END =================================== -->
 
 </header>
