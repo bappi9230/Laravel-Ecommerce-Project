@@ -85,6 +85,37 @@
           </ul>
         </li>
 
+          <!------------ Coupons--------- -->
+          <li class="treeview {{ ($prefix == '/coupons')?'live':'' }}">
+              <a href="#" class="color" >
+                  <i data-feather="mail"></i> <span>Coupons</span>
+                  <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+              </a>
+              <ul class="treeview-menu color">
+                  <li class="{{ ($route == 'manage-coupon')? 'active color':'' }}" ><a class="color" href="{{ route('manage-coupon') }}"><i class="ti-more"></i>Manage Coupon</a></li>
+              </ul>
+          </li>
+
+          <!------------ Shipping Area--------- -->
+          <li class="treeview {{ ($prefix == '/shipping')?'live':'' }}">
+              <a href="#" class="color" >
+                  <i data-feather="mail"></i> <span>Shipping Area</span>
+                  <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+              </a>
+              <ul class="treeview-menu color">
+                  <li class="{{ ($route == 'manage-division')? 'active color':'' }}" ><a class="color" href="{{ route('manage-division') }}"><i class="ti-more"></i>Ship Division</a></li>
+                  <li class="{{ ($route == 'manage-district')? 'active color':'' }}" ><a class="color" href="{{ route('manage-district') }}"><i class="ti-more"></i>Ship District</a></li>
+              </ul>
+          </li>
+
+
+
+
+
         <li class="treeview">
           <a href="#">
             <i data-feather="file"></i>

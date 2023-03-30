@@ -145,13 +145,17 @@
         </div>
     </div>
 </div>
+
+
+<!--===========================END CART Modal View============================== -->
+<!--===========================END CART Modal View============================== -->
 <script type="text/javascript">
     $.ajaxSetup({
         headers:{
             'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
         }
     })
-    // Start Product View with Modal
+   // <!--========================Start Product View with Modal ================================== -->
     function productView(id){
         // alert(id)
         $.ajax({
@@ -347,6 +351,7 @@
     </script>
     <!--===========================END Mini CART============================== -->
 
+
 <!--===========================ADD TO WISH LIST============================== -->
 
 <script type="text/javascript">
@@ -472,7 +477,7 @@
 </script>
 
 <!--=========================== End Remove Wishlist Data============================== -->
-/////////////////////////////////////////////////////////////
+
 
 <!--===========================Load mycart Data============================== -->
 
@@ -486,22 +491,54 @@
                 var rows = ""
                 $.each(response.carts, function(key,value){
                     rows += `
-                <tr>
-                    <td class="col-md-2"><img src="/${value.options.image} " alt="img"></td>
-                    <td class="col-md-7">
-                        <div class="product-name"><a href="#">${value.name}</a></div>
+                    <tr>
+                        <td class="cart-image">
+                            <a class="entry-thumbnail" href="detail.html">
+                                <img src="/${value.options.image}" alt="">
+                            </a>
+                        </td>
 
-                        <div class="product-price">
-                            <span class="price">$</span><span class="price">${value.price}</span>
-                        </div>
-                    </td>
-                    <td class="col-md-2">
-                        <button class="btn btn-primary icon" type="button" title="Add Cart" data-toggle="modal" data-target="#exampleModal" id="${value.product_id}" onclick="productView(this.id)"> Add to Cart </button>
-                    </td>
-                    <td class="col-md-1 close-btn">
-                        <button type="submit" id="${value.id}" onclick="removeWishlist(this.id)"><i class="fa fa-times"></i></button>
-                    </td>
-                </tr>`
+                        <td class="cart-product-name-info text-center">
+                            <h4 class='cart-product-description'><a href="detail.html">${value.name}</a></h4>
+                            <div class="cart-product-info">
+                                ${value.options.size == null
+                                        ? `<span>...</span>`
+                                        :`<span class="product-color">COLOR:<span>${value.options.color}</span></span>`
+                                 }
+                            </div>
+                            <div class="cart-product-info">
+                                ${value.options.size == null
+                                   ?` <span>...</span>`
+                                   :` <span class="product-color" style="margin:5px;">SIZE :<span>${value.options.size}</span></span>`
+                                  }
+                            </div>
+                        </td>
+
+                        <td class="cart-product-sub-total">
+                          <span class="price">$${value.price}</span>
+                        </td>
+
+                        <td class="cart-product-quantity">
+                             ${value.qty > 1
+                                ?`<button class="btn btn-danger btn-sm" id="${value.rowId}" onclick="cartDecrement(this.id)" title="Decreament">-</button>`
+                                :`<button class="btn btn-danger btn-sm" title="Decreament" disabled>-</button>`
+                            }
+                            <input type="text" value="${value.qty}" min="1" max="100" disabled="" style="width: 25px;">
+                            ${value.qty < 100
+                                ?`<button type="submit" id="${value.rowId}" onclick="cartIncrement(this.id)" class="btn btn-success btn-sm" title="Increament">+</button>`
+                                :`<button class="btn btn-danger btn-sm" title="Increament" disabled>+</button>`
+                            }
+                        </td>
+
+                        <td class="cart-product-grand-total"><span class="cart-grand-total-price">$${parseFloat(value.subtotal)}</span></td>
+
+                        <td class="cart-product-edit"><button type="submit" data-toggle="modal" data-target="#exampleModal" id="" onclick="productView(this.id)" title="Edit" class="btn btn-success"><i class="fa fa-edit"></i></button></td>
+
+                        <td class="romove-item "><button type="submit" id="${value.rowId}" onclick="cartRemove(this.id)" class="btn btn-danger btn-sm" title="Delete"><i class="fa fa-trash-o"></i></button>
+                        </td>
+
+                    </tr>
+                    `
                 });
 
                 $('#mycart').html(rows);
@@ -516,13 +553,14 @@
 <!--=========================== Remove mycart Data============================== -->
 
 <script type="text/javascript">
-    function removeWishlist(id){
+    function cartRemove(rowId){
         $.ajax({
             type:'GET',
-            url:'/user/remove-mycart/'+id,
+            url:'/user/remove-mycart/'+rowId,
             dataType:'json',
             success:function (data){
-                wishlist();
+                mycart();
+                addMiniCart();
                 // Start Message
                 const Toast = Swal.mixin({
                     toast: true,
@@ -548,9 +586,42 @@
         })
 
     }
+    // -------- CART INCREMENT --------//
+    function cartIncrement(rowId){
+        $.ajax({
+            type:'GET',
+            url: "/cart-increment/"+rowId,
+            dataType:'json',
+            success:function(data){
+                mycart();
+                addMiniCart();
+            }
+        });
+    }
+    // ---------- END CART INCREMENT -----///
+
+    // -------- CART INCREMENT --------//
+    function cartDecrement(rowId){
+        $.ajax({
+            type:'GET',
+            url: "/cart-decrement/"+rowId,
+            dataType:'json',
+            success:function(data){
+                mycart();
+                addMiniCart();
+            }
+        });
+    }
+    // ---------- END CART INCREMENT -----///
+
 </script>
 
 <!--=========================== End Remove mycart Data============================== -->
+
+
+
+
+
 
 
 
