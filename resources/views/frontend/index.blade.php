@@ -1255,7 +1255,10 @@
                                               </button>
                                               <button class="btn btn-primary cart-btn" type="button">@if(session()->get('language') == 'bangla') কার্টে যোগ করুন @else Add to cart @endif</button>
                                           </li>
-                                          <li class="lnk wishlist"> <a data-toggle="tooltip" class="add-to-cart" href="detail.html" title=" @if(session()->get('language') == 'bangla') ইচ্ছেতালিকা @else Wishlist @endif "> <i class="icon fa fa-heart"></i> </a> </li>
+
+                                          <button  id="{{$product->id}}" onclick="addToWishlist(this.id)" class="add-to-cart rounded" style="padding-bottom:5px; background-color: #0c85d0;" title=" @if(session()->get('language') == 'bangla') ইচ্ছেতালিকা @else Wishlist @endif "> <i class="icon fa fa-heart" style="margin-top:8px; color:red;"></i>
+                                          </button>
+
                                           <li class="lnk"> <a data-toggle="tooltip" class="add-to-cart" href="detail.html" title="@if(session()->get('language') == 'bangla') তুলনা করা @else Compare @endif "> <i class="fa fa-signal" aria-hidden="true"></i> </a> </li>
                                       </ul>
                                   </div>

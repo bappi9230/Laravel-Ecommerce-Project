@@ -6,16 +6,17 @@
       <div class="header-top-inner">
         <div class="cnt-account">
           <ul class="list-unstyled">
-            <li><a href="#"><i class="icon fa fa-user"></i>
+            <li><a href="{{ route('login')}}"><i class="icon fa fa-user"></i>
             @if(session()->get('language') == 'bangla') আমার অ্যাকাউন্ট  @else My Account @endif
             </a></li>
-            <li><a href="#"><i class="icon fa fa-heart"></i>
+            <li><a href="{{url('/user/wishlist/view')}}"><i class="icon fa fa-heart"></i>
             @if(session()->get('language') == 'bangla') ইচ্ছাতালিকা  @else Wishlist @endif
             </a></li>
-            <li><a href="#"><i class="icon fa fa-shopping-cart"></i>@if(session()->get('language') == 'bangla') আমার কার্ট  @else My Cart @endif</a></li>
+            <li><a href="{{route('mycart')}}"><i class="icon fa fa-shopping-cart"></i>@if(session()->get('language') == 'bangla') আমার কার্ট  @else My Cart @endif</a></li>
             <li><a href="#"><i class="icon fa fa-check"></i>@if(session()->get('language') == 'bangla') চেকআউট  @else Checkout @endif</a></li>
+
             @auth
-             <li><a href=""><i class="icon fa fa-user"></i>@if(session()->get('language') == 'bangla') ব্যবহারকারী প্রোফাইল @else User Profile @endif</a></li>
+             <li><a href="{{ route('login')}}"><i class="icon fa fa-user"></i>@if(session()->get('language') == 'bangla') ব্যবহারকারী প্রোফাইল @else {{Illuminate\Support\Facades\Auth::user()->name}} @endif</a></li>
             @else
             <li><a href="{{ route('login')}}"><i class="icon fa fa-lock"></i>@if(session()->get('language') == 'bangla') লগ ইন। নিবন্ধন @else Login|Register @endif</a></li>
             @endauth
@@ -114,12 +115,11 @@
                  <div id="miniCart"></div>
                 <div class="clearfix cart-total">
                   <div class="pull-right">
-                  <span class="total-price">
-                      <span class="text">Sub Total :</span>
-                      <span class="sign">$</span>
-                      <span class='price' id="cartTotal"></span>
-                  </span>
-
+                      <span class="total-price">
+                          <span class="text">Sub Total :</span>
+                          <span class="sign">$</span>
+                          <span class='price' id="cartTotal"></span>
+                      </span>
                   </div>
                   <div class="clearfix"></div>
                   <a href="checkout.html" class="btn btn-upper btn-primary btn-block m-t-20">Checkout</a> </div>
@@ -158,9 +158,8 @@
             <div class="nav-outer">
               <ul class="nav navbar-nav">
                 <li class="active dropdown yamm-fw">
-                    <a href="{{ url('/')  }}" data-hover="dropdown" class="dropdown-toggle" data-toggle="dropdown">
-                          @if(session()->get('language') == 'bangla') হোম  @else Home @endif
-                    </a>
+                    <a id="design" href="{{url('/')}}" onMouseOver="this.style.backgroundColor='white'" onMouseOut="this.style.backgroundColor='#0f6cb2'"
+                      onMouseOut="this.style.color='white'" style="background-color:#0f6cb2;border: none;color:white;padding-top:10px; :active {background: white}">@if(session()->get('language') == 'bangla') হোম  @else HOME @endif</a>
                 </li>
                 <!-- Category data  -->
             @php
@@ -230,3 +229,4 @@
   <!-- ================================== NAVBAR : END =================================== -->
 
 </header>
+
