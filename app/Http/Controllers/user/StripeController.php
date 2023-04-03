@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Mail\OrderMail;
 use App\Models\Order;
 use App\Models\OrderItem;
 use Carbon\Carbon;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 
 
@@ -62,6 +64,20 @@ class StripeController extends Controller
      	'created_at' => Carbon::now(),
 
      ]);
+
+        ///////////mail to the user/////////
+
+        $order = Order::findOrFail($order_id);
+        $data = [
+            'invoice_no' =>$order->invoice_no,
+            'amount'=>$order->amount,
+            'name'=>$order->name,
+            'email'=>$order->email,
+        ];
+        Mail::to($request->email)->send( new OrderMail($data));
+
+        /////////// end mail to the user/////////
+
 
         $carts = Cart::content();
         foreach ($carts as $cart) {

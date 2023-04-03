@@ -12,13 +12,13 @@ use Illuminate\Queue\SerializesModels;
 class OrderMail extends Mailable
 {
     use Queueable, SerializesModels;
-
+    public $data;
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct($data)
     {
-        //
+        $this->data =$data;
     }
 
     /**
@@ -36,8 +36,9 @@ class OrderMail extends Mailable
      */
     public function content(): Content
     {
+         $order = $this->data;
         return new Content(
-            view: 'view.name',
+            view('frontend.mail.order_mail',compact('order'))
         );
     }
 
