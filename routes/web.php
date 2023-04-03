@@ -16,6 +16,8 @@ use App\Http\Controllers\user\WishListController;
 use App\Http\Controllers\Frontend\CartPageController;
 use App\Http\Controllers\Backend\CouponController;
 use App\Http\Controllers\Backend\ShippingAreaController;
+use App\Http\Controllers\User\CheckoutController;
+use App\Http\Controllers\User\StripeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -211,6 +213,9 @@ Route::prefix('slider')->group(function(){
 
         Route::get('/remove-wishlist/{id}', [WishListController::class, 'RemoveWishlistProduct']);
 
+        /////Stripe Payment///////////
+        Route::post('/stripe-payment', [StripeController::class, 'StripePayment'])->name('stripe.payment');
+
     });
 
 ////////////////////   my cart  all route //////////////////
@@ -296,6 +301,14 @@ Route::get('/coupon-calculation', [CartController::class, 'CouponCalculation']);
 
 Route::get('/coupon-remove', [CartController::class, 'CouponRemove']);
 
+
+////////////// frontend Checkout store///////////////////
+
+Route::get('/shipping/division/district/ajax/{division_id}', [CheckoutController::class, 'DistrictSelection']);
+
+Route::get('/shipping/division/sate/ajax/{district_id}', [CheckoutController::class, 'StateSelection']);
+
+Route::post('/checkout/store', [CheckoutController::class, 'CheckoutStore'])->name('checkout.store');
 
 
 

@@ -1,5 +1,6 @@
 @extends('frontend.main_master')
 @section('content')
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     @section('title')
         Checkout page
@@ -19,21 +20,13 @@
     <div class="body-content">
         <div class="container">
             <div class="checkout-box ">
-                <div class="row">
+                <form class="register-form" role="form" method="post" action="{{route('checkout.store')}}">
+                    @csrf
+                    <div class="row">
                     <div class="col-md-8">
                         <div class="panel-group checkout-steps" id="accordion">
                             <!-- checkout-step-01  -->
                             <div class="panel panel-default checkout-step-01">
-
-                                <!-- panel-heading -->
-                                <div class="panel-heading">
-                                    <h4 class="unicase-checkout-title">
-                                        <a data-toggle="collapse" class="" data-parent="#accordion" href="#collapseOne">
-                                            <span>1</span>Checkout Method
-                                        </a>
-                                    </h4>
-                                </div>
-                                <!-- panel-heading -->
 
                                 <div id="collapseOne" class="panel-collapse collapse in">
 
@@ -42,52 +35,86 @@
                                         <div class="row">
 
                                             <!-- guest-login -->
-                                            <div class="col-md-6 col-sm-6 guest-login">
-                                                <h4 class="checkout-subtitle">Guest or Register Login</h4>
-                                                <p class="text title-tag-line">Register with us for future convenience:</p>
 
-                                                <!-- radio-form  -->
-                                                <form class="register-form" role="form">
-                                                    <div class="radio radio-checkout-unicase">
-                                                        <input id="guest" type="radio" name="text" value="guest" checked>
-                                                        <label class="radio-button guest-check" for="guest">Checkout as Guest</label>
-                                                        <br>
-                                                        <input id="register" type="radio" name="text" value="register">
-                                                        <label class="radio-button" for="register">Register</label>
-                                                    </div>
-                                                </form>
-                                                <!-- radio-form  -->
+                                                <div class="col-md-6 col-sm-6 already-registered-login">
+                                                    <h4 class="checkout-subtitle"><b> Shipping Address </b></h4>
 
-                                                <h4 class="checkout-subtitle outer-top-vs">Register and save time</h4>
-                                                <p class="text title-tag-line ">Register with us for future convenience:</p>
 
-                                                <ul class="text instruction inner-bottom-30">
-                                                    <li class="save-time-reg">- Fast and easy check out</li>
-                                                    <li>- Easy access to your order history and status</li>
-                                                </ul>
+                                                        <div class="form-group">
+                                                            <label class="info-title" for="exampleInputEmail1">Shipping Name <span>*</span></label>
+                                                            <input type="text" name="shipping_name" value="{{ Auth::user()->name }}" class="form-control unicase-form-control text-input" id="exampleInputEmail1" placeholder="Name" required>
+                                                        </div> <!-- end form group -->
 
-                                                <button type="submit" class="btn-upper btn btn-primary checkout-page-button checkout-continue ">Continue</button>
-                                            </div>
+                                                        <div class="form-group">
+                                                            <label class="info-title" for="exampleInputEmail1">Shipping Email <span>*</span></label>
+                                                            <input type="email" name="shipping_email" value="{{ Auth::user()->email }}" class="form-control unicase-form-control text-input" id="exampleInputEmail1" placeholder="Email" required>
+                                                        </div> <!-- end form group -->
+
+                                                        <div class="form-group">
+                                                            <label class="info-title" for="exampleInputEmail1">Shipping Phone Number <span>*</span></label>
+                                                            <input type="text" name="shipping_phone" value="{{ Auth::user()->phone }}" class="form-control unicase-form-control text-input" id="exampleInputEmail1" placeholder="Phone" required>
+                                                        </div> <!-- end form group -->
+
+                                                        <div class="form-group">
+                                                            <label class="info-title" for="exampleInputEmail1">Post Code <span>*</span></label>
+                                                            <input type="number" name="post_code" class="form-control unicase-form-control text-input" id="exampleInputEmail1" placeholder="Post Code" required>
+                                                        </div> <!-- end form group -->
+
+                                                </div>
+
+                                                <div class="col-md-6 col-sm-6 already-registered-login">
+
+                                                        <div class="col-md-12">
+
+                                                            <div class="form-group">
+                                                                <h5><b>Select Division</b> <span class="text-danger">*</span></h5>
+                                                                <div class="controls">
+                                                                    <select name="division_id"  class="form-control" aria-invalid="false" required>
+                                                                        <option value="" selected disabled>Select Your Division</option>
+                                                                        @foreach($divisions as $division)
+                                                                            <option value="{{$division->id}}">{{ $division->division_name }}</option>
+                                                                        @endforeach
+                                                                    </select>
+                                                                </div>
+                                                                @error('division_id')
+                                                                <span class="text-danger">{{ $message }} </span>
+                                                                @enderror
+                                                            </div> <!-- end form group -->
+
+                                                            <div class="form-group">
+                                                                <h5><b>Select District</b> <span class="text-danger">*</span></h5>
+                                                                <div class="controls">
+                                                                    <select name="district_id"  class="form-control" aria-invalid="false" required>
+                                                                        <option value="" selected disabled>Select Your District</option>
+                                                                    </select>
+                                                                </div>
+                                                                @error('district_id')
+                                                                <span class="text-danger">{{ $message }} </span>
+                                                                @enderror
+                                                            </div> <!-- end form group -->
+
+                                                            <div class="form-group">
+                                                                <h5><b>State Name</b> <span class="text-danger">*</span></h5>
+                                                                <div class="controls">
+                                                                    <select name="state_id"  class="form-control" aria-invalid="false" required>
+                                                                        <option value="" selected disabled>Select State Name</option>
+                                                                    </select>
+                                                                </div>
+                                                                @error('state_id')
+                                                                <span class="text-danger">{{ $message }} </span>
+                                                                @enderror
+                                                            </div> <!-- end form group -->
+
+                                                            <div class="form-group">
+                                                                <label class="info-title" for="exampleInputEmail1">Shipping Address Notes<span>(optional)</span></label>
+                                                                <textarea type="text" name="notes" cols="30" rows="5" class="form-control unicase-form-control text-input" id="exampleInputEmail1" placeholder="Write Some Notes About shipping Address...." ></textarea>
+                                                            </div> <!-- end form group -->
+
+                                                        </div>
+
+                                                </div>
+
                                             <!-- guest-login -->
-
-                                            <!-- already-registered-login -->
-                                            <div class="col-md-6 col-sm-6 already-registered-login">
-                                                <h4 class="checkout-subtitle">Already registered?</h4>
-                                                <p class="text title-tag-line">Please log in below:</p>
-                                                <form class="register-form" role="form">
-                                                    <div class="form-group">
-                                                        <label class="info-title" for="exampleInputEmail1">Email Address <span>*</span></label>
-                                                        <input type="email" class="form-control unicase-form-control text-input" id="exampleInputEmail1" placeholder="">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="info-title" for="exampleInputPassword1">Password <span>*</span></label>
-                                                        <input type="password" class="form-control unicase-form-control text-input" id="exampleInputPassword1" placeholder="">
-                                                        <a href="#" class="forgot-password">Forgot your Password?</a>
-                                                    </div>
-                                                    <button type="submit" class="btn-upper btn btn-primary checkout-page-button">Login</button>
-                                                </form>
-                                            </div>
-                                            <!-- already-registered-login -->
 
                                         </div>
                                     </div>
@@ -99,6 +126,7 @@
                         </div><!-- /.checkout-steps -->
                     </div>
                     <div class="col-md-4">
+
                         <!-- checkout-progress-sidebar -->
                         <div class="checkout-progress-sidebar ">
                             <div class="panel-group">
@@ -132,14 +160,113 @@
                             </div>
                         </div>
                         <!-- checkout-progress-sidebar -->
+
+                         <!--========== Payment method ========== -->
+                        <div class="">
+                            <!-- checkout-progress-sidebar -->
+                            <div class="checkout-progress-sidebar ">
+                                <div class="panel-group">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <h4 class="unicase-checkout-title">Select Payment Method</h4>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <label for="">Stripe</label>
+                                                <input type="radio" name="payment_method" value="stripe" required>
+                                                <img src="{{asset('frontend/assets/images/payments/4.png')}}">
+                                            </div><!-- end col-md-4 -->
+                                            <div class="col-md-4">
+                                                <label for="">Card</label>
+                                                <input type="radio" name="payment_method" value="card" required>
+                                                <img src="{{asset('frontend/assets/images/payments/3.png')}}">
+                                            </div><!-- end col-md-4 -->
+                                            <div class="col-md-4">
+                                                <label for="">Cash</label>
+                                                <input type="radio" name="payment_method" value="cash" required>
+                                                <img src="{{asset('frontend/assets/images/payments/5.png')}}">
+                                            </div><!-- end col-md-4 -->
+                                        </div> <!-- end row -->
+                                        <hr>
+                                        <div class="text-xs-right">
+                                            <input type="submit" class="btn btn-rounded btn-info" value="Submit">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- checkout-progress-sidebar -->
+                        </div>
+                        <!--========= end Payment method========= -->
                     </div>
+
+
+
                 </div><!-- /.row -->
-            </div><!-- /.checkout-box -->
+            </form>
+        </div><!-- /.checkout-box -->
             <!-- ============================== BRANDS CAROUSEL ============================================== -->
     @include('frontend.body.brands')
             <!-- ============================== BRANDS CAROUSEL : END ============================= -->
         </div><!-- /.container -->
     </div><!-- /.body-content -->
 
+
+
+    <!-- state show script  -->
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('select[name="division_id"]').on('change', function(){
+                var division_id = $(this).val();
+                if(division_id) {
+                    $.ajax({
+                        url: "/shipping/division/district/ajax/"+division_id,
+                        type:"GET",
+                        dataType:"json",
+                        success:function(data) {
+                            console.log(data)
+                            $('select[name="district_id"]').html('');
+                            $('select[name="district_id"]').empty();
+
+                            $('select[name="district_id"]').append('<option value="">' + "Select Your District " + '</option>');
+                            $.each(data, function(key, value){
+                                $('select[name="district_id"]').append('<option value="'+ value.id +'">' + value.district_name + '</option>');
+                            }); //end loop
+                        },
+                    }); //end ajax
+                } else {
+                    alert('danger');
+                }
+            }); //end district_id
+
+            ///////////////// sate selection /////////////////////////
+
+            $('select[name="district_id"]').on('change', function(){
+                var district_id = $(this).val();
+                if(district_id) {
+                    $.ajax({
+                        url: "/shipping/division/sate/ajax/"+district_id,
+                        type:"GET",
+                        dataType:"json",
+                        success:function(data) {
+                            console.log(data)
+                            $('select[name="state_id"]').html('');
+                            $('select[name="state_id"]').empty();
+
+                            $('select[name="state_id"]').append('<option value="">' + "Select Your State " + '</option>');
+                            $.each(data, function(key, value){
+                                $('select[name="state_id"]').append('<option value="'+ value.id +'">' + value.state_name + '</option>');
+                            }); //end loop
+                        },
+                    }); //end ajax
+                } else {
+                    alert('danger');
+                }
+            }); //end district_id
+
+        }); //end ready function
+
+    </script>
+        <!-- End State show script  -->
 
 @endsection

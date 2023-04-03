@@ -153,6 +153,15 @@ class ShippingAreaController extends Controller
 
     }  //end method
 
+
+     ////District Selection ajax method
+    public function StateSelection($district_id){
+
+        $states = ShipState::where('district_id',$district_id)->orderBy('state_name','DESC')->get();
+        return json_encode($states);
+
+    }  //end method
+
     public function StateStore(Request $request){
 
         $request->validate([
