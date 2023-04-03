@@ -39,6 +39,7 @@
                                     </div>
                                 </div>
                             </div> <!-- end col md 4 -->
+
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <h5>Category Select <span class="text-danger">*</span></h5>
@@ -56,6 +57,7 @@
                                     </div>
                                 </div>
                             </div> <!-- end col md 4 -->
+
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <h5>SubCategory Select <span class="text-danger">*</span></h5>
@@ -79,7 +81,7 @@
                                     <h5>Sub-Subcategory Select <span class="text-danger">*</span></h5>
                                     <div class="controls">
                                         <select name="subSubcategory_id" class="form-control" required="">
-                                            <option value="" selected="" disabled="">Select Your Brand</option>
+                                            <option value="" selected="" disabled="">Select Your Sub-SubCategory</option>
 
                                         </select>
                                         <div class="help-block"></div>
@@ -128,6 +130,7 @@
                                     </div>
                                 </div>
                             </div> <!-- end col md 4 -->
+
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <h5>Product Quantity<span class="text-danger">*</span></h5>

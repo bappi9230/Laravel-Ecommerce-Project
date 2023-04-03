@@ -213,7 +213,8 @@ Route::prefix('slider')->group(function(){
 
     });
 
-//my cart
+////////////////////   my cart  all route //////////////////
+///
 Route::get('/user/mycart', [CartPageController::class, 'MyCart'])->name('mycart');
 
 Route::get('/user/get-mycart', [CartPageController::class, 'GetMyCartProduct']);
@@ -224,8 +225,12 @@ Route::get('/cart-increment/{rowId}', [CartPageController::class, 'CartQtyInc'])
 
 Route::get('/cart-decrement/{rowId}', [CartPageController::class, 'CartQtyDec']);
 
+////////////////   check out //////////////////
 
-// Admin Coupons All Routes
+Route::get('/check-out', [CartController::class, 'Checkout'])->name('checkout');
+
+
+/////////////////////// Admin Coupons All Routes /////////////////////////
 
 Route::prefix('coupons')->group(function(){
 
@@ -267,8 +272,29 @@ Route::prefix('shipping')->group(function(){
 
     Route::get('/district/delete/{id}', [ShippingAreaController::class, 'DistrictDelete'])->name('district.delete');
 
+    /////////////////   ship state   ////////////////////
+    Route::get('/state/view', [ShippingAreaController::class, 'StateView'])->name('manage-state');
+
+    //ajax district select route
+    Route::get('/division/district/ajax/{division_id}', [ShippingAreaController::class, 'DistrictSelection']);
+
+    Route::post('/state/store', [ShippingAreaController::class, 'StateStore'])->name('state.store');
+
+    Route::get('/state/edit/{id}', [ShippingAreaController::class, 'StateEdit'])->name('state.edit');
+//
+    Route::post('/state/update/{id}', [ShippingAreaController::class, 'StateUpdate'])->name('state.update');
+//
+    Route::get('/state/delete/{id}', [ShippingAreaController::class, 'StateDelete'])->name('state.delete');
 
 });
+
+////////////// frontend coupon apply ////////////////
+
+Route::post('/apply-coupon', [CartController::class, 'ApplyCoupon']);
+
+Route::get('/coupon-calculation', [CartController::class, 'CouponCalculation']);
+
+Route::get('/coupon-remove', [CartController::class, 'CouponRemove']);
 
 
 

@@ -559,8 +559,185 @@
             url:'/user/remove-mycart/'+rowId,
             dataType:'json',
             success:function (data){
+                couponCalculation();
                 mycart();
                 addMiniCart();
+                $('#couponApplyField').show();
+                $('#coupon_name').val('');
+
+                // Start Message
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000
+                })
+                if ($.isEmptyObject(data.error)) {
+                    Toast.fire({
+                        type: 'success',
+                        icon: 'success',
+                        title: data.success
+                    })
+                }else{
+                    Toast.fire({
+                        type: 'error',
+                        icon: 'error',
+                        title: data.error
+                    })
+                }// End Message
+            }
+        })
+
+    }
+    // -------- CART INCREMENT --------//
+    function cartIncrement(rowId){
+        $.ajax({
+            type:'GET',
+            url: "/cart-increment/"+rowId,
+            dataType:'json',
+            success:function(data){
+                couponCalculation();
+                mycart();
+                addMiniCart();
+            }
+        });
+    }
+    // ---------- END CART INCREMENT -----///
+
+    // -------- CART INCREMENT --------//
+    function cartDecrement(rowId){
+        $.ajax({
+            type:'GET',
+            url: "/cart-decrement/"+rowId,
+            dataType:'json',
+            success:function(data){
+                couponCalculation();
+                mycart();
+                addMiniCart();
+            }
+        });
+    }
+    // ---------- END CART INCREMENT -----///
+
+</script>
+
+<!--=========================== End Remove mycart Data============================== -->
+
+
+<!--=========================== Appy coupon ============================== -->
+
+<script type="text/javascript">
+
+    function applyCoupon(){
+        var coupon_name = $('#coupon_name').val();
+        $.ajax({
+            type:'POST',
+            url: "/apply-coupon/",
+            data:{coupon_name:coupon_name},
+            dataType:'json',
+            success:function(data){
+                couponCalculation();
+                if (data.error){
+                    $('#couponApplyField').show();
+                }else {
+                    $('#couponApplyField').hide();
+                }
+
+                // Start Message
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000
+                })
+                if ($.isEmptyObject(data.error)) {
+                    Toast.fire({
+                        type: 'success',
+                        icon: 'success',
+                        title: data.success
+                    })
+                }else{
+                    Toast.fire({
+                        type: 'error',
+                        icon: 'error',
+                        title: data.error
+                    })
+                }
+                // End Message
+            }
+
+        });
+    }
+
+    function couponCalculation(){
+        $.ajax({
+            type:'GET',
+            url:'/coupon-calculation',
+            dataType:'json',
+            success:function (data) {
+                if(data.coupon_discount){
+                    $('#couponCalculation').html(
+                        ` <tr>
+                                <th style="padding-left: 168px;">
+                                    <div class="cart-sub-total">
+                                        Subtotal<span class="inner-left-md">$ ${data.subtotal}</span>
+                                    </div>
+                                    <div class="cart-sub-total">
+                                        Coupon Name<span class="inner-left-md">${data.coupon_name}</span>
+                                        <span><button type="submit" onclick="couponRemove()" title="Remove Coupon"><i class="fa fa-times"></i></button></span>
+                                    </div>
+                                    <div class="cart-sub-total">
+                                        Coupon Discount<span class="inner-left-md">${data.coupon_discount}%</span>
+                                    </div>
+                                    <div class="cart-sub-total">
+                                        Discount Amout<span class="inner-left-md">$ ${data.discount_amount}</span>
+                                    </div>
+                                    <div class="cart-grand-total">
+                                        Grand Total<span class="inner-left-md">$ ${data.total_amount}</span>
+                                    </div>
+                                </th>
+                            </tr> `
+                    )
+
+                }else{
+
+                    $('#couponCalculation').html(
+                        ` <tr>
+                                <th style="padding-left: 168px;">
+                                    <div class="cart-sub-total">
+                                        Subtotal <span class="inner-left-md">$ ${data.total}</span>
+                                    </div>
+                                    <div class="cart-grand-total">
+                                        Grand Total<span class="inner-left-md">$ ${data.total}</span>
+                                    </div>
+                                </th>
+                            </tr> `
+                        )
+                }
+
+            }
+        })
+    }  //end method
+    couponCalculation();
+
+</script>
+
+<!--===========================  End Apply Coupon ============================== -->
+
+
+<!--===========================  Remove Coupon ============================== -->
+<script type="text/javascript">
+    function couponRemove(){
+        $.ajax({
+            type:'GET',
+            url:'/coupon-remove',
+            dataType:'json',
+            success:function (data){
+                couponCalculation();
+                $('#couponApplyField').show();
+                $('#coupon_name').val('');
+
+
                 // Start Message
                 const Toast = Swal.mixin({
                     toast: true,
@@ -584,42 +761,11 @@
                 // End Message
             }
         })
-
     }
-    // -------- CART INCREMENT --------//
-    function cartIncrement(rowId){
-        $.ajax({
-            type:'GET',
-            url: "/cart-increment/"+rowId,
-            dataType:'json',
-            success:function(data){
-                mycart();
-                addMiniCart();
-            }
-        });
-    }
-    // ---------- END CART INCREMENT -----///
-
-    // -------- CART INCREMENT --------//
-    function cartDecrement(rowId){
-        $.ajax({
-            type:'GET',
-            url: "/cart-decrement/"+rowId,
-            dataType:'json',
-            success:function(data){
-                mycart();
-                addMiniCart();
-            }
-        });
-    }
-    // ---------- END CART INCREMENT -----///
-
 </script>
 
-<!--=========================== End Remove mycart Data============================== -->
 
-
-
+<!--===========================  End Remove Coupon ============================== -->
 
 
 

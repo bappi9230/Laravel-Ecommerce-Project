@@ -21,7 +21,7 @@
                                             <h5>Select Division <span class="text-danger">*</span></h5>
                                             <div class="controls">
                                                 <select name="division_id"  class="form-control" aria-invalid="false">
-                                                    <option value="" disabled>Select Your Division</option>
+                                                    <option value="" selected disabled>Select Your Division</option>
                                                     @foreach($divisions as $division)
                                                         <option value="{{$division->id}}">{{ $division->division_name }}</option>
                                                     @endforeach
@@ -41,6 +41,7 @@
                                             <span class="text-danger">{{ $message }} </span>
                                             @enderror
                                         </div>
+
                                         <div class="text-xs-right">
                                             <input type="submit" class="btn btn-rounded btn-info" value="Submit">
                                         </div>
