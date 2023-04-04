@@ -8,6 +8,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Mail\Mailables\Address;
 
 class OrderMail extends Mailable
 {
@@ -27,7 +28,8 @@ class OrderMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Order Mail',
+            from: new Address('support@onlineShop.com', 'Bappi'),
+            subject: 'Order Shipped',
         );
     }
 
@@ -36,9 +38,9 @@ class OrderMail extends Mailable
      */
     public function content(): Content
     {
-         $order = $this->data;
+
         return new Content(
-            view('frontend.mail.order_mail',compact('order'))
+            view: 'frontend.mail.order_mail',with:[],
         );
     }
 
