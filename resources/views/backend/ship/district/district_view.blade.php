@@ -1,7 +1,7 @@
 @extends('admin.admin_master')
 @section('admin')
-    <div class="container-full pt-0">
-        <section class="content">
+    <div class="container-full">
+        <section class="content  pt-0">
             <div class="row">
 
                 <!-- ----------------Add district-------------- -->

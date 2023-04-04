@@ -1,5 +1,9 @@
 @extends('frontend.main_master')
 @section('content')
+    @section('title')
+        Order List
+    @endsection
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <div class="body-content">
         <div class="container">
@@ -35,13 +39,15 @@
                                         </td>
                                         <td width="30%">
                                             <a href="{{url('/user/order/details',$item->id)}}" class="btn btn-info sm" title="Edit" ><i class="fa fa-eye"></i>View</a>
-                                            <a href="" class="btn btn-danger sm" title="Delete" id="delete" ><i class="fa fa-download" ></i>Invoice</a>
+                                            <a target="_blank" href="{{ url('/user/pdf-generate',$item->id) }}" class="btn btn-danger sm" title="Delete" id="delete" ><i class="fa fa-download" ></i>Invoice</a>
 
                                         </td>
                                     </tr>
                                 @endforeach
                                 </tbody>
+
                             </table>
+
                         </div>
                     </div>
                 </div>

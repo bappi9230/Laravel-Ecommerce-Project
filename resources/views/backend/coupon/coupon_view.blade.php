@@ -1,8 +1,8 @@
 @extends('admin.admin_master')
 @section('admin')
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-    <div class="container-full pt-0">
-        <section class="content">
+    <div class="container-full ">
+        <section class="content pt-0">
             <div class="row">
 
                 <!-- ----------------Add category-------------- -->

@@ -1,5 +1,9 @@
 @extends('frontend.main_master')
 @section('content')
+    @section('title')
+        Order Details
+    @endsection
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <div class="body-content">
         <div class="container">
@@ -201,7 +205,16 @@
 
                     </div> <!-- / end col md 8 -->
 
-            </div>
+            </div>  <!-- End order item -->
+                @if($order->status !== "delivered")
+
+                @else
+                    <div class="form-group">
+                        <label for="label"> Order Return Reason:</label>
+                        <textarea name="return_reason" id="" class="form-control" cols="30" rows="05">Return Reason</textarea>
+
+                    </div>
+                @endif
 
             </div>
         </div>

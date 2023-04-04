@@ -20,6 +20,7 @@ use App\Http\Controllers\User\CheckoutController;
 use App\Http\Controllers\User\StripeController;
 use App\Http\Controllers\User\UserAllController;
 use App\Http\Controllers\User\CashPayment;
+use App\Http\Controllers\Backend\OrderController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -224,6 +225,9 @@ Route::prefix('slider')->group(function(){
 
         Route::post('/cash-payment', [CashPayment::class, 'CashOnPayment'])->name('cash.payment');
 
+        ///PDF generate///////////
+
+        Route::get('/pdf-generate/{order_id}', [UserAllController::class, 'PdfGenerate']);
     });
 
 ////////////////////   my cart  all route //////////////////
@@ -317,6 +321,35 @@ Route::get('/shipping/division/district/ajax/{division_id}', [CheckoutController
 Route::get('/shipping/division/sate/ajax/{district_id}', [CheckoutController::class, 'StateSelection']);
 
 Route::post('/checkout/store', [CheckoutController::class, 'CheckoutStore'])->name('checkout.store');
+
+
+
+/////////////////////// Admin Pending Order All Routes /////////////////////////
+
+Route::prefix('orders')->group(function(){
+
+    Route::get('/pending/order', [OrderController::class, 'PendingOrders'])->name('pending-orders');
+
+    Route::get('/pending/orders/details/{order_id}', [OrderController::class, 'PendingOrdersDetails'])->name('pending.order.details');
+
+    Route::get('/confirmed/orders', [OrderController::class, 'ConfirmedOrders'])->name('confirmed-orders');
+
+    Route::get('/processing/orders', [OrderController::class, 'ProcessingOrders'])->name('processing-orders');
+
+    Route::get('/picked/orders', [OrderController::class, 'PickedOrders'])->name('picked-orders');
+
+    Route::get('/shipped/orders', [OrderController::class, 'ShippedOrders'])->name('shipped-orders');
+
+    Route::get('/delivered/orders', [OrderController::class, 'DeliveredOrders'])->name('delivered-orders');
+
+    Route::get('/cancel/orders', [OrderController::class, 'CancelOrders'])->name('cancel-orders');
+});
+
+
+
+
+
+
 
 
 

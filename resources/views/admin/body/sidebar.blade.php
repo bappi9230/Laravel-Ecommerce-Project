@@ -115,10 +115,34 @@
               </ul>
           </li>
 
+        <li class="header nav-small-cap" style="color: white">User Interface</li>
+
+          <!------------ Shipping Area--------- -->
+          <li class="treeview {{ ($prefix == '/orders')?'live':'' }}">
+              <a href="#" class="color" >
+                  <i style="color: white;" data-feather="file"></i> <span>Orders</span>
+                  <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+              </a>
+              <ul class="treeview-menu color">
+                  <li class="{{ ($route == 'pending-orders')? 'active color':'' }}" ><a class="color" href="{{ route('pending-orders') }}"><i class="ti-more"></i>Pending Order</a></li>
+
+                  <li class="{{ ($route == 'confirmed-orders')? 'active color':'' }}" ><a class="color" href="{{ route('confirmed-orders') }}"><i class="ti-more"></i>Confirmed Order</a></li>
+
+                  <li class="{{ ($route == 'processing-orders')? 'active color':'' }}" ><a class="color" href="{{ route('processing-orders') }}"><i class="ti-more"></i>Processing Order</a></li>
+
+                  <li class="{{ ($route == 'picked-orders')? 'active color':'' }}" ><a class="color" href="{{ route('picked-orders') }}"><i class="ti-more"></i>Picked Order</a></li>
+
+                  <li class="{{ ($route == 'shipped-orders')? 'active color':'' }}" ><a class="color" href="{{ route('shipped-orders') }}"><i class="ti-more"></i>Shipped Order</a></li>
+
+                  <li class="{{ ($route == 'delivered-orders')? 'active color':'' }}" ><a class="color" href="{{ route('delivered-orders') }}"><i class="ti-more"></i>Delivered Order</a></li>
+
+                  <li class="{{ ($route == 'cancel-orders')? 'active color':'' }}" ><a class="color" href="{{ route('cancel-orders') }}"><i class="ti-more"></i>Cancel Order</a></li>
 
 
-
-        <li class="header nav-small-cap">User Interface</li>
+              </ul>
+          </li>
 
       </ul>
     </section>

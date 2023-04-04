@@ -192,12 +192,12 @@
                                                         <label class="info-title control-label"> @if(session()->get('language') == 'bangla') রঙ চয়ন করুন @else Choose Color @endif <span>*</span></label>
                                                         <select id="color" class="form-control unicase-form-control selectpicker" style="display: none;">
                                                             @if(session()->get('language') == 'bangla')
-                                                                <option>--বিকল্প নির্বাচন করুন--</option>
+                                                                <option value="---" disabled selected>--বিকল্প নির্বাচন করুন--</option>
                                                                 @foreach($product_color_bn as $color)
                                                                     <option value="{{ $color }}">{{ $color }}</option>
                                                                 @endforeach
                                                             @else
-                                                                <option>--Select options--</option>
+                                                                <option value="---" disabled selected>--Select options--</option>
                                                                 @foreach($product_color_en as $color)
                                                                     <option value="{{ $color }}">{{ $color }}</option>
                                                                 @endforeach
@@ -213,12 +213,12 @@
                                                         <label class="info-title control-label"> @if(session()->get('language') == 'bangla') আকার নির্বাচন করুন @else Choose Size @endif <span>*</span></label>
                                                         <select id="size" class="form-control unicase-form-control selectpicker" style="display: none;">
                                                             @if(session()->get('language') == 'bangla')
-                                                                <option>--বিকল্প নির্বাচন করুন--</option>
+                                                                <option value="---" selected disabled>--বিকল্প নির্বাচন করুন--</option>
                                                                 @foreach($product_size_bn as $size)
                                                                     <option value="{{ $size }}">{{ $size }}</option>
                                                                 @endforeach
                                                             @else
-                                                                <option>--Select options--</option>
+                                                                <option value="---" selected disabled>--Select options--</option>
                                                                 @foreach($product_size_en as $size)
                                                                     <option value="{{ $size }}">{{ $size }}</option>
                                                                 @endforeach

@@ -2,7 +2,7 @@
 @section('admin')
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <div class="container-full">
-<section class="content p-0">
+<section class="content pt-0">
 <div class="row">
 
 
@@ -76,8 +76,8 @@
             </tbody>
                 <tfoot>
                     <tr>
-                        <th>Category</th>
                         <th>Product Image</th>
+                        <th>Category</th>
                         <th>SubCategory</th>
                         <th>Sub Subcategory En</th>
                         <th>Product Name English</th>
