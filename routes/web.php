@@ -18,6 +18,8 @@ use App\Http\Controllers\Backend\CouponController;
 use App\Http\Controllers\Backend\ShippingAreaController;
 use App\Http\Controllers\User\CheckoutController;
 use App\Http\Controllers\User\StripeController;
+use App\Http\Controllers\User\UserAllController;
+use App\Http\Controllers\User\CashPayment;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -213,8 +215,14 @@ Route::prefix('slider')->group(function(){
 
         Route::get('/remove-wishlist/{id}', [WishListController::class, 'RemoveWishlistProduct']);
 
+        Route::get('/user-order', [UserAllController::class, 'UserOrder'])->name('user.order');
+
+        Route::get('/order/details/{order_id}', [UserAllController::class, 'UserOrderDetails']);
+
         /////Stripe Payment///////////
         Route::post('/stripe-payment', [StripeController::class, 'StripePayment'])->name('stripe.payment');
+
+        Route::post('/cash-payment', [CashPayment::class, 'CashOnPayment'])->name('cash.payment');
 
     });
 

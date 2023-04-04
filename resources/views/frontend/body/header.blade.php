@@ -165,8 +165,7 @@
             <div class="nav-outer">
               <ul class="nav navbar-nav">
                 <li class="active dropdown yamm-fw">
-                    <a id="design" href="{{url('/')}}" onMouseOver="this.style.backgroundColor='white'" onMouseOut="this.style.backgroundColor='#0f6cb2'"
-                      onMouseOut="this.style.color='white'" style="background-color:#0f6cb2;border: none;color:white;padding-top:10px; :active {background: white}">@if(session()->get('language') == 'bangla') হোম  @else HOME @endif</a>
+                    <a id="design" href="{{url('/')}}" >@if(session()->get('language') == 'bangla') হোম  @else HOME @endif</a>
                 </li>
                 <!-- Category data  -->
             @php

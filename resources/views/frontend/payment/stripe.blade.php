@@ -2,7 +2,7 @@
 @section('content')
 
     @section('title')
-        Payment page
+        Stripe Payment
     @endsection
 
     <div class="breadcrumb">
