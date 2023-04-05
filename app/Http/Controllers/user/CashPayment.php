@@ -24,7 +24,7 @@ class CashPayment extends Controller
         }else{
             $total_amount = round(str_replace(',','',Cart::total()));
         }
-        
+
         $order_id = Order::insertGetId([
             'user_id' => Auth::id(),
             'division_id' => $request->division_id,
@@ -47,7 +47,7 @@ class CashPayment extends Controller
             'order_date' => Carbon::now()->format('d F Y'),
             'order_month' => Carbon::now()->format('F'),
             'order_year' => Carbon::now()->format('Y'),
-            'status' => 'Pending',
+            'status' => 'pending',
             'created_at' => Carbon::now(),
 
         ]);

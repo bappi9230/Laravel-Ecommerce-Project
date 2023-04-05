@@ -120,7 +120,60 @@
                                     <span class="badge badge-pill badge-warning" style="background: #418DB9;">{{ $order->status }} </span> </th>
                             </tr>
 
+                            @if($order->status == 'pending')
+                            <tr>
+                                <th></th>
+                                <th>
+                                    <a id="confirm" class="btn btn-block btn-primary" href="{{ route('pending-confirm',$order->id) }}"> Confirmed Order </a>
+                                </th>
+                            </tr>
+                            @endif
 
+
+                            @if($order->status == 'confirm')
+                            <tr>
+                                <th></th>
+                                <th>
+                                    <a id="processing" class="btn btn-block btn-primary" href="{{ route('confirm-processing',$order->id) }}"> Processing Order </a>
+                                </th>
+                            </tr>
+                            @endif
+
+                            @if($order->status == 'processing')
+                            <tr>
+                                <th></th>
+                                <th>
+                                    <a id="picked" class="btn btn-block btn-primary" href="{{ route('processing-picked',$order->id) }}"> Picked Order </a>
+                                </th>
+                            </tr>
+                            @endif
+
+                            @if($order->status == 'picked')
+                            <tr>
+                                <th></th>
+                                <th>
+                                    <a id="shipped" class="btn btn-block btn-primary" href="{{ route('picked-shipped',$order->id) }}"> Shipped Order </a>
+                                </th>
+                            </tr>
+                            @endif
+
+                            @if($order->status == 'shipped')
+                            <tr>
+                                <th></th>
+                                <th>
+                                    <a id="delivered" class="btn btn-block btn-primary" href="{{ route('shipped-delivered',$order->id) }}"> Delivered Order </a>
+                                </th>
+                            </tr>
+                            @endif
+
+                            @if($order->status == 'delivered')
+                            <tr>
+                                <th></th>
+                                <th>
+                                    <a id="cancel" class="btn btn-block btn-primary" href="{{ route('delivered-cancel',$order->id) }}"> Cancel Order </a>
+                                </th>
+                            </tr>
+                            @endif
 
                         </table>
 
