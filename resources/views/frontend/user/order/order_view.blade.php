@@ -6,7 +6,7 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <div class="body-content">
-        <div class="container">
+        <div class="container pt-0">
             <div class="row">
                 @include('frontend.common_part.user_sidebar')
                 <div class="col-md-1"></div>
@@ -35,7 +35,21 @@
                                         <td>{{$item->payment_method}}</td>
                                         <td>{{$item->invoice_no}}</td>
                                         <td>
-                                                <span class="badge badge-pill" style="background-color: #0aa5df">{{ $item->status }}</span>
+                                        @if($item->status == 'pending' || $item->status == 'confirm' || $item->status == 'processing' || $item->status == 'shipped' || $item->status == 'picked')
+
+                                                <span class="badge badge-pill badge-warning" style="background: green;">{{ $item->status }} </span>
+                                        @else
+                                            @if($item->status == 'cancel')
+                                                    <span class="badge badge-pill badge-warning" style="background: red;">{{ $item->status }}</span>
+
+                                            @else
+                                                @if($item->return_reason !== NULL )
+                                                        <span class="badge badge-pill badge-warning" style="background:  #EDE04D;">return request </span>
+                                                @else
+                                                        <span class="badge badge-pill badge-warning" style="background: gray;">{{ $item->status }}</span>
+                                                @endif
+                                            @endif
+                                        @endif
                                         </td>
                                         <td width="30%">
                                             <a href="{{url('/user/order/details',$item->id)}}" class="btn btn-info sm" title="Edit" ><i class="fa fa-eye"></i>View</a>

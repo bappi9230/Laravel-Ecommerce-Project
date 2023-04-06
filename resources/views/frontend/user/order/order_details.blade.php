@@ -103,10 +103,34 @@
                                 </tr>
 
                                 <tr>
-                                    <th> Order : </th>
-                                    <th>
-                                        <span class="badge badge-pill badge-warning" style="background: #418DB9;">{{ $order->status }} </span>
-                                    </th>
+                                    @if($order->status == 'pending' || $order->status == 'confirm' || $order->status == 'processing' || $order->status == 'shipped' || $order->status == 'picked')
+                                            <th> Order : </th>
+                                            <th>
+                                                <span class="badge badge-pill badge-warning" style="background: #418DB9;">{{ $order->status }} yes </span>
+                                            </th>
+                                    @else
+                                        @if($order->status == 'cancel')
+                                            <th> Order : </th>
+                                            <th>
+                                                <span class="badge badge-pill badge-warning" style="background: red;">{{ $order->status }}</span>
+                                            </th>
+
+                                        @else
+                                            @if($order->return_reason !== NULL )
+                                                <th> Order : </th>
+                                                <th>
+                                                    <span class="badge badge-pill badge-warning" style="background:  #EDE04D;">return request </span>
+                                                </th>
+                                            @else
+                                                <th> Order : </th>
+                                                <th>
+                                                    <span class="badge badge-pill badge-warning" style="background: gray;">{{ $order->status }}</span>
+                                                </th>
+                                            @endif
+                                        @endif
+                                    @endif
+
+
                                 </tr>
 
 
@@ -209,16 +233,22 @@
                 @if($order->status !== "delivered")
 
                 @else
-                    <div class="form-group">
-                        <label for="label"> Order Return Reason:</label>
-                        <textarea name="return_reason" id="" class="form-control" cols="30" rows="05">Return Reason</textarea>
+                    @if( $order->return_reason == NULL )
+                        <form action="{{ route('return.order',$order->id) }}" method="POST"  >
+                            @csrf
+                            <div class="form-group">
+                                <label for="label"> Order Return Reason:</label>
+                                <textarea name="return_reason" id="" class="form-control" cols="30" rows="05" required>Return Reason</textarea>
 
-                    </div>
+                            </div>
+                            <button type="submit" class="btn btn-danger">Submit Order Return Reason</button>
+                        </form>
+                    @endif
                 @endif
 
             </div>
         </div>
-    </div>
+    </div><br>
     <script>
         $(document).ready(function(){
             $('#image').change(function(e){

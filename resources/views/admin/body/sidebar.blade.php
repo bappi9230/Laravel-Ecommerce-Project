@@ -144,6 +144,35 @@
               </ul>
           </li>
 
+          <!------------ Report Area--------- -->
+
+          <li class="treeview {{ ($prefix == '/reports')?'live':'' }}">
+              <a href="#" class="color" >
+                  <i style="color: white;" data-feather="file"></i> <span> All Reports</span>
+                  <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+              </a>
+              <ul class="treeview-menu color">
+                  <li class="{{ ($route == 'all.reports')? 'active color':'' }}" ><a class="color" href="{{ route('all.reports') }}"><i class="ti-more"></i>All Reports</a></li>
+
+              </ul>
+          </li>
+            <!--============ all users =================== -->
+
+          <li class="treeview {{ ($prefix == '/all-user')?'live':'' }}">
+              <a href="#" class="color" >
+                  <i style="color: white;" data-feather="file"></i> <span> All User</span>
+                  <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+              </a>
+              <ul class="treeview-menu color">
+                  <li class="{{ ($route == 'all.users')? 'active color':'' }}" ><a class="color" href="{{ route('all.users') }}"><i class="ti-more"></i>All User</a></li>
+
+              </ul>
+          </li>
+
       </ul>
     </section>
 
@@ -156,9 +185,6 @@
 		<a href="javascript:void(0)" class="link" data-toggle="tooltip" title="" data-original-title="Logout"><i  style="color: white;" class="ti-lock"></i></a>
 	</div>
   </aside>
-
-
-
 
 
 

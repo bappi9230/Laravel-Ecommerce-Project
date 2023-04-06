@@ -9,7 +9,7 @@
 
         <div class="box">
         <div class="box-header with-border">
-            <h3 class="box-title pl-3 ">Add Brand</h3>
+            <h3 class="box-title pl-3 ">Add Brand </h3>
         </div>
         <!-- /.box-header -->
         <div class="box-body">
@@ -68,7 +68,7 @@
 
         <div class="box">
         <div class="box-header with-border">
-            <h3 class="box-title pl-3 ">Brand List</h3>
+            <h3 class="box-title pl-3 ">Brand List: <span class="badge badge-pill badge-primary">{{ count($brands) }}</span></h3>
         </div>
         <!-- /.box-header -->
         <div class="box-body">

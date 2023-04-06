@@ -183,20 +183,12 @@
                 </div> <!--  // cod md -6 -->
 
 
-
-
-
                 <div class="col-md-12 col-12">
                     <div class="box box-bordered border-primary">
                         <div class="box-header with-border">
-
                         </div>
-
-
-
                         <table class="table">
                             <tbody>
-
                             <tr>
                                 <td width="10%">
                                     <label for=""> Image</label>
@@ -265,9 +257,6 @@
                             @endforeach
 
 
-
-
-
                             </tbody>
 
                         </table>
@@ -278,26 +267,12 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
             </div>
             <!-- /. end row -->
         </section>
         <!-- /.content -->
 
     </div>
-
 
 
 

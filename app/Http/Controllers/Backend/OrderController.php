@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\OrderItem;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -137,6 +138,20 @@ class OrderController extends Controller
 
 
 
+    public function PdfGenerate($order_id){
 
+        $order = Order::with('division','district','state','user')->where('id',$order_id)->first();
+
+        $orderItem = OrderItem::with('product')->where('order_id',$order_id)->orderBy('id','DESC')->get();
+
+//         $html = '<h1>Test</h1>';
+//         $pdf = PDF::loadHTML($html);
+//        return view('frontend.user.order.order_invoice',compact('order','orderItem'));
+//
+        $pdf = PDF::loadView('backend.orders.order_invoice', compact('order','orderItem'));
+
+        return $pdf->download('invoice.pdf');
+
+    } //end method
 
 }

@@ -64,7 +64,7 @@
 
                     <div class="box">
                         <div class="box-header with-border">
-                            <h3 class="box-title pl-3 ">Coupon List</h3>
+                            <h3 class="box-title pl-3 ">Coupon List :<span class="badge badge-pill badge-primary">{{ count($coupons) }}</span></h3>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">

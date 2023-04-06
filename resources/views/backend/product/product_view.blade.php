@@ -11,7 +11,7 @@
 
         <div class="box">
         <div class="box-header with-border">
-            <h3 class="box-title pl-3">Product List</h3>
+            <h3 class="box-title pl-3">Product List <span class="badge badge-pill badge-primary">{{ count($products) }}</span></h3>
         </div>
         <!-- /.box-header -->
         <div class="box-body">

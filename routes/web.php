@@ -21,6 +21,7 @@ use App\Http\Controllers\User\StripeController;
 use App\Http\Controllers\User\UserAllController;
 use App\Http\Controllers\User\CashPayment;
 use App\Http\Controllers\Backend\OrderController;
+use App\Http\Controllers\Backend\ReportController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -220,6 +221,14 @@ Route::prefix('slider')->group(function(){
 
         Route::get('/order/details/{order_id}', [UserAllController::class, 'UserOrderDetails']);
 
+        ///frontend product return reason
+        Route::post('/product/return/reason/{order_id}', [UserAllController::class, 'ReturnOrderReason'])->name('return.order');
+
+        Route::get('/product/return/order/list', [UserAllController::class, 'ReturnOrderList'])->name('return.order.list');
+
+        Route::get('/product/cancel/order/list', [UserAllController::class, 'CancelOrderList'])->name('cancel.order.list');
+
+
         /////Stripe Payment///////////
         Route::post('/stripe-payment', [StripeController::class, 'StripePayment'])->name('stripe.payment');
 
@@ -358,9 +367,29 @@ Route::prefix('orders')->group(function(){
 
     Route::get('/delivered/cancel/{order_id}', [OrderController::class, 'DeliveredToCancel'])->name('delivered-cancel');
 
+    Route::get('/invoice/{order_id}', [OrderController::class, 'PdfGenerate'])->name('order-invoice');
+
 
 });
 
+
+//////////////backend all report route
+
+Route::prefix('reports')->group(function (){
+    Route::get('/view', [ReportController::class, 'ReportView'])->name('all.reports');
+
+    Route::post('/search/by/date', [ReportController::class, 'ReportByDate'])->name('search-by-date');
+
+    Route::post('/search/by/month', [ReportController::class, 'ReportByMonth'])->name('search-by-month');
+
+    Route::post('/search/by/year', [ReportController::class, 'ReportByYear'])->name('search-by-year');
+
+});//////////////backend all report route
+
+Route::prefix('all-user')->group(function (){
+    Route::get('/view', [AdminProfileController::class, 'AllUsers'])->name('all.users');
+
+});
 
 
 
