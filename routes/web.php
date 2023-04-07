@@ -1,5 +1,7 @@
 <?php
+use Illuminate\Support\Facades\Route;
 
+//////////////////Backend //////////////////////////
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\AdminProfileController;
 use App\Http\Controllers\Backend\BrandController;
@@ -7,23 +9,32 @@ use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\SubCategoryController;
-use App\Http\Controllers\Frontend\IndexController;
-use App\Http\Controllers\Frontend\LanguageController;
-use App\Models\Admin;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Frontend\CartController;
-use App\Http\Controllers\user\WishListController;
-use App\Http\Controllers\Frontend\CartPageController;
 use App\Http\Controllers\Backend\CouponController;
 use App\Http\Controllers\Backend\ShippingAreaController;
+use App\Http\Controllers\Backend\OrderController;
+use App\Http\Controllers\Backend\ReportController;
+use App\Http\Controllers\Backend\BlogController;
+use App\Http\Controllers\Backend\SiteSettingController;
+
+
+
+//////////////////    user    ///////////////////////
+use App\Http\Controllers\user\WishListController;
 use App\Http\Controllers\User\CheckoutController;
 use App\Http\Controllers\User\StripeController;
 use App\Http\Controllers\User\UserAllController;
 use App\Http\Controllers\User\CashPayment;
-use App\Http\Controllers\Backend\OrderController;
-use App\Http\Controllers\Backend\ReportController;
-use App\Http\Controllers\Backend\BlogController;
+
+
+
+
+////////////////////  Frontend //////////////////////////
+use App\Http\Controllers\Frontend\IndexController;
+use App\Http\Controllers\Frontend\LanguageController;
+use App\Http\Controllers\Frontend\CartController;
+use App\Http\Controllers\Frontend\CartPageController;
 use App\Http\Controllers\Frontend\HomeBlogController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -433,6 +444,12 @@ Route::get('/post/details/{id}', [HomeBlogController::class, 'DetailsBlogPost'])
 Route::get('/blog/category/post/{category_id}', [HomeBlogController::class, 'HomeBlogCatPost']);
 
 
+// Admin Site Setting Routes
+Route::prefix('setting')->group(function(){
+
+    Route::get('/site', [SiteSettingController::class, 'SiteSetting'])->name('site.setting');
 
 
+
+});
 
