@@ -111,7 +111,7 @@ class ProductController extends Controller
         if($request->file('product_thumbnail')){
             $image = $request->file('product_thumbnail');
             unlink($old_image);
-            $image_rename = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
+            $image_rename = hexdec(uniqid('',false)).'.'.$image->getClientOriginalExtension();
             Image::make($image)->resize(917,1000)->save('upload/products/thumbnail/'.$image_rename);
             $image_save = 'upload/products/thumbnail/'.$image_rename;
 

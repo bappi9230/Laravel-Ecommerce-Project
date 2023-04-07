@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\BlogPost;
 use App\Models\Category;
 use App\Models\MultiImg;
 use App\Models\Product;
@@ -41,7 +42,9 @@ class IndexController extends Controller
         $tags_en= Product::groupBy('product_tags_en','id')->select('product_tags_en','id')->get();
         $tags_bn= Product::groupBy('product_tags_bn')->select('product_tags_bn')->get();
 //        dd($tags_en);
-        return view('frontend.index',compact('categories','sliders','products','features','hot_deals','special_offer','special_deals','skip_category_0','skip_product_0','skip_category_1','skip_product_1','tags_en','tags_bn'));
+        $blogpost = BlogPost::latest()->get();
+
+        return view('frontend.index',compact('categories','sliders','products','features','hot_deals','special_offer','special_deals','skip_category_0','skip_product_0','skip_category_1','skip_product_1','tags_en','tags_bn','blogpost'));
 
     }
 

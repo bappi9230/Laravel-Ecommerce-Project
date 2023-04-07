@@ -173,6 +173,42 @@
               </ul>
           </li>
 
+          <!--============ all users =================== -->
+
+{{--          <li class="treeview {{ ($prefix == '/all-user')?'live':'' }}">--}}
+{{--              <a href="#" class="color" >--}}
+{{--                  <i style="color: white;" data-feather="file"></i> <span> All User</span>--}}
+{{--                  <span class="pull-right-container">--}}
+{{--              <i class="fa fa-angle-right pull-right"></i>--}}
+{{--            </span>--}}
+{{--              </a>--}}
+{{--              <ul class="treeview-menu color">--}}
+{{--                  <li class="{{ ($route == 'all.users')? 'active color':'' }}" ><a class="color" href="{{ route('all.users') }}"><i class="ti-more"></i>All User</a></li>--}}
+
+{{--              </ul>--}}
+{{--          </li>--}}
+
+
+
+          <!--============ blog =================== -->
+
+          <li class="treeview {{ ($prefix == '/blog')?'live':'' }}">
+              <a href="#" class="color" >
+                  <i style="color: white;" data-feather="file"></i> <span> Manage Blog</span>
+                  <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+              </a>
+              <ul class="treeview-menu color">
+                  <li class="{{ ($route == 'blog.category')? 'active color':'' }}" ><a class="color" href="{{ route('blog.category') }}"><i class="ti-more"></i>Blog Category</a></li>
+
+                  <li class="{{ ($route == 'list.post')? 'active color':'' }}" ><a class="color" href="{{ route('list.post') }}"><i class="ti-more"></i>Liat Blog Post</a></li>
+
+                  <li class="{{ ($route == 'add.post')? 'active color':'' }}" ><a class="color" href="{{ route('add.post') }}"><i class="ti-more"></i>Add Blog Post</a></li>
+
+              </ul>
+          </li>
+
       </ul>
     </section>
 
