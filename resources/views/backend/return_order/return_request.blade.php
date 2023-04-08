@@ -1,17 +1,24 @@
 @extends('admin.admin_master')
 @section('admin')
-    <div class="container-full" >
-        <section class="content" style="padding-top: 0px;">
+
+
+    <!-- Content Wrapper. Contains page content -->
+
+    <div class="container-full">
+        <!-- Content Header (Page header) -->
+
+
+        <!-- Main content -->
+        <section class="content">
             <div class="row">
 
-                <!-- ----------------Pending Orders-------------- -->
 
-                <!-- all Category view  -->
+
                 <div class="col-12">
 
                     <div class="box">
                         <div class="box-header with-border">
-                            <h3 class="box-title pl-3 ">Pending Order List</h3>
+                            <h3 class="box-title">Return Orders List</h3>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
@@ -31,45 +38,48 @@
                                     <tbody>
                                     @foreach($orders as $item)
                                         <tr>
-                                            <td>{{ $item->order_date }}</td>
-                                            <td>{{ $item->invoice_no }}</td>
-                                            <td>${{ $item->amount}}</td>
-                                            <td>{{ $item->payment_method}}</td>
-                                            <td> <span class="badge badge-pill badge-primary">{{ $item->status }} </span>  </td>
+                                            <td> {{ $item->order_date }}  </td>
+                                            <td> {{ $item->invoice_no }}  </td>
+                                            <td> ${{ $item->amount }}  </td>
+
+                                            <td> {{ $item->payment_method }}  </td>
                                             <td>
-                                                <a href="{{ route('pending.order.details',$item->id) }}" class="btn btn-info sm" title="Edit" ><i class="fa fa-eye"></i></a>
+                                                @if($item->return_order == 1)
+                                                    <span class="badge badge-pill badge-primary">Pending </span>
+                                                @elseif($item->return_order == 2)
+                                                    <span class="badge badge-pill badge-success">Success </span>
+                                                @endif
 
                                             </td>
+
+                                            <td width="25%">
+                                                <a href="{{ route('return.approve',$item->id) }}" class="btn btn-danger">Approve </a>
+                                            </td>
+
                                         </tr>
                                     @endforeach
                                     </tbody>
-                                    <tfoot>
-                                    <tr>
-                                        <th>Date </th>
-                                        <th>Invoice </th>
-                                        <th>Amount </th>
-                                        <th>Payment </th>
-                                        <th>Status </th>
-                                        <th>Action</th>
-                                    </tr>
-                                    </tfoot>
+
                                 </table>
                             </div>
                         </div>
                         <!-- /.box-body -->
                     </div>
+                    <!-- /.box -->
+
+
                 </div>
                 <!-- /.col -->
 
 
-                <!-- /.col -->
             </div>
             <!-- /.row -->
         </section>
         <!-- /.content -->
 
     </div>
-    <!-- ----------------Pending Orders-------------- -->
+
+
+
 
 @endsection
-

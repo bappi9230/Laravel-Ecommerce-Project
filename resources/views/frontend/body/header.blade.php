@@ -61,14 +61,12 @@
     <div class="container">
       <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-3 logo-holder">
-
+            @php
+              $logo = App\Models\SiteSetting::find(1);
+            @endphp
           <!-- =========================== LOGO ================================= -->
-          <div class="logo text-center"> <a href="{{route('dashboard')}}">
-                  <strong style="font-style: italic;
-                   color: white; font-weight: bold; font-size:25px; word-spacing: 5px;
-                   text-shadow: 2px 2px 2px grey;
-                  ">
-                      ＯＮＬＩＮＥ ＳＨＯＰ</strong>  </a> </div>
+          <div class="logo text-center"> <a href="{{url('/')}}">
+                  <img src="{{ asset($logo->logo) }}"> </a> </div>
           <!-- /.logo -->
           <!-- ================================= LOGO : END ============================= -->
         </div>

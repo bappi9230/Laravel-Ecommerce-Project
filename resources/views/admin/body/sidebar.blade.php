@@ -115,7 +115,85 @@
               </ul>
           </li>
 
+
+          <!------------ Site Settings--------- -->
+          <li class="treeview {{ ($prefix == '/setting')?'live':'' }}">
+              <a href="#" class="color" >
+                  <i style="color: white;" data-feather="file"></i> <span>Manage Setting</span>
+                  <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+              </a>
+              <ul class="treeview-menu color">
+                  <li class="{{ ($route == 'site.setting')? 'active color':'' }}" ><a class="color" href="{{ route('site.setting') }}"><i class="ti-more"></i>Site Setting</a></li>
+
+                  <li class="{{ ($route == 'seo.setting')? 'active color':'' }}" ><a class="color" href="{{ route('seo.setting') }}"><i class="ti-more"></i>Seo Setting</a></li>
+
+              </ul>
+          </li>
+
+          <!------------ manage review--------- -->
+
+          <li class="treeview {{ ($prefix == '/review')?'live':'' }}">
+              <a href="#" class="color" >
+                  <i style="color: white;" data-feather="file"></i> <span>Manage Review</span>
+                  <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+              </a>
+              <ul class="treeview-menu color">
+                  <li class="{{ ($route == 'pending.review')? 'active color':'' }}" ><a class="color" href="{{ route('pending.review') }}"><i class="ti-more"></i>Pending Review</a></li>
+
+                  <li class="{{ ($route == 'publish.review')? 'active color':'' }}" ><a class="color" href="{{ route('publish.review') }}"><i class="ti-more"></i>Publish Review</a></li>
+
+              </ul>
+          </li>
+
+
+          <!------------ Return order-------- -->
+          <li class="treeview {{ ($prefix == '/return')?'live':'' }}">
+              <a href="#" class="color" >
+                  <i style="color: white;" data-feather="file"></i> <span>Return Order</span>
+                  <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+              </a>
+              <ul class="treeview-menu color">
+                  <li class="{{ ($route == 'return.request')? 'active color':'' }}" ><a class="color" href="{{ route('return.request') }}"><i class="ti-more"></i>Return Request</a></li>
+
+                  <li class="{{ ($route == 'all.request')? 'active color':'' }}" ><a class="color" href="{{ route('all.request') }}"><i class="ti-more"></i>All Request</a></li>
+
+              </ul>
+          </li>
+
+
+          <!--============ blog =================== -->
+
+          <li class="treeview {{ ($prefix == '/blog')?'live':'' }}">
+              <a href="#" class="color" >
+                  <i style="color: white;" data-feather="file"></i> <span> Manage Blog</span>
+                  <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+              </a>
+              <ul class="treeview-menu color">
+                  <li class="{{ ($route == 'blog.category')? 'active color':'' }}" ><a class="color" href="{{ route('blog.category') }}"><i class="ti-more"></i>Blog Category</a></li>
+
+                  <li class="{{ ($route == 'list.post')? 'active color':'' }}" ><a class="color" href="{{ route('list.post') }}"><i class="ti-more"></i>List Blog Post</a></li>
+
+                  <li class="{{ ($route == 'add.post')? 'active color':'' }}" ><a class="color" href="{{ route('add.post') }}"><i class="ti-more"></i>Add Blog Post</a></li>
+
+              </ul>
+          </li>
+
+
+
+
+
         <li class="header nav-small-cap" style="color: white">User Interface</li>
+
+
+
 
           <!------------ Shipping Area--------- -->
           <li class="treeview {{ ($prefix == '/orders')?'live':'' }}">
@@ -146,6 +224,21 @@
 
           <!------------ Report Area--------- -->
 
+          <li class="treeview {{ ($prefix == '/stock')?'live':'' }}">
+              <a href="#" class="color" >
+                  <i style="color: white;" data-feather="file"></i> <span>Stock Manage</span>
+                  <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+              </a>
+              <ul class="treeview-menu color">
+                  <li class="{{ ($route == 'product.stock')? 'active color':'' }}" ><a class="color" href="{{ route('product.stock') }}"><i class="ti-more"></i>Product Stock</a></li>
+
+              </ul>
+          </li>
+
+          <!------------ Report Area--------- -->
+
           <li class="treeview {{ ($prefix == '/reports')?'live':'' }}">
               <a href="#" class="color" >
                   <i style="color: white;" data-feather="file"></i> <span> All Reports</span>
@@ -158,6 +251,9 @@
 
               </ul>
           </li>
+
+
+
             <!--============ all users =================== -->
 
           <li class="treeview {{ ($prefix == '/all-user')?'live':'' }}">
@@ -173,41 +269,6 @@
               </ul>
           </li>
 
-          <!--============ all users =================== -->
-
-{{--          <li class="treeview {{ ($prefix == '/all-user')?'live':'' }}">--}}
-{{--              <a href="#" class="color" >--}}
-{{--                  <i style="color: white;" data-feather="file"></i> <span> All User</span>--}}
-{{--                  <span class="pull-right-container">--}}
-{{--              <i class="fa fa-angle-right pull-right"></i>--}}
-{{--            </span>--}}
-{{--              </a>--}}
-{{--              <ul class="treeview-menu color">--}}
-{{--                  <li class="{{ ($route == 'all.users')? 'active color':'' }}" ><a class="color" href="{{ route('all.users') }}"><i class="ti-more"></i>All User</a></li>--}}
-
-{{--              </ul>--}}
-{{--          </li>--}}
-
-
-
-          <!--============ blog =================== -->
-
-          <li class="treeview {{ ($prefix == '/blog')?'live':'' }}">
-              <a href="#" class="color" >
-                  <i style="color: white;" data-feather="file"></i> <span> Manage Blog</span>
-                  <span class="pull-right-container">
-              <i class="fa fa-angle-right pull-right"></i>
-            </span>
-              </a>
-              <ul class="treeview-menu color">
-                  <li class="{{ ($route == 'blog.category')? 'active color':'' }}" ><a class="color" href="{{ route('blog.category') }}"><i class="ti-more"></i>Blog Category</a></li>
-
-                  <li class="{{ ($route == 'list.post')? 'active color':'' }}" ><a class="color" href="{{ route('list.post') }}"><i class="ti-more"></i>Liat Blog Post</a></li>
-
-                  <li class="{{ ($route == 'add.post')? 'active color':'' }}" ><a class="color" href="{{ route('add.post') }}"><i class="ti-more"></i>Add Blog Post</a></li>
-
-              </ul>
-          </li>
 
       </ul>
     </section>

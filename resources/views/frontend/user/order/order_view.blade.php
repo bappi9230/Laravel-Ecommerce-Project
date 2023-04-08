@@ -35,21 +35,50 @@
                                         <td>{{$item->payment_method}}</td>
                                         <td>{{$item->invoice_no}}</td>
                                         <td>
-                                        @if($item->status == 'pending' || $item->status == 'confirm' || $item->status == 'processing' || $item->status == 'shipped' || $item->status == 'picked')
+{{--                                        @if($item->status == 'pending' || $item->status == 'confirm' || $item->status == 'processing' || $item->status == 'shipped' || $item->status == 'picked')--}}
 
-                                                <span class="badge badge-pill badge-warning" style="background: green;">{{ $item->status }} </span>
-                                        @else
-                                            @if($item->status == 'cancel')
-                                                    <span class="badge badge-pill badge-warning" style="background: red;">{{ $item->status }}</span>
+{{--                                                <span class="badge badge-pill badge-warning" style="background: green;">{{ $item->status }} </span>--}}
+{{--                                        @else--}}
+{{--                                            @if($item->status == 'cancel')--}}
+{{--                                                    <span class="badge badge-pill badge-warning" style="background: red;">{{ $item->status }}</span>--}}
+
+{{--                                            @else--}}
+{{--                                                @if($item->return_reason !== NULL )--}}
+{{--                                                        <span class="badge badge-pill badge-warning" style="background:  #EDE04D;">return request </span>--}}
+{{--                                                @else--}}
+{{--                                                        <span class="badge badge-pill badge-warning" style="background: gray;">{{ $item->status }}</span>--}}
+{{--                                                @endif--}}
+{{--                                            @endif--}}
+{{--                                        @endif--}}
+
+                                            @if($item->status == 'pending')
+                                                <span class="badge badge-pill badge-warning" style="background: #808080;">Pending</span>
+                                            @elseif($item->status == 'confirm')
+                                                <span class="badge badge-pill badge-warning" style="background: #808000;">Confirm </span>
+                                            @elseif($item->status == 'processing')
+                                                <span class="badge badge-pill badge-warning" style="background: #00008B;">Processing</span>
+                                            @elseif($item->status == 'shipped')
+                                                <span class="badge badge-pill badge-warning" style="background:#800080;">Shipped</span>
+                                            @elseif($item->status == 'picked')
+                                                <span class="badge badge-pill badge-warning" style="background:#00FF00;">Picked</span>
+                                            @elseif($item->status == 'delivered')
+                                                @if($item->return_reason !== NULL)
+                                                    <span class="badge badge-pill badge-warning" style="background:#FF0000;">return request </span>
+                                                @else
+                                                    <span class="badge badge-pill badge-warning" style="background:#008000;">delivered</span>
+                                                @endif
 
                                             @else
-                                                @if($item->return_reason !== NULL )
-                                                        <span class="badge badge-pill badge-warning" style="background:  #EDE04D;">return request </span>
-                                                @else
-                                                        <span class="badge badge-pill badge-warning" style="background: gray;">{{ $item->status }}</span>
-                                                @endif
+                                                <span class="badge badge-pill badge-warning" style="background:#FF0000;">Cancel </span>
+
                                             @endif
-                                        @endif
+
+
+
+
+
+
+
                                         </td>
                                         <td width="30%">
                                             <a href="{{url('/user/order/details',$item->id)}}" class="btn btn-info sm" title="Edit" ><i class="fa fa-eye"></i>View</a>

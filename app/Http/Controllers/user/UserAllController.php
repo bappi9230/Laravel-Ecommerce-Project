@@ -50,6 +50,8 @@ class UserAllController extends Controller
         Order::findOrFail($order_id)->update([
             'return_date'=> Carbon::now()->format('d F Y'),
             'return_reason'=> $request->return_reason,
+            'return_order'=> 1,
+
         ]);
         $notification = array(
             'message'   => 'Retiurn Request Send Successfully',

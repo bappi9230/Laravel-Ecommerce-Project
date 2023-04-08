@@ -24,7 +24,7 @@ class ProductController extends Controller
     public function ProductStore(Request $request){
 
         $image = $request->file('product_thumbnail');
-    	$name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
+    	$name_gen = hexdec(uniqid('', false)).'.'.$image->getClientOriginalExtension();
     	Image::make($image)->resize(917,1000)->save('upload/products/thumbnail/'.$name_gen);
     	$save_url = 'upload/products/thumbnail/'.$name_gen;
 
@@ -290,5 +290,14 @@ class ProductController extends Controller
 
 		return redirect()->back()->with($notification);
      }
+
+
+
+    // product Stock
+    public function ProductStock(){
+
+        $products = Product::latest()->get();
+        return view('backend.product.product_stock',compact('products'));
+    }
 
 }

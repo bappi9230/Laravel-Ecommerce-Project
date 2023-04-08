@@ -31,14 +31,9 @@
                             <p> @if(session()->get('language') == 'bangla') {!!  $blogpost->post_details_bn  !!} @else {!!  $blogpost->post_details_en  !!} @endif
                             </p>
 
-                            <div class="social-media">
-                                <span>share post:</span>
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                                <a href="#"><i class="fa fa-linkedin"></i></a>
-                                <a href=""><i class="fa fa-rss"></i></a>
-                                <a href="" class="hidden-xs"><i class="fa fa-pinterest"></i></a>
-                            </div>
+
+                            <!-- ShareThis BEGIN --><div class="sharethis-inline-share-buttons"></div><!-- ShareThis END -->
+
                         </div>
 
                         <div class="blog-write-comment outer-bottom-xs outer-top-xs">
@@ -146,7 +141,7 @@
         </div>
     </div>
 
-
-
+    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+    <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=643140ea1cdb86001a1ecf74&product=inline-share-buttons' async='async'></script>
 
 @endsection

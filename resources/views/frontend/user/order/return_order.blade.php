@@ -35,23 +35,16 @@
                                         <td>{{$item->payment_method}}</td>
                                         <td>{{$item->invoice_no}}</td>
                                         <td>
-                                            @if($item->status == 'pending' || $item->status == 'confirm' || $item->status == 'processing' || $item->status == 'shipped' || $item->status == 'picked')
 
-                                                <span class="badge badge-pill badge-warning" style="background: #418DB9;">{{ $item->status }} </span>
-                                            @else
-                                                @if($item->status == 'cancel')
-                                                    <span class="badge badge-pill badge-warning" style="background: red;">{{ $item->status }}</span>
-
-                                                @else
-                                                    @if($item->return_reason !== NULL )
-
-                                                        <span class="badge badge-pill badge-warning" style="background:  #EDE04D;">return request</span>
-                                                    @else
-
-                                                        <span class="badge badge-pill badge-warning" style="background: #fe5252;">{{ $item->status }}</span>
-                                                    @endif
-                                                @endif
+                                            @if($item->return_order == 0)
+                                                <span class="badge badge-pill badge-warning" style="background: red;">return request</span>
+                                            @elseif($item->return_order == 1)
+                                                <span class="badge badge-pill badge-warning" style="background:#808080;">pending</span>
+                                                <span class="badge badge-pill badge-warning" style="background: red;">return request</span>
+                                            @elseif($item->return_order == 2)
+                                                <span class="badge badge-pill badge-warning" style="background:#008000;">success</span>
                                             @endif
+
                                         </td>
                                         <td width="30%">
                                             <a href="{{url('/user/order/details',$item->id)}}" class="btn btn-info sm" title="Edit" ><i class="fa fa-eye"></i>View</a>
