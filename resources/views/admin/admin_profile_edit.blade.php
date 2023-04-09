@@ -45,7 +45,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <h5>Profile Image <span class="text-danger">*</span></h5>
-                                        <img id="showImage" src="{{ (!empty($adminData->profile_image))? url('upload/admin_image/'.$adminData->profile_image): url('upload/no_image.jpg') }}" style="width: 100px;height: 100px;" alt="yes" >
+                                        <img id="showImage" src="{{ (!empty($adminData->profile_photo_path))? asset($adminData->profile_photo_path) : url('upload/no_image.jpg') }}" style="width: 100px;height: 100px;" alt="yes" >
                                     </div>
                                 </div>
                             <div class="text-xs-right">

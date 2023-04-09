@@ -222,7 +222,7 @@
               </ul>
           </li>
 
-          <!------------ Report Area--------- -->
+          <!------------ Stock Manage --------- -->
 
           <li class="treeview {{ ($prefix == '/stock')?'live':'' }}">
               <a href="#" class="color" >
@@ -256,7 +256,7 @@
 
             <!--============ all users =================== -->
 
-          <li class="treeview {{ ($prefix == '/all-user')?'live':'' }}">
+          <li class="treeview {{ ($prefix == '/alluser')?'live':'' }}">
               <a href="#" class="color" >
                   <i style="color: white;" data-feather="file"></i> <span> All User</span>
                   <span class="pull-right-container">
@@ -265,6 +265,21 @@
               </a>
               <ul class="treeview-menu color">
                   <li class="{{ ($route == 'all.users')? 'active color':'' }}" ><a class="color" href="{{ route('all.users') }}"><i class="ti-more"></i>All User</a></li>
+
+              </ul>
+          </li>
+
+          <!--============ admin user role =================== -->
+
+          <li class="treeview {{ ($prefix == '/adminuserrole')?'live':'' }}">
+              <a href="#" class="color" >
+                  <i style="color: white;" data-feather="file"></i> <span> Admin User Role</span>
+                  <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+              </a>
+              <ul class="treeview-menu color">
+                  <li class="{{ ($route == 'all.admin.user')? 'active color':'' }}" ><a class="color" href="{{ route('all.admin.user') }}"><i class="ti-more"></i>All Admin User</a></li>
 
               </ul>
           </li>

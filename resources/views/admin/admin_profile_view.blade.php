@@ -14,7 +14,7 @@
 
             <div class="box-body text-center pb-50">
                 <a href="#">
-                    <img class="avatar avatar-xxl avatar-bordered" src="{{ (!empty($adminData->profile_photo_path))? url('upload/admin_image/'.$adminData->profile_photo_path): url('upload/no_image.jpg') }}" alt="image">
+                    <img class="avatar avatar-xxl avatar-bordered" src="{{ (!empty($adminData->profile_photo_path))? asset($adminData->profile_photo_path): url('upload/no_image.jpg') }}" alt="image">
                 </a>
                 <h2 class="mt-2 mb-0" style="color:#6b7280">Admin Name:  {{ $adminData->name }}</h2>
                 <h4 class="mt-2 mb-0" style="color:#6b7280">Admin Email:  {{ $adminData->email }}</h4>
