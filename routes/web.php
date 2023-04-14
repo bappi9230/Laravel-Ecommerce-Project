@@ -126,7 +126,7 @@ Route::prefix('category')->group(function(){
     Route::get('/sub/delete/{id}',[SubCategoryController::class,'SubCategoryDelete'])->name('subcategory.delete');
 
 
-   // Admin all sub->SubCategory route
+    // Admin all sub->SubCategory route
     Route::get('/sub/sub/view',[SubCategoryController::class,'SubSubCategoryView'])->name('all.subSubcategory');
     ///sub category show
     Route::get('/subcategory/ajax/{category_id}', [SubCategoryController::class, 'GetSubCategory']);
@@ -194,65 +194,69 @@ Route::prefix('slider')->group(function(){
 
 ///// Multiple Language Controller Route
 
-    Route::get('language/bangla', [LanguageController::class, 'Bangla'])->name('bangla.language');
-    Route::get('language/english', [LanguageController::class, 'English'])->name('english.language');
+Route::get('language/bangla', [LanguageController::class, 'Bangla'])->name('bangla.language');
+Route::get('language/english', [LanguageController::class, 'English'])->name('english.language');
 
 //    produc details page
-    Route::get('product/details/{id}/{slug}', [IndexController::class, 'ProductDetails']);
+Route::get('product/details/{id}/{slug}', [IndexController::class, 'ProductDetails']);
 
-    //product tag view
-    Route::get('product/tags/{tag}', [IndexController::class, 'TagWiseProductView']);
+//product tag view
+Route::get('product/tags/{tag}', [IndexController::class, 'TagWiseProductView']);
 
-    //subcategory wise product view
-    Route::get('product/subSubcategory/{id}/{slug}', [IndexController::class, 'SubSubCategoryWiseProductView']);
+//subcategory wise product view
+Route::get('product/subSubcategory/{id}/{slug}', [IndexController::class, 'SubSubCategoryWiseProductView']);
 
-    //subcategory wise product view
-    Route::get('product/subcategory/{id}/{slug}', [IndexController::class, 'SubCategoryWiseProductView']);
+//subcategory wise product view
+Route::get('product/subcategory/{id}/{slug}', [IndexController::class, 'SubCategoryWiseProductView']);
 
-    // Product View Modal with Ajax
-    Route::get('/product/view/modal/{id}', [IndexController::class, 'ProductViewAjax']);
+// Product View Modal with Ajax
+Route::get('/product/view/modal/{id}', [IndexController::class, 'ProductViewAjax']);
 
-    // Product ADD TO CART with Ajax
-    Route::post('/cart/data/store/{id}', [CartController::class, 'AddToCart']);
+// Product ADD TO CART with Ajax
+Route::post('/cart/data/store/{id}', [CartController::class, 'AddToCart']);
 
-    // Product ADD TO MINICART with Ajax
-    Route::get('/product/mini/cart/', [CartController::class, 'AddMiniCart']);
+// Product ADD TO MINICART with Ajax
+Route::get('/product/mini/cart/', [CartController::class, 'AddMiniCart']);
 
-    // Product  REMOVE MINICART with Ajax
-    Route::get('/minicart/product-remove/{rowId}', [CartController::class, 'RemoveMiniCart']);
+// Product  REMOVE MINICART with Ajax
+Route::get('/minicart/product-remove/{rowId}', [CartController::class, 'RemoveMiniCart']);
 
-    // Product ADD TO WISHLIST with Ajax
-    Route::post('/add-to-wishlist/{product_id}', [CartController::class, 'AddToWishlist']);
+// Product ADD TO WISHLIST with Ajax
+Route::post('/add-to-wishlist/{product_id}', [CartController::class, 'AddToWishlist']);
 
-    Route::group(['prefix'=>'user','middleware'=>['user','auth'],'namespace'=>'User'],function (){
-        // Product WISHLIST
-        Route::get('/wishlist/view', [WishListController::class, 'WishlistView']);
+Route::group(['prefix'=>'user','middleware'=>['user','auth'],'namespace'=>'User'],function (){
+    // Product WISHLIST
+    Route::get('/wishlist/view', [WishListController::class, 'WishlistView']);
 
-        Route::get('/get-wishlist-product', [WishListController::class, 'GetWishlistProduct']);
+    Route::get('/get-wishlist-product', [WishListController::class, 'GetWishlistProduct']);
 
-        Route::get('/remove-wishlist/{id}', [WishListController::class, 'RemoveWishlistProduct']);
+    Route::get('/remove-wishlist/{id}', [WishListController::class, 'RemoveWishlistProduct']);
 
-        Route::get('/user-order', [UserAllController::class, 'UserOrder'])->name('user.order');
+    Route::get('/user-order', [UserAllController::class, 'UserOrder'])->name('user.order');
 
-        Route::get('/order/details/{order_id}', [UserAllController::class, 'UserOrderDetails']);
+    Route::get('/order/details/{order_id}', [UserAllController::class, 'UserOrderDetails']);
 
-        ///frontend product return reason
-        Route::post('/product/return/reason/{order_id}', [UserAllController::class, 'ReturnOrderReason'])->name('return.order');
+    ///frontend product return reason
+    Route::post('/product/return/reason/{order_id}', [UserAllController::class, 'ReturnOrderReason'])->name('return.order');
 
-        Route::get('/product/return/order/list', [UserAllController::class, 'ReturnOrderList'])->name('return.order.list');
+    Route::get('/product/return/order/list', [UserAllController::class, 'ReturnOrderList'])->name('return.order.list');
 
-        Route::get('/product/cancel/order/list', [UserAllController::class, 'CancelOrderList'])->name('cancel.order.list');
+    Route::get('/product/cancel/order/list', [UserAllController::class, 'CancelOrderList'])->name('cancel.order.list');
+
+    /////////////order tracking route/////////////////////
+
+    Route::post('/order/tracking', [UserAllController::class, 'OrderTracking'])->name('order.tracking');
 
 
-        /////Stripe Payment///////////
-        Route::post('/stripe-payment', [StripeController::class, 'StripePayment'])->name('stripe.payment');
+    /////Stripe Payment///////////
+    Route::post('/stripe-payment', [StripeController::class, 'StripePayment'])->name('stripe.payment');
 
-        Route::post('/cash-payment', [CashPayment::class, 'CashOnPayment'])->name('cash.payment');
+    Route::post('/cash-payment', [CashPayment::class, 'CashOnPayment'])->name('cash.payment');
 
-        ///PDF generate///////////
+    ///PDF generate///////////
 
-        Route::get('/pdf-generate/{order_id}', [UserAllController::class, 'PdfGenerate']);
-    });
+    Route::get('/pdf-generate/{order_id}', [UserAllController::class, 'PdfGenerate']);
+});
 
 ////////////////////   my cart  all route //////////////////
 ///
@@ -368,7 +372,7 @@ Route::prefix('orders')->group(function(){
 
     Route::get('/cancel/orders', [OrderController::class, 'CancelOrders'])->name('cancel-orders');
 
- ///////////////// Order Status updated alll route /////////////////////
+    ///////////////// Order Status updated alll route /////////////////////
 
     Route::get('/pending/confirm/{order_id}', [OrderController::class, 'PendingToConfirm'])->name('pending-confirm');
 
@@ -472,7 +476,7 @@ Route::prefix('return')->group(function(){
 });
 
 // Review all route
-    Route::post('/review/store/{product_id}', [ReviewController::class, 'ReviewStore'])->name('review.store');
+Route::post('/review/store/{product_id}', [ReviewController::class, 'ReviewStore'])->name('review.store');
 
 // Admin Manage Review Routes
 Route::prefix('review')->group(function(){
@@ -513,9 +517,14 @@ Route::prefix('adminuserrole')->group(function(){
 
     Route::get('/delete/{id}', [AdminUserController::class, 'DeleteAdminRole'])->name('delete.admin.user');
 
-
-
 });
+
+Route::post('/search', [IndexController::class, 'ProductSearch'])->name('product.search');
+
+// Advance Search Routes
+Route::post('search-product', [IndexController::class, 'SearchProduct']);
+
+
 
 
 

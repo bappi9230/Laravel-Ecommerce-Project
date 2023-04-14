@@ -1,6 +1,22 @@
 @php
   $prefix = Request::route()->getPrefix();
   $route = Route::current()->getName();
+        $brand = (auth()->guard('admin')->user()->brand == 1);
+        $category = (auth()->guard('admin')->user()->category == 1);
+        $product = (auth()->guard('admin')->user()->product == 1);
+        $slider = (auth()->guard('admin')->user()->slider == 1);
+        $coupons = (auth()->guard('admin')->user()->coupons == 1);
+        $shipping = (auth()->guard('admin')->user()->shipping == 1);
+        $blog = (auth()->guard('admin')->user()->blog == 1);
+        $setting = (auth()->guard('admin')->user()->setting == 1);
+        $returnorder = (auth()->guard('admin')->user()->returnorder == 1);
+        $review = (auth()->guard('admin')->user()->review == 1);
+        $orders = (auth()->guard('admin')->user()->orders == 1);
+        $stock = (auth()->guard('admin')->user()->stock == 1);
+        $reports = (auth()->guard('admin')->user()->reports == 1);
+        $alluser = (auth()->guard('admin')->user()->alluser == 1);
+        $adminuserrole = (auth()->guard('admin')->user()->adminuserrole == 1);
+
 @endphp
   <aside class="main-sidebar" style="background-color: #475569;">
     <!-- sidebar-->
@@ -26,7 +42,9 @@
 			<span >Dashboard</span>
           </a>
         </li>
-<!-- admin brand  -->
+
+        @if($brand == true)
+        <!-- admin brand  -->
         <li class="treeview {{ ($prefix == '/brand')?'live':'' }} ">
           <a href="#" class="color" >
             <i style="color: white;"  data-feather="file"></i>
@@ -39,7 +57,9 @@
             <li class="{{ ($route == 'all.brand')? 'active color':'' }}"><a class="color" href="{{ route('all.brand') }}"><i class="ti-more"></i>All Brand</a></li>
           </ul>
         </li>
+          @endif
 
+          @if($category == true)
         <!------------ Admin Category --------- -->
         <li class="treeview {{ ($prefix == '/category')?'live':'' }}">
           <a href="#" class="color" >
@@ -56,7 +76,9 @@
             <li class="{{ ($route == 'all.subSubcategory')? 'active color':'' }}"><a class="color" href="{{ route('all.subSubcategory') }}"><i class="ti-more"></i>All Sub->Subcategory</a></li>
           </ul>
         </li>
+          @endif
 
+          @if($product == true)
         <!------------ deals with  Product --------- -->
         <li class="treeview {{ ($prefix == '/product')?'live':'' }}">
           <a href="#" class="color" >
@@ -71,7 +93,9 @@
             <li class="{{ ($route == 'product.view')? 'active color':'' }}"><a class="color" href="{{ route('product.view') }}"><i class="ti-more"></i>Manage Product</a></li>
           </ul>
         </li>
+          @endif
 
+          @if($slider ==true)
         <!------------ Slider--------- -->
         <li class="treeview {{ ($prefix == '/slider')?'live':'' }}">
           <a href="#" class="color" >
@@ -84,7 +108,9 @@
             <li class="{{ ($route == 'manage-slider')? 'active color':'' }}" ><a class="color" href="{{ route('manage-slider') }}"><i class="ti-more"></i>Manage Slider</a></li>
           </ul>
         </li>
+          @endif
 
+          @if($coupons == true)
           <!------------ Coupons--------- -->
           <li class="treeview {{ ($prefix == '/coupons')?'live':'' }}">
               <a href="#" class="color" >
@@ -97,7 +123,9 @@
                   <li class="{{ ($route == 'manage-coupon')? 'active color':'' }}" ><a class="color" href="{{ route('manage-coupon') }}"><i class="ti-more"></i>Manage Coupon</a></li>
               </ul>
           </li>
+          @endif
 
+          @if($shipping ==true)
           <!------------ Shipping Area--------- -->
           <li class="treeview {{ ($prefix == '/shipping')?'live':'' }}">
               <a href="#" class="color" >
@@ -114,7 +142,9 @@
                   <li class="{{ ($route == 'manage-state')? 'active color':'' }}" ><a class="color" href="{{ route('manage-state') }}"><i class="ti-more"></i>Ship State</a></li>
               </ul>
           </li>
+          @endif
 
+          @if($setting ==true)
 
           <!------------ Site Settings--------- -->
           <li class="treeview {{ ($prefix == '/setting')?'live':'' }}">
@@ -131,7 +161,9 @@
 
               </ul>
           </li>
+          @endif
 
+          @if($review == true)
           <!------------ manage review--------- -->
 
           <li class="treeview {{ ($prefix == '/review')?'live':'' }}">
@@ -148,7 +180,9 @@
 
               </ul>
           </li>
+          @endif
 
+          @if($returnorder == true)
 
           <!------------ Return order-------- -->
           <li class="treeview {{ ($prefix == '/return')?'live':'' }}">
@@ -165,7 +199,9 @@
 
               </ul>
           </li>
+          @endif
 
+          @if($blog == true)
 
           <!--============ blog =================== -->
 
@@ -185,7 +221,7 @@
 
               </ul>
           </li>
-
+          @endif
 
 
 
@@ -194,7 +230,7 @@
 
 
 
-
+        @if($orders == true)
           <!------------ Shipping Area--------- -->
           <li class="treeview {{ ($prefix == '/orders')?'live':'' }}">
               <a href="#" class="color" >
@@ -221,7 +257,9 @@
 
               </ul>
           </li>
+          @endif
 
+          @if($stock == true)
           <!------------ Stock Manage --------- -->
 
           <li class="treeview {{ ($prefix == '/stock')?'live':'' }}">
@@ -236,7 +274,9 @@
 
               </ul>
           </li>
+          @endif
 
+          @if($reports == true)
           <!------------ Report Area--------- -->
 
           <li class="treeview {{ ($prefix == '/reports')?'live':'' }}">
@@ -251,9 +291,9 @@
 
               </ul>
           </li>
+          @endif
 
-
-
+        @if($alluser == true)
             <!--============ all users =================== -->
 
           <li class="treeview {{ ($prefix == '/alluser')?'live':'' }}">
@@ -268,7 +308,9 @@
 
               </ul>
           </li>
+          @endif
 
+          @if($adminuserrole == true)
           <!--============ admin user role =================== -->
 
           <li class="treeview {{ ($prefix == '/adminuserrole')?'live':'' }}">
@@ -283,7 +325,7 @@
 
               </ul>
           </li>
-
+          @endif
 
       </ul>
     </section>

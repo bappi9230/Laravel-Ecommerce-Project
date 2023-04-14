@@ -565,7 +565,7 @@ img[src="assets/images/blank.gif"] {
 
 .special-product .product .image img {width:100%}
 .special-product .product .col {padding-right:0px}
-.special-product .product .btn-primary {background:none; padding:0px; color:#157ed2; text-decoration:underline; margin-top:5px;}
+.special-product .product .btn-primary {background:none; padding:0px; color:#609bc8; text-decoration:underline; margin-top:5px;}
 
 .special-product .product:last-child {
   margin-top: 20px;
@@ -703,11 +703,11 @@ a {
   background: #12cca7;
 }
 .cnt-home .header-style-1 .header-nav .navbar .navbar-nav > li.active {
-  background: #0b816a;
+  background: #609bc8;
 }
 .cnt-home .header-style-1 .header-nav .navbar .navbar-nav > li > a:hover,
 .cnt-home .header-style-1 .header-nav .navbar .navbar-nav > li > a:focus {
-  background: #0b816a;
+  background: #609bc8;
 }
 .cnt-home .header-style-1.header-style-2 .header-nav .navbar .navbar-nav > li.active,
 .cnt-homepage .header-style-1.header-style-2 .header-nav .navbar .navbar-nav > li.active {
@@ -1191,7 +1191,7 @@ a {
 /*===================================================================================*/
 /* Header
 /*===================================================================================*/
-header{background:#157ed2}
+header{background:#609bc8}
 
 .main-header {
   padding:5px 0px 12px 0px;
@@ -1498,7 +1498,7 @@ header{background:#157ed2}
   color: #fff;
 }
 .header-style-3 .header-nav {
-  background: #202020 !important;
+  background: #609bc8 !important;
   border: medium none;
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
@@ -2893,7 +2893,7 @@ age-container #owl-main .owl-next {
   line-height: 1.7;
 }
 .copyright-bar {
-  background: #121212;
+  background: #609BCE;
   padding: 20px 0px;
 }
 .copyright-bar .copyright {
@@ -3293,7 +3293,7 @@ age-container #owl-main .owl-next {
   color: #666666;
 }
 .footer .footer-bottom {
-  background: #202020;
+  background: #609bc8;
   padding-top: 30px;
   padding-bottom:30px
 }
@@ -3309,23 +3309,23 @@ age-container #owl-main .owl-next {
   font-size: 16px;
   text-transform: uppercase;
   font-family: 'Open Sans', sans-serif;
-  color: #898989;
+  color: bisque;
 }
 .footer .footer-bottom .module-body ul li {
 
 }
 
-.toggle-footer {color:#666}
+.toggle-footer {color:white}
 .toggle-footer a {margin-left:0px!important}
 .toggle-footer a:before {display:none}
-.toggle-footer i{background:#333; border-radius:2px}
+.toggle-footer i{background:dimgrey; border-radius:2px}
 
 .footer .footer-bottom .module-body ul li:last-child{border:none}
 
 .footer .footer-bottom .module-body ul li a {
   font-size: 13px;
   line-height: 30px;
-  color: #666666;
+  color: white;
   position: relative;
   margin-left: 23px;
   display: block;

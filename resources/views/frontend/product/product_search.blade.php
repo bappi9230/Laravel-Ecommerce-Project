@@ -1,7 +1,7 @@
 @extends('frontend.main_master')
 @section('content')
     @section('title')
-        Sub SubCategory Product
+        SubCategory Product
     @endsection
     @php
         $categories = App\Models\Category::latest()->get();
@@ -11,19 +11,7 @@
             <div class="breadcrumb-inner">
                 <ul class="list-inline list-unstyled">
                     <li><a href="#">Home</a></li>
-
-                    @foreach($breadSubSubCat as $item)
-                        <li class="active">{{ $item->category->category_name_en }}</li>
-                    @endforeach
-
-                    @foreach($breadSubSubCat as $item)
-                        <li class="active">{{ $item->subcategory->subcategory_name_en }}</li>
-                    @endforeach
-
-                    @foreach($breadSubSubCat as $item)
-                        <li class='active'>{{ $item->subSubcategory_name_en }}</li>
-                    @endforeach
-
+                    <li class='active'>Handbags</li>
                 </ul>
             </div>
             <!-- /.breadcrumb-inner -->
@@ -63,8 +51,7 @@
                                                         @endphp
                                                         @foreach($subcategories as $subcategory)
                                                             <ul>
-                                                                <li><a href="{{ url('product/subcategory/'.$subcategory->id.'/'.$subcategory->subcategory_slug_en) }}">@if(session()->get('language') == 'bangla') {{$subcategory->subcategory_name_bn}}  @else {{$subcategory->subcategory_name_en}} @endif</a>
-                                                                </li>
+                                                                <li><a href="{{ url('product/subcategory/'.$subcategory->id.'/'.$subcategory->subcategory_slug_en) }}">@if(session()->get('language') == 'bangla') {{$subcategory->subcategory_name_bn}}  @else {{$subcategory->subcategory_name_en}} @endif</a></li>
                                                             </ul>
                                                         @endforeach
                                                     </div>
@@ -224,6 +211,7 @@
                         </div>
                     </div>
 
+                    <h4><b>Total Search</b> <span class="badge badge-gray">{{ count($products) }} items</span></h4>
 
                     <div class="clearfix filters-container m-t-10">
                         <div class="row">
@@ -321,7 +309,7 @@
                                                         <!-- /.product-image -->
 
                                                         <div class="product-info text-left">
-                                                            <h3 class="name"><a href="detail.html">@if(session()->get('language') == 'bangla') {{ $product->product_name_bn }}  @else {{ $product->product_name_en }}  @endif </a></h3>
+                                                            <h3 class="name"><a href="{{ url('product/details/'.$product->id.'/'.$product->product_slug_en) }}">@if(session()->get('language') == 'bangla') {{ $product->product_name_bn }}  @else {{ $product->product_name_en }}  @endif </a></h3>
                                                             <div class="rating rateit-small"></div>
                                                             <div class="description"></div>
                                                             <div class="product-price">
@@ -463,7 +451,7 @@
                             <div class="text-right">
                                 <div class="pagination-container">
                                     <ul class="list-inline list-unstyled">
-                                        {{ $products->links() }}
+{{--                                        {{ $products->links() }}--}}
                                     </ul>
                                     <!-- /.list-inline -->
                                 </div>
@@ -475,11 +463,14 @@
 
                     </div>
                     <!-- /.search-result-container -->
-
+                    <!-- ================================== END GRID VIEW ================================= -->
                 </div>
                 <!-- /.col -->
             </div>
             <!-- /.row -->
+
+
+
             <!-- ========================= BRANDS CAROUSEL ============================================== -->
             @include('frontend.body.brands')
             <!-- /.logo-slider -->

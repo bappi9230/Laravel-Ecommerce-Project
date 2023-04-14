@@ -1,17 +1,32 @@
 @extends('frontend.main_master')
 @section('content')
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
     @section('title')
         SubCategory Product
     @endsection
     @php
         $categories = App\Models\Category::latest()->get();
     @endphp
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+
     <div class="breadcrumb">
         <div class="container">
             <div class="breadcrumb-inner">
                 <ul class="list-inline list-unstyled">
                     <li><a href="#">Home</a></li>
-                    <li class='active'>Handbags</li>
+
+                    @foreach($breadSubCat as $item)
+                    <li class="active">{{ $item->category->category_name_en }}</li>
+                    @endforeach
+
+                    @foreach($breadSubCat as $item)
+                    <li class='active'>{{ $item->subcategory_name_en }}</li>
+                    @endforeach
                 </ul>
             </div>
             <!-- /.breadcrumb-inner -->
@@ -252,13 +267,6 @@
                                                     <li role="presentation"><a href="#">1</a></li>
                                                     <li role="presentation"><a href="#">2</a></li>
                                                     <li role="presentation"><a href="#">3</a></li>
-                                                    <li role="presentation"><a href="#">4</a></li>
-                                                    <li role="presentation"><a href="#">5</a></li>
-                                                    <li role="presentation"><a href="#">6</a></li>
-                                                    <li role="presentation"><a href="#">7</a></li>
-                                                    <li role="presentation"><a href="#">8</a></li>
-                                                    <li role="presentation"><a href="#">9</a></li>
-                                                    <li role="presentation"><a href="#">10</a></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -284,71 +292,10 @@
                         <div id="myTabContent" class="tab-content category-list">
                             <div class="tab-pane active " id="grid-container">
                                 <div class="category-product">
-                                    <div class="row">
+                                    <div class="row" id="grid_view_product">
 
 
-                                        @foreach($products as $product)
-                                            <div class="col-sm-6 col-md-4 wow fadeInUp">
-                                                <div class="products">
-                                                    <div class="product">
-                                                        <div class="product-image">
-                                                            <div class="image"> <a href="{{ url('product/details/'.$product->id.'/'.$product->product_slug_en) }}"><img  src="{{ asset($product->product_thumbnail) }}" alt=""></a> </div>
-                                                            <!-- /.image -->
-                                                            @php
-                                                                $amount = $product->selling_price - $product->discount_price;
-                                                                $discount_price = round(( $amount / $product->selling_price) *100);
-                                                            @endphp
-                                                            @if( $product->discount_price == NULL || $product->discount_price == 0)
-                                                                <div class="tag new"><span>@if(session()->get('language') == 'bangla') নতুন  @else New  @endif</span></div>
-                                                            @else
-                                                                {{--<div class="tag hot"><span> {{ $discount_price }}% </span></div>--}}
-                                                                <div class="tag hot"><span>{{ $discount_price }}% </span></div>
-                                                            @endif
-                                                        </div>
-                                                        <!-- /.product-image -->
-
-                                                        <div class="product-info text-left">
-                                                            <h3 class="name"><a href="{{ url('product/details/'.$product->id.'/'.$product->product_slug_en) }}">@if(session()->get('language') == 'bangla') {{ $product->product_name_bn }}  @else {{ $product->product_name_en }}  @endif </a></h3>
-                                                            <div class="rating rateit-small"></div>
-                                                            <div class="description"></div>
-                                                            <div class="product-price">
-                                                                @if( $product->discount_price == NULL || $product->discount_price == 0)
-                                                                    <div class="product-price">
-                                                                        <span class="price">$ {{ $product->selling_price }}</span>
-                                                                    </div>
-                                                                @else
-                                                                    <div class="product-price">
-                                                                        <span class="price"> ${{ $product->discount_price }} </span>
-                                                                        <span class="price-before-discount">$ {{ $product->selling_price }}</span>
-                                                                    </div>
-                                                                @endif
-                                                            </div>
-                                                            <!-- /.product-price -->
-
-                                                        </div>
-                                                        <!-- /.product-info -->
-                                                        <div class="cart clearfix animate-effect">
-                                                            <div class="action">
-                                                                <ul class="list-unstyled">
-                                                                    <li class="add-cart-button btn-group">
-                                                                        <button class="btn btn-primary icon" data-toggle="dropdown" type="button"> <i class="fa fa-shopping-cart"></i> </button>
-                                                                        <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
-                                                                    </li>
-                                                                    <li class="lnk wishlist"> <a class="add-to-cart" href="detail.html" title="Wishlist"> <i class="icon fa fa-heart"></i> </a> </li>
-                                                                    <li class="lnk"> <a class="add-to-cart" href="detail.html" title="Compare"> <i class="fa fa-signal"></i> </a> </li>
-                                                                </ul>
-                                                            </div>
-                                                            <!-- /.action -->
-                                                        </div>
-                                                        <!-- /.cart -->
-                                                    </div>
-                                                    <!-- /.product -->
-
-                                                </div>
-                                                <!-- /.products -->
-                                            </div>
-                                            <!-- /.item -->
-                                        @endforeach
+                                @include('frontend.product.grid_view_product')
 
                                     </div>
                                     <!-- /.row -->
@@ -366,77 +313,10 @@
 
 
                             <div class="tab-pane "  id="list-container">
-                                <div class="category-product">
-                                    @foreach($products as $product)
-                                        <div class="category-product-inner wow fadeInUp">
-                                            <div class="products">
-                                                <div class="product-list product">
-                                                    <div class="row product-list-row">
-                                                        <div class="col col-sm-4 col-lg-4">
-                                                            <div class="product-image">
-                                                                <div class="image"> <a href="{{ url('product/details/'.$product->id.'/'.$product->product_slug_en) }}" > <img src="{{ asset($product->product_thumbnail) }}" alt=""></a> </div>
-                                                            </div>
-                                                            <!-- /.product-image -->
-                                                        </div>
-                                                        <!-- /.col -->
-                                                        <div class="col col-sm-8 col-lg-8">
-                                                            <div class="product-info">
-                                                                <h3 class="name"><a href="{{ url('product/details/'.$product->id.'/'.$product->product_slug_en) }}">@if(session()->get('language') == 'bangla'){{ $product->product_name_bn }} @else {{ $product->product_name_en }} @endif</a></h3>
-                                                                <div class="rating rateit-small"></div>
-                                                                <div class="product-price">
-                                                                    <div class="product-price">
-                                                                        @php
-                                                                            $amount = $product->selling_price - $product->discount_price;
-                                                                            $discount_price = round(( $amount / $product->selling_price) *100);
-                                                                        @endphp
-                                                                        @if( $product->discount_price == NULL || $product->discount_price == 0)
-                                                                            <span class="price">$ {{ $product->selling_price }}</span>
-                                                                        @else
-                                                                            <span class="price"> ${{ $product->discount_price }} </span>
-                                                                            <span class="price-before-discount">$ {{ $product->selling_price }}</span>
-                                                                        @endif
-                                                                        <!-- /.product-price -->
-                                                                    </div>
-                                                                </div>
-                                                                <!-- /.product-price -->
-                                                                <div class="description m-t-10">@if(session()->get('language') == 'bangla') {{ $product->short_descp_bn }}  @else {{ $product->short_descp_en }}  @endif</div>
-                                                                <div class="cart clearfix animate-effect">
-                                                                    <div class="action">
-                                                                        <ul class="list-unstyled">
-                                                                            <li class="add-cart-button btn-group">
-                                                                                <button class="btn btn-primary icon" data-toggle="dropdown" type="button"> <i class="fa fa-shopping-cart"></i> </button>
-                                                                                <button class="btn btn-primary cart-btn" type="button">@if(session()->get('language') == 'bangla') কার্টে যোগ করুন @else Add Cart @endif</button>
-                                                                            </li>
-                                                                            <li class="lnk wishlist"> <a class="add-to-cart" href="detail.html" title="@if(session()->get('language') == 'bangla') ইচ্ছেতালিকা @else Wishlist @endif "> <i class="icon fa fa-heart"></i> </a> </li>
-                                                                            <li class="lnk"> <a class="add-to-cart" href="detail.html" title="@if(session()->get('language') == 'bangla') তুলনা করা @else Compare @endif"> <i class="fa fa-signal"></i> </a> </li>
-                                                                        </ul>
-                                                                    </div>
-                                                                    <!-- /.action -->
-                                                                </div>
-                                                                <!-- /.cart -->
+                                <div class="category-product" id="list_view_product">
 
-                                                            </div>
-                                                            <!-- /.product-info -->
-                                                        </div>
-                                                        <!-- /.col -->
-                                                    </div>
-                                                    <!-- /.product-list-row -->
-                                                    @php
-                                                        $amount = $product->selling_price - $product->discount_price;
-                                                        $discount_price = round(( $amount / $product->selling_price) *100);
-                                                    @endphp
-                                                    @if( $product->discount_price == NULL || $product->discount_price == 0)
-                                                        <div class="tag new"><span>@if(session()->get('language') == 'bangla') নতুন  @else New  @endif</span></div>
-                                                    @else
-                                                        <div class="tag hot"><span>{{ $discount_price }}% </span></div>
-                                                    @endif
-                                                </div>
-                                                <!-- /.product-list -->
-                                            </div>
-                                            <!-- /.products -->
-                                        </div>
-                                        <!-- /.category-product-inner -->
-                                    @endforeach
+                                    @include('frontend.product.list_view_product')
+
                                 </div>
                                 <!-- /.category-product -->
                             </div>
@@ -450,7 +330,7 @@
                             <div class="text-right">
                                 <div class="pagination-container">
                                     <ul class="list-inline list-unstyled">
-                                        {{ $products->links() }}
+{{--                                        {{ $products->links() }}--}}
                                     </ul>
                                     <!-- /.list-inline -->
                                 </div>
@@ -465,6 +345,13 @@
 
                 </div>
                 <!-- /.col -->
+
+                <div class="ajax-loadmore-product text-center"  style="display: none">
+                    <img src="{{asset('frontend/assets/images/loading.svg')}}" style="width: 120px;height: 120px;" >
+                </div>
+
+
+
             </div>
             <!-- /.row -->
             <!-- ========================= BRANDS CAROUSEL ============================================== -->
@@ -475,6 +362,51 @@
 
     </div>
     <!-- /.body-content -->
+
+
+    <script>
+
+        function loadmoreProduct(page){
+            $.ajax({
+                type: "GET",
+                url: "?page="+page,
+
+                success:function (data) {
+                    $('.ajax-loadmore-product').show();
+                },
+                complete:function (data) {
+                    alert(data);
+                    $('.ajax-loadmore-product').hide();
+                }
+
+                // beforeSend: function(data) {
+                //     $('.ajax-loadmore-product').show();
+                //      alert(data);
+                // }.done(function(data){
+                //     if (data.grid_view == " " || data.list_view == " ") {return;}
+                //
+                //
+                //     $('.ajax-loadmore-product').hide();
+                //     $('#grid_view_product').append(data.grid_view);
+                //     $('#list_view_product').append(data.list_view);
+                //
+                // }).fail(function (data){
+                //     alert(data);
+                // })
+                // success:function (data) {
+                //     alert(data.grid_view);
+                // }
+            })
+        }
+        var page = 1;
+        $(window).scroll(function (){
+            if ($(window).scrollTop() +$(window).height() >= $(document).height()){
+                page ++;
+                loadmoreProduct(page);
+            }
+        });
+
+    </script>
 
 
 @endsection

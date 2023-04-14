@@ -52,7 +52,7 @@
                         <div class="action">
                             <div class="add-cart-button btn-group">
                                 <button class="btn btn-primary icon" data-toggle="dropdown" type="button"> <i class="fa fa-shopping-cart"></i> </button>
-                                <button class="btn btn-primary cart-btn" type="button">@if(session()->get('language') == 'bangla') কার্টে যোগ করুন @else Add to cart @endif</button>
+                                <button class="btn btn-primary cart-btn" type="button" data-toggle="modal" data-target="#exampleModal" id="{{ $hot_deal->id }}" onclick="productView(this.id)">@if(session()->get('language') == 'bangla') কার্টে যোগ করুন @else Add to cart @endif</button>
                             </div>
                         </div>
                         <!-- /.action -->

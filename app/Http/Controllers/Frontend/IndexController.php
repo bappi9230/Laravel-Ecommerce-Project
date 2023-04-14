@@ -7,11 +7,14 @@ use App\Models\BlogPost;
 use App\Models\Category;
 use App\Models\MultiImg;
 use App\Models\Product;
+use App\Models\Review;
 use App\Models\Slider;
 use App\Models\SubCategory;
+use App\Models\SubSubCategory;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class IndexController extends Controller
@@ -44,7 +47,23 @@ class IndexController extends Controller
 //        dd($tags_en);
         $blogpost = BlogPost::latest()->get();
 
-        return view('frontend.index',compact('categories','sliders','products','features','hot_deals','special_offer','special_deals','skip_category_0','skip_product_0','skip_category_1','skip_product_1','tags_en','tags_bn','blogpost'));
+
+        /////// New Arrival Product /////////////////
+        $new_arrivals = Product::latest()->limit(5)->get();
+
+        ///////top sale product/////////////
+        $top_sale = DB::table('products')
+                    ->leftJoin('order_items','products.id','=','order_items.product_id')
+                    ->selectRaw('products.id, SUM(order_items.qty) as total')
+                    ->groupBy('products.id')
+                    ->orderBy('total','DESC')
+                    ->limit(5)
+                    ->get();
+        $products = [];
+       foreach ($top_sale as $product){
+           $products[]= Product::findOrFail($product->id);
+        }
+        return view('frontend.index',compact('categories','sliders','products','features','hot_deals','special_offer','special_deals','skip_category_0','skip_product_0','skip_category_1','skip_product_1','tags_en','tags_bn','blogpost','new_arrivals','products'));
 
     }
 
@@ -129,7 +148,14 @@ class IndexController extends Controller
 
 
         $multi_image = MultiImg::where('product_id',$id)->get();
-        return view('frontend.product.product_details',compact('product','multi_image','product_color_bn','product_color_en','product_size_bn','product_size_en','relatedProduct'));
+
+        ///////////review/////////////////
+        $review = Review::where('product_id',$id)->where('status',1)->get();
+
+        $avg_review = Review::where('product_id',$id)->where('status',1)->avg('review');
+
+
+        return view('frontend.product.product_details',compact('product','multi_image','product_color_bn','product_color_en','product_size_bn','product_size_en','relatedProduct','review','avg_review'));
     }
 
 
@@ -150,10 +176,26 @@ class IndexController extends Controller
 
 
 
-    public function SubCategoryWiseProductView($id,$slug){
+    public function SubCategoryWiseProductView(Request $request,$id,$slug){
         $products = Product::where('status',1)->where('subcategory_id',$id)->orderBy('id','DESC')->paginate(3);
         $categories = Category::orderBy('category_name_en','ASC')->get();
-        return view('frontend.product.subcategory_view',compact('products','categories'));
+
+        $breadSubCat = SubCategory::with('category')->where('id',$id)->get();
+
+
+        ///  Load More Product with Ajax
+        if ($request->ajax()) {
+            $grid_view = view('frontend.product.grid_view_product',compact('products'))->render();
+
+            $list_view = view('frontend.product.list_view_product',compact('products'))->render();
+
+            return response()->json(['grid_view' => $grid_view, 'list_view'=>$list_view]);
+
+        }
+        ///  End Load More Product with Ajax
+
+
+        return view('frontend.product.subcategory_view',compact('products','categories','breadSubCat'));
 
     }
 
@@ -162,7 +204,10 @@ class IndexController extends Controller
     public function SubSubCategoryWiseProductView($id,$slug){
         $products = Product::where('status',1)->where('subSubcategory_id',$id)->orderBy('id','DESC')->paginate(3);
         $categories = Category::orderBy('category_name_en','ASC')->get();
-        return view('frontend.product.sub_subcategory_view',compact('products','categories'));
+
+        $breadSubSubCat = SubSubCategory::with('category','subcategory')->where('id',$id)->get();
+
+        return view('frontend.product.sub_subcategory_view',compact('products','categories','breadSubSubCat'));
     }
 
     /// Product View With Ajax
@@ -182,6 +227,34 @@ class IndexController extends Controller
 
         ));
 
+    } // end method
+
+
+
+    public function ProductSearch(Request $request){
+
+            $request->validate(["search" => "required"]);
+
+            $search = $request->search;
+
+            $products = Product::where('product_name_en','LIKE',"%$search%")->get();
+
+            return view('frontend.product.product_search',compact('products'));
+
+
+    }
+
+    ///// Advance Search Options ////////////////
+
+    public function SearchProduct(Request $request){
+
+        $request->validate(["search" => "required"]);
+
+        $item = $request->search;
+
+        $products = Product::where('product_name_en','LIKE',"%$item%")->select('id','product_name_en','product_thumbnail','selling_price','product_slug_en')->limit(5)->get();
+
+        return view('frontend.product.search_product',compact('products'));
     } // end method
 
 

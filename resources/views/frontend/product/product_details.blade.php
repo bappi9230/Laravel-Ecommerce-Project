@@ -35,10 +35,12 @@
 
 
                         <!-- ======================= HOT DEALS ============================== -->
-@include('frontend.common_part.hot_deals')
+                        @include('frontend.common_part.hot_deals')
                         <!-- ==================== HOT DEALS: END ================================== -->
 
+
                         <!-- ========================= NEWSLETTER =================================== -->
+
                         <div class="sidebar-widget newsletter wow fadeInUp outer-bottom-small outer-top-vs">
                             <h3 class="section-title">Newsletters</h3>
                             <div class="sidebar-widget-body outer-top-xs">
@@ -52,31 +54,36 @@
                                 </form>
                             </div><!-- /.sidebar-widget-body -->
                         </div><!-- /.sidebar-widget -->
+
                         <!-- ================== NEWSLETTER: END =================================== -->
 
                         <!-- =========== Testimonials==================================== -->
-                        <div class="sidebar-widget  wow fadeInUp outer-top-vs ">
-                            <div id="advertisement" class="advertisement">
-                                <div class="item">
-                                    <div class="avatar"><img src="{{ asset('frontend/assets/images/testimonials/member1.png') }}" alt="Image"></div>
-                                    <div class="testimonials"><em>"</em> Vtae sodales aliq uam morbi non sem lacus port mollis. Nunc condime tum metus eud molest sed consectetuer.<em>"</em></div>
-                                    <div class="clients_author">John Doe	<span>Abc Company</span>	</div><!-- /.container-fluid -->
-                                </div><!-- /.item -->
 
-                                <div class="item">
-                                    <div class="avatar"><img src="{{ asset('frontend/assets/images/testimonials/member3.png') }}" alt="Image"></div>
-                                    <div class="testimonials"><em>"</em>Vtae sodales aliq uam morbi non sem lacus port mollis. Nunc condime tum metus eud molest sed consectetuer.<em>"</em></div>
-                                    <div class="clients_author">Stephen Doe	<span>Xperia Designs</span>	</div>
-                                </div><!-- /.item -->
 
-                                <div class="item">
-                                    <div class="avatar"><img src="{{ asset('frontend/assets/images/testimonials/member2.png') }}" alt="Image"></div>
-                                    <div class="testimonials"><em>"</em> Vtae sodales aliq uam morbi non sem lacus port mollis. Nunc condime tum metus eud molest sed consectetuer.<em>"</em></div>
-                                    <div class="clients_author">Saraha Smith	<span>Datsun &amp; Co</span>	</div><!-- /.container-fluid -->
-                                </div><!-- /.item -->
+{{--                        <div class="sidebar-widget  wow fadeInUp outer-top-vs ">--}}
+{{--                            <div id="advertisement" class="advertisement">--}}
+{{--                                <div class="item">--}}
+{{--                                    <div class="avatar"><img src="{{ asset('frontend/assets/images/testimonials/member1.png') }}" alt="Image"></div>--}}
+{{--                                    <div class="testimonials"><em>"</em> Vtae sodales aliq uam morbi non sem lacus port mollis. Nunc condime tum metus eud molest sed consectetuer.<em>"</em></div>--}}
+{{--                                    <div class="clients_author">John Doe	<span>Abc Company</span>	</div><!-- /.container-fluid -->--}}
+{{--                                </div><!-- /.item -->--}}
 
-                            </div><!-- /.owl-carousel -->
-                        </div>
+{{--                                <div class="item">--}}
+{{--                                    <div class="avatar"><img src="{{ asset('frontend/assets/images/testimonials/member3.png') }}" alt="Image"></div>--}}
+{{--                                    <div class="testimonials"><em>"</em>Vtae sodales aliq uam morbi non sem lacus port mollis. Nunc condime tum metus eud molest sed consectetuer.<em>"</em></div>--}}
+{{--                                    <div class="clients_author">Stephen Doe	<span>Xperia Designs</span>	</div>--}}
+{{--                                </div><!-- /.item -->--}}
+
+{{--                                <div class="item">--}}
+{{--                                    <div class="avatar"><img src="{{ asset('frontend/assets/images/testimonials/member2.png') }}" alt="Image"></div>--}}
+{{--                                    <div class="testimonials"><em>"</em> Vtae sodales aliq uam morbi non sem lacus port mollis. Nunc condime tum metus eud molest sed consectetuer.<em>"</em></div>--}}
+{{--                                    <div class="clients_author">Saraha Smith	<span>Datsun &amp; Co</span>	</div><!-- /.container-fluid -->--}}
+{{--                                </div><!-- /.item -->--}}
+
+{{--                            </div><!-- /.owl-carousel -->--}}
+{{--                        </div>--}}
+
+
 
                         <!-- ==================== Testimonials: END =========================== -->
                     </div>
@@ -90,6 +97,7 @@
                             <div class="col-xs-12 col-sm-6 col-md-5 gallery-holder">
                                 <div class="product-item-holder size-big single-product-gallery small-gallery">
                                     <div id="owl-single-product">
+
                                     @foreach($multi_image as $img)
                                         <div class="single-product-gallery-item" id="slide{{ $img->id }}">
                                             <a data-lightbox="image-1" data-title="Gallery" href="{{ asset($img->photo_name) }}">
@@ -97,6 +105,7 @@
                                             </a>
                                         </div><!-- /.single-product-gallery-item -->
                                     @endforeach
+
                                     </div><!-- /.single-product-slider -->
 
 
@@ -122,11 +131,49 @@
                                     <div class="rating-reviews m-t-20">
                                         <div class="row">
                                             <div class="col-sm-3">
-                                                <div class="rating rateit-small"></div>
+                                                @if($avg_review == NULL)
+                                                    No Review
+                                                @elseif($avg_review == 1 || $avg_review<2)
+
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star"></span>
+                                                    <span class="fa fa-star"></span>
+                                                    <span class="fa fa-star"></span>
+                                                    <span class="fa fa-star"></span>
+
+                                                @elseif($avg_review == 2 || $avg_review<3)
+
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star"></span>
+                                                    <span class="fa fa-star"></span>
+                                                    <span class="fa fa-star"></span>
+                                                @elseif($avg_review == 3 || $avg_review<4)
+
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star"></span>
+                                                    <span class="fa fa-star"></span>
+                                                @elseif($avg_review == 4 || $avg_review<5)
+
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star"></span>
+                                                @else
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+
+                                                @endif
                                             </div>
                                             <div class="col-sm-8">
                                                 <div class="reviews">
-                                                    <a href="#" class="lnk">(13 Reviews)</a>
+                                                    <a href="#" class="lnk">({{ count($review) }} Reviews)</a>
                                                 </div>
                                             </div>
                                         </div><!-- /.row -->
@@ -157,10 +204,10 @@
                                             <div class="col-sm-6">
                                                 <div class="price-box">
                                                     @if($product->discount_price == NULL || $product->discount_price == 0)
-                                                    <span class="price">{{ $product->selling_price }}</span>
+                                                    <span class="price">${{ $product->selling_price }}</span>
                                                     @else
-                                                        <span class="price">{{ $product->discount_price }}</span>
-                                                        <span class="price-strike">{{ $product->selling_price }}</span>
+                                                        <span class="price">${{ $product->discount_price }}</span>
+                                                        <span class="price-strike">${{ $product->selling_price }}</span>
                                                     @endif
                                                 </div>
                                             </div>
@@ -290,18 +337,66 @@
 
                                             <div class="product-reviews">
                                                 <h4 class="title">Customer Reviews</h4>
+
                                                 @php
                                                  $reviews = App\Models\Review::where('product_id',$product->id)->latest()->limit(5)->get();
                                                 @endphp
+
                                                 <div class="reviews">
                                                     @foreach($reviews as $item)
                                                         @if($item->status == 1)
                                                         <div class="review">
                                                             <div class="row">
-                                                                <div class="col-md-3">
+
+                                                                <div class="col-md-6">
+
                                                                     <img style="border-radius: 50%" src="{{ (!empty($item->user->profile_photo_path))? url('upload/user_profile_image/'.$item->user->profile_photo_path):url('upload/no_image.jpg') }}" width="40px;" height="40px;"><b> {{ $item->user->name }}</b>
+
+
+                                                                    @if($item->review == NULL)
+
+                                                                    @elseif($item->review == 1)
+
+                                                                        <span class="fa fa-star checked"></span>
+                                                                        <span class="fa fa-star"></span>
+                                                                        <span class="fa fa-star"></span>
+                                                                        <span class="fa fa-star"></span>
+                                                                        <span class="fa fa-star"></span>
+
+                                                                   @elseif($item->review == 2)
+
+                                                                        <span class="fa fa-star checked"></span>
+                                                                        <span class="fa fa-star checked"></span>
+                                                                        <span class="fa fa-star"></span>
+                                                                        <span class="fa fa-star"></span>
+                                                                        <span class="fa fa-star"></span>
+                                                                   @elseif($item->review == 3)
+
+                                                                        <span class="fa fa-star checked"></span>
+                                                                        <span class="fa fa-star checked"></span>
+                                                                        <span class="fa fa-star checked"></span>
+                                                                        <span class="fa fa-star"></span>
+                                                                        <span class="fa fa-star"></span>
+                                                                   @elseif($item->review == 4)
+
+                                                                        <span class="fa fa-star checked"></span>
+                                                                        <span class="fa fa-star checked"></span>
+                                                                        <span class="fa fa-star checked"></span>
+                                                                        <span class="fa fa-star checked"></span>
+                                                                        <span class="fa fa-star"></span>
+                                                                   @else
+                                                                        <span class="fa fa-star checked"></span>
+                                                                        <span class="fa fa-star checked"></span>
+                                                                        <span class="fa fa-star checked"></span>
+                                                                        <span class="fa fa-star checked"></span>
+                                                                        <span class="fa fa-star checked"></span>
+
+                                                                   @endif
+
                                                                 </div>
-                                                                <div class="col-md-9"></div>
+
+
+                                                                <div class="col-md-6"></div>
                                                             </div>
                                                             <div class="review-title">
                                                                 <span class="summary">{{$item->summary}}</span>
@@ -312,99 +407,82 @@
                                                             <div class="text">{{$item->comment}}</div>
                                                         </div>
                                                         @endif
+
                                                     @endforeach
 
                                                 </div><!-- /.reviews -->
+
                                             </div><!-- /.product-reviews -->
-
-
-
-                                            <div class="product-add-review">
-
-{{--                                                <div class="review-table">--}}
-{{--                                                    <div class="table-responsive">--}}
-{{--                                                        <table class="table">--}}
-{{--                                                            <thead>--}}
-{{--                                                            <tr>--}}
-{{--                                                                <th class="cell-label">&nbsp;</th>--}}
-{{--                                                                <th>1 star</th>--}}
-{{--                                                                <th>2 stars</th>--}}
-{{--                                                                <th>3 stars</th>--}}
-{{--                                                                <th>4 stars</th>--}}
-{{--                                                                <th>5 stars</th>--}}
-{{--                                                            </tr>--}}
-{{--                                                            </thead>--}}
-{{--                                                            <tbody>--}}
-{{--                                                            <tr>--}}
-{{--                                                                <td class="cell-label">Quality</td>--}}
-{{--                                                                <td><input type="radio" name="quality" class="radio" value="1"></td>--}}
-{{--                                                                <td><input type="radio" name="quality" class="radio" value="2"></td>--}}
-{{--                                                                <td><input type="radio" name="quality" class="radio" value="3"></td>--}}
-{{--                                                                <td><input type="radio" name="quality" class="radio" value="4"></td>--}}
-{{--                                                                <td><input type="radio" name="quality" class="radio" value="5"></td>--}}
-{{--                                                            </tr>--}}
-{{--                                                            <tr>--}}
-{{--                                                                <td class="cell-label">Price</td>--}}
-{{--                                                                <td><input type="radio" name="quality" class="radio" value="1"></td>--}}
-{{--                                                                <td><input type="radio" name="quality" class="radio" value="2"></td>--}}
-{{--                                                                <td><input type="radio" name="quality" class="radio" value="3"></td>--}}
-{{--                                                                <td><input type="radio" name="quality" class="radio" value="4"></td>--}}
-{{--                                                                <td><input type="radio" name="quality" class="radio" value="5"></td>--}}
-{{--                                                            </tr>--}}
-{{--                                                            <tr>--}}
-{{--                                                                <td class="cell-label">Value</td>--}}
-{{--                                                                <td><input type="radio" name="quality" class="radio" value="1"></td>--}}
-{{--                                                                <td><input type="radio" name="quality" class="radio" value="2"></td>--}}
-{{--                                                                <td><input type="radio" name="quality" class="radio" value="3"></td>--}}
-{{--                                                                <td><input type="radio" name="quality" class="radio" value="4"></td>--}}
-{{--                                                                <td><input type="radio" name="quality" class="radio" value="5"></td>--}}
-{{--                                                            </tr>--}}
-{{--                                                            </tbody>--}}
-{{--                                                        </table><!-- /.table .table-bordered -->--}}
-{{--                                                    </div><!-- /.table-responsive -->--}}
-{{--                                                </div><!-- /.review-table -->--}}
-
 
                                                 @guest
                                                     <p> <b> For Add Product Review. You Need to Login First <a href="{{ route('login') }}">Login Here</a> </b> </p>
                                                 @else
+                                                <span style="color: black"><strong>Write Your Review</strong></span>
+                                                <div class="product-add-review">
+                                                    <form role="form" method="post" class="cnt-form" action="{{route('review.store',$product->id)}}">
+                                                        @csrf
+                                                        <div class="review-table">
+                                                            <div class="table-responsive">
+                                                                <table class="table">
+                                                                    <thead>
+                                                                    <tr>
+                                                                        <th class="cell-label">&nbsp;</th>
+                                                                        <th>1 star</th>
+                                                                        <th>2 stars</th>
+                                                                        <th>3 stars</th>
+                                                                        <th>4 stars</th>
+                                                                        <th>5 stars</th>
+                                                                    </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                    <tr>
+                                                                        <td class="cell-label">Quality</td>
+                                                                        <td><input type="radio" name="review" class="radio" value="1"></td>
+                                                                        <td><input type="radio" name="review" class="radio" value="2"></td>
+                                                                        <td><input type="radio" name="review" class="radio" value="3"></td>
+                                                                        <td><input type="radio" name="review" class="radio" value="4"></td>
+                                                                        <td><input type="radio" name="review" class="radio" value="5"></td>
+                                                                    </tr>
 
-                                                <div class="review-form">
-                                                    <div class="form-container">
-                                                        <form role="form" method="post" class="cnt-form" action="{{route('review.store',$product->id)}}">
-                                                            @csrf
-                                                            <div class="row">
-                                                                <div class="col-sm-6">
+                                                                    </tbody>
+                                                                </table><!-- /.table .table-bordered -->
+                                                            </div><!-- /.table-responsive -->
+                                                        </div><!-- /.review-table -->
+
+                                                        <div class="review-form">
+                                                        <div class="form-container">
+                                                                <div class="row">
+                                                                    <div class="col-sm-6">
 
 
-                                                                    <div class="form-group">
-                                                                        <label for="exampleInputSummary">Summary <span class="astk">*</span></label>
-                                                                        <input type="text" name="summary" class="form-control txt" id="exampleInputSummary" placeholder="">
-                                                                    </div><!-- /.form-group -->
+                                                                        <div class="form-group">
+                                                                            <label for="exampleInputSummary">Summary <span class="astk">*</span></label>
+                                                                            <input type="text" name="summary" class="form-control txt" id="exampleInputSummary" placeholder="">
+                                                                        </div><!-- /.form-group -->
 
-                                                                </div>
+                                                                    </div>
 
-                                                                <div class="col-md-6">
+                                                                    <div class="col-md-6">
 
-                                                                    <div class="form-group">
-                                                                        <label for="exampleInputReview">Review <span class="astk">*</span></label>
-                                                                        <textarea class="form-control txt txt-review" name="comment" id="exampleInputReview" rows="4" placeholder=""></textarea>
-                                                                    </div><!-- /.form-group -->
-                                                                </div>
+                                                                        <div class="form-group">
+                                                                            <label for="exampleInputReview">Review <span class="astk">*</span></label>
+                                                                            <textarea class="form-control txt txt-review" name="comment" id="exampleInputReview" rows="4" placeholder=""></textarea>
+                                                                        </div><!-- /.form-group -->
+                                                                    </div>
 
-                                                            </div><!-- /.row -->
+                                                                </div><!-- /.row -->
 
-                                                            <div class="action text-right">
-                                                                <button class="btn btn-primary btn-upper">SUBMIT REVIEW</button>
-                                                            </div><!-- /.action -->
+                                                                <div class="action text-right">
+                                                                    <button class="btn btn-primary btn-upper">SUBMIT REVIEW</button>
+                                                                </div><!-- /.action -->
 
-                                                        </form><!-- /.cnt-form -->
-                                                    </div><!-- /.form-container -->
-                                                </div><!-- /.review-form -->
 
-                                                @endguest
-                                            </div><!-- /.product-add-review -->
+                                                        </div><!-- /.form-container -->
+                                                    </div><!-- /.review-form -->
+                                                    </form><!-- /.cnt-form -->
 
+                                                </div><!-- /.product-add-review -->
+                                               @endguest
                                         </div><!-- /.product-tab -->
                                     </div><!-- /.tab-pane -->
 
@@ -533,5 +611,9 @@
 
         <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=643140ea1cdb86001a1ecf74&product=inline-share-buttons' async='async'></script>
 
-
+<style>
+    .checked {
+        color: orange;
+    }
+</style>
 @endsection

@@ -9,11 +9,13 @@
             <li><a href="{{ route('login')}}"><i class="icon fa fa-user"></i>
             @if(session()->get('language') == 'bangla') আমার অ্যাকাউন্ট  @else My Account @endif
             </a></li>
-            <li><a href="{{url('/user/wishlist/view')}}"><i class="icon fa fa-heart"></i>
+            <li><a href="{{ url('/user/wishlist/view') }}"><i class="icon fa fa-heart"></i>
             @if(session()->get('language') == 'bangla') ইচ্ছাতালিকা  @else Wishlist @endif
             </a></li>
             <li><a href="{{route('mycart')}}"><i class="icon fa fa-shopping-cart"></i>@if(session()->get('language') == 'bangla') আমার কার্ট  @else My Cart @endif</a></li>
             <li><a href="{{route('checkout')}}"><i class="icon fa fa-check"></i>@if(session()->get('language') == 'bangla') চেকআউট  @else Checkout @endif</a></li>
+
+              <li><a href=""  type="button" data-toggle="modal" data-target="#ordertracking"><i class="icon fa fa-check"></i>@if(session()->get('language') == 'bangla') চেকআউট  @else Order Tracking @endif</a></li>
 
             @auth
              <li><a href="{{ route('login')}}"><i class="icon fa fa-user"></i>@if(session()->get('language') == 'bangla') ব্যবহারকারী প্রোফাইল @else {{Illuminate\Support\Facades\Auth::user()->name}} @endif</a></li>
@@ -74,27 +76,39 @@
 
         <div class="col-xs-12 col-sm-12 col-md-7 top-search-holder">
           <!-- /.contact-row -->
+
+
+
+
           <!-- ========================== SEARCH AREA ======================================== -->
           <div class="search-area">
-            <form>
+            <form method="POST" action="{{route('product.search')}}">
+                @csrf
               <div class="control-group">
-                <ul class="categories-filter animate-dropdown">
-                  <li class="dropdown"> <a class="dropdown-toggle"  data-toggle="dropdown" href="category.html">Categories <b class="caret"></b></a>
-                    <ul class="dropdown-menu" role="menu" >
-                      <li class="menu-header">Computer</li>
-                      <li role="presentation"><a role="menuitem" tabindex="-1" href="category.html">- Clothing</a></li>
-                      <li role="presentation"><a role="menuitem" tabindex="-1" href="category.html">- Electronics</a></li>
-                      <li role="presentation"><a role="menuitem" tabindex="-1" href="category.html">- Shoes</a></li>
-                      <li role="presentation"><a role="menuitem" tabindex="-1" href="category.html">- Watches</a></li>
+                    <ul class="categories-filter animate-dropdown">
+                      <li class="dropdown"> <a class="dropdown-toggle"  data-toggle="dropdown" href="category.html">Categories <b class="caret"></b></a>
+                        <ul class="dropdown-menu" role="menu" >
+                          <li class="menu-header">Computer</li>
+                          <li role="presentation"><a role="menuitem" tabindex="-1" href="category.html">- Clothing</a></li>
+                          <li role="presentation"><a role="menuitem" tabindex="-1" href="category.html">- Electronics</a></li>
+                          <li role="presentation"><a role="menuitem" tabindex="-1" href="category.html">- Shoes</a></li>
+                          <li role="presentation"><a role="menuitem" tabindex="-1" href="category.html">- Watches</a></li>
+                        </ul>
+                      </li>
                     </ul>
-                  </li>
-                </ul>
-                <input class="search-field" placeholder="Search here..." />
-                <a class="search-button" href="#" ></a> </div>
+                    <input class="search-field" onfocus="search_result_show()" onblur="search_result_hide()" id="search" name="search" placeholder="Search here..." />
+
+                   <button type="submit"  class="search-button"  > </button>
+                  <div id="searchProducts"></div>
+              </div>
             </form>
           </div>
+
           <!-- /.search-area -->
           <!-- =========================== SEARCH AREA : END =========================== --> </div>
+
+
+
         <!-- /.top-search-holder -->
 
         <div class="col-xs-12 col-sm-12 col-md-2 animate-dropdown top-cart-row ">
@@ -127,7 +141,7 @@
                       </span>
                   </div>
                   <div class="clearfix"></div>
-                  <a href="checkout.html" class="btn btn-upper btn-primary btn-block m-t-20">Checkout</a> </div>
+                  <a href="{{ route('checkout') }}" class="btn btn-upper btn-primary btn-block m-t-20">Checkout</a> </div>
                 <!-- /.cart-total-->
 
               </li>
@@ -233,5 +247,61 @@
   <!-- /.header-nav -->
   <!-- ================================== NAVBAR : END =================================== -->
 
+
+
+    <!-- Order tracking Modal -->
+    <div class="modal fade" id="ordertracking" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Order Tracking Page</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <form method="post" action="{{ route('order.tracking') }}">
+                        @csrf
+                        <div class="modal-body">
+                            <label>Invoice Code</label>
+                            <input type="text" name="code" required="" class="form-control" placeholder="Your Order Invoice Number">
+                        </div>
+
+                        <button class="btn btn-danger" type="submit" style="margin-left: 17px;"> Track Now </button>
+
+                    </form>
+            </div>
+        </div>
+       </div>
+    </div>
+
+<!--Advace product search-->
+
+    <style>
+
+        .search-area{
+            position: relative;
+        }
+        #searchProducts {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background: #ffffff;
+            z-index: 999;
+            border-radius: 8px;
+            margin-top: 5px;
+        }
+    </style>
+
+    <script>
+        function search_result_hide(){
+            $("#searchProducts").slideUp();
+        }
+        function search_result_show(){
+            $("#searchProducts").slideDown();
+        }
+    </script>
 </header>
 

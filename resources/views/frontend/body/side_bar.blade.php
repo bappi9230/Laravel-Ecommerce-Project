@@ -11,7 +11,7 @@
     <!-- ===================END HOT DEALS ====================== -->
 
 
-    <!-- ============================================== SPECIAL OFFER ============================================== -->
+    <!-- ============================== SPECIAL OFFER ============================= -->
     <div class="sidebar-widget outer-bottom-small wow fadeInUp">
         <h3 class="section-title">@if(session()->get('language') == 'bangla') বিশেষ প্রস্তাব @else Special Offer @endif</h3>
         <div class="sidebar-widget-body outer-top-xs">
@@ -61,15 +61,16 @@
     <!-- ============================================== PRODUCT TAGS ============================================== -->
      @include('frontend.common_part.product_tags')
     <!-- /.sidebar-widget -->
-    <!-- ============================================== PRODUCT TAGS : END ============================================== -->
+    <!-- ===================== PRODUCT TAGS : END ================== -->
 
 
-    <!-- ============================================== SPECIAL DEALS ============================================== -->
+    <!-- ================= SPECIAL DEALS ================== -->
+
     <div class="sidebar-widget outer-bottom-small wow fadeInUp">
         <h3 class="section-title">@if(session()->get('language') == 'bangla') বিশেষ চুক্তি @else Special Deals @endif </h3>
         <div class="sidebar-widget-body outer-top-xs">
-            <div class="owl-carousel sidebar-carousel special-offer custom-carousel owl-theme outer-top-xs">
                 @foreach($special_deals as $product)
+            <div class="owl-carousel sidebar-carousel special-offer custom-carousel owl-theme outer-top-xs">
                     <div class="owl-carousel sidebar-carousel special-offer custom-carousel owl-theme outer-top-xs">
                         <div class="item">
                             <div class="products special-product">
@@ -104,16 +105,18 @@
                             </div>
                         </div>
                     </div>
-                @endforeach  <!--End Special deal-->
             </div>
+                @endforeach  <!--End Special deal-->
         </div>
         <!-- /.sidebar-widget-body -->
     </div>
     <!-- /.sidebar-widget -->
-    <!-- ============================================== SPECIAL DEALS : END ============================================== -->
+
+    <!-- =============== SPECIAL DEALS : END =============== -->
 
 
-    <!-- ============================================== NEWSLETTER ============================================== -->
+    <!-- =============== NEWSLETTER ==================== -->
+
     <div class="sidebar-widget newsletter wow fadeInUp outer-bottom-small">
         <h3 class="section-title">Newsletters</h3>
         <div class="sidebar-widget-body outer-top-xs">
@@ -129,38 +132,38 @@
         <!-- /.sidebar-widget-body -->
     </div>
     <!-- /.sidebar-widget -->
-    <!-- ============================================== NEWSLETTER: END ============================================== -->
+    <!-- ============== NEWSLETTER: END ================== -->
 
 
     <!-- ============================================== Testimonials============================================== -->
-    <div class="sidebar-widget  wow fadeInUp outer-top-vs ">
-        <div id="advertisement" class="advertisement">
-            <div class="item">
-                <div class="avatar"><img src="{{ asset('frontend/assets/images/testimonials/member1.png') }}" alt="Image"></div>
-                <div class="testimonials"><em>"</em> Vtae sodales aliq uam morbi non sem lacus port mollis. Nunc condime tum metus eud molest sed consectetuer.<em>"</em></div>
-                <div class="clients_author">John Doe <span>Abc Company</span> </div>
-                <!-- /.container-fluid -->
-            </div>
-            <!-- /.item -->
+{{--    <div class="sidebar-widget  wow fadeInUp outer-top-vs ">--}}
+{{--        <div id="advertisement" class="advertisement">--}}
+{{--            <div class="item">--}}
+{{--                <div class="avatar"><img src="{{ asset('frontend/assets/images/testimonials/member1.png') }}" alt="Image"></div>--}}
+{{--                <div class="testimonials"><em>"</em> Vtae sodales aliq uam morbi non sem lacus port mollis. Nunc condime tum metus eud molest sed consectetuer.<em>"</em></div>--}}
+{{--                <div class="clients_author">John Doe <span>Abc Company</span> </div>--}}
+{{--                <!-- /.container-fluid -->--}}
+{{--            </div>--}}
+{{--            <!-- /.item -->--}}
 
-            <div class="item">
-                <div class="avatar"><img src="{{ asset('frontend/assets/images/testimonials/member3.png') }}" alt="Image"></div>
-                <div class="testimonials"><em>"</em>Vtae sodales aliq uam morbi non sem lacus port mollis. Nunc condime tum metus eud molest sed consectetuer.<em>"</em></div>
-                <div class="clients_author">Stephen Doe <span>Xperia Designs</span> </div>
-            </div>
-            <!-- /.item -->
+{{--            <div class="item">--}}
+{{--                <div class="avatar"><img src="{{ asset('frontend/assets/images/testimonials/member3.png') }}" alt="Image"></div>--}}
+{{--                <div class="testimonials"><em>"</em>Vtae sodales aliq uam morbi non sem lacus port mollis. Nunc condime tum metus eud molest sed consectetuer.<em>"</em></div>--}}
+{{--                <div class="clients_author">Stephen Doe <span>Xperia Designs</span> </div>--}}
+{{--            </div>--}}
+{{--            <!-- /.item -->--}}
 
-            <div class="item">
-                <div class="avatar"><img src="{{ asset('frontend/assets/images/testimonials/member2.png') }}" alt="Image"></div>
-                <div class="testimonials"><em>"</em> Vtae sodales aliq uam morbi non sem lacus port mollis. Nunc condime tum metus eud molest sed consectetuer.<em>"</em></div>
-                <div class="clients_author">Saraha Smith <span>Datsun &amp; Co</span> </div>
-                <!-- /.container-fluid -->
-            </div>
-            <!-- /.item -->
+{{--            <div class="item">--}}
+{{--                <div class="avatar"><img src="{{ asset('frontend/assets/images/testimonials/member2.png') }}" alt="Image"></div>--}}
+{{--                <div class="testimonials"><em>"</em> Vtae sodales aliq uam morbi non sem lacus port mollis. Nunc condime tum metus eud molest sed consectetuer.<em>"</em></div>--}}
+{{--                <div class="clients_author">Saraha Smith <span>Datsun &amp; Co</span> </div>--}}
+{{--                <!-- /.container-fluid -->--}}
+{{--            </div>--}}
+{{--            <!-- /.item -->--}}
 
-        </div>
-        <!-- /.owl-carousel -->
-    </div>
+{{--        </div>--}}
+{{--        <!-- /.owl-carousel -->--}}
+{{--    </div>--}}
     <!-- ============================================== Testimonials: END ============================================== -->
 
     <div class="home-banner"> <img src="{{ asset('frontend/assets/images/banners/LHS-banner.jpg') }}" alt="Image"> </div>
