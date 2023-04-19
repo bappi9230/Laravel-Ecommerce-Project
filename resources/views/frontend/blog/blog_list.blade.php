@@ -61,9 +61,6 @@
                                 </form>
                             </div>
 
-{{--                            <div class="home-banner outer-top-n outer-bottom-xs">--}}
-{{--                                <img src="assets/images/banners/LHS-banner.jpg" alt="Image">--}}
-{{--                            </div>--}}
                             <!-- ===========================CATEGORY================================= -->
                             <div class="sidebar-widget outer-bottom-xs wow fadeInUp">
                                 <h3 class="section-title">Category</h3>

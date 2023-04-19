@@ -36,6 +36,8 @@ use App\Http\Controllers\Frontend\LanguageController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\CartPageController;
 use App\Http\Controllers\Frontend\HomeBlogController;
+use App\Http\Controllers\Frontend\ShopController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -525,7 +527,13 @@ Route::post('/search', [IndexController::class, 'ProductSearch'])->name('product
 Route::post('search-product', [IndexController::class, 'SearchProduct']);
 
 
+//////////////////shop Page Route //////////////////////
 
+Route::get('/shop', [ShopController::class, 'ShopPage'])->name('shop.page');
+
+Route::post('/shop/filter', [ShopController::class, 'ShopFilter'])->name('shop.filter');
+
+Route::get('/shop/brand/{brand_id}', [ShopController::class, 'ShopBrand'])->name('brand.page');
 
 
 

@@ -28,10 +28,6 @@
             <div class='row single-product'>
                 <div class='col-md-3 sidebar'>
                     <div class="sidebar-module-container">
-                        <div class="home-banner outer-top-n">
-                            <img src="{{ asset('frontend/assets/images/banners/LHS-banner.jpg') }}" alt="Image">
-                        </div>
-
 
 
                         <!-- ======================= HOT DEALS ============================== -->
@@ -57,35 +53,7 @@
 
                         <!-- ================== NEWSLETTER: END =================================== -->
 
-                        <!-- =========== Testimonials==================================== -->
 
-
-{{--                        <div class="sidebar-widget  wow fadeInUp outer-top-vs ">--}}
-{{--                            <div id="advertisement" class="advertisement">--}}
-{{--                                <div class="item">--}}
-{{--                                    <div class="avatar"><img src="{{ asset('frontend/assets/images/testimonials/member1.png') }}" alt="Image"></div>--}}
-{{--                                    <div class="testimonials"><em>"</em> Vtae sodales aliq uam morbi non sem lacus port mollis. Nunc condime tum metus eud molest sed consectetuer.<em>"</em></div>--}}
-{{--                                    <div class="clients_author">John Doe	<span>Abc Company</span>	</div><!-- /.container-fluid -->--}}
-{{--                                </div><!-- /.item -->--}}
-
-{{--                                <div class="item">--}}
-{{--                                    <div class="avatar"><img src="{{ asset('frontend/assets/images/testimonials/member3.png') }}" alt="Image"></div>--}}
-{{--                                    <div class="testimonials"><em>"</em>Vtae sodales aliq uam morbi non sem lacus port mollis. Nunc condime tum metus eud molest sed consectetuer.<em>"</em></div>--}}
-{{--                                    <div class="clients_author">Stephen Doe	<span>Xperia Designs</span>	</div>--}}
-{{--                                </div><!-- /.item -->--}}
-
-{{--                                <div class="item">--}}
-{{--                                    <div class="avatar"><img src="{{ asset('frontend/assets/images/testimonials/member2.png') }}" alt="Image"></div>--}}
-{{--                                    <div class="testimonials"><em>"</em> Vtae sodales aliq uam morbi non sem lacus port mollis. Nunc condime tum metus eud molest sed consectetuer.<em>"</em></div>--}}
-{{--                                    <div class="clients_author">Saraha Smith	<span>Datsun &amp; Co</span>	</div><!-- /.container-fluid -->--}}
-{{--                                </div><!-- /.item -->--}}
-
-{{--                            </div><!-- /.owl-carousel -->--}}
-{{--                        </div>--}}
-
-
-
-                        <!-- ==================== Testimonials: END =========================== -->
                     </div>
                 </div><!-- /.sidebar -->
 
@@ -213,8 +181,8 @@
                                             </div>
                                             <div class="col-sm-6">
                                                 <div class="favorite-button m-t-10">
-                                                    <a class="btn btn-primary" data-toggle="tooltip" data-placement="right" title="Wishlist" href="#">
-                                                        <i class="fa fa-heart"></i>
+                                                    <button  id="{{$product->id}}" onclick="addToWishlist(this.id)" class="add-to-cart rounded" style="padding-bottom:5px;background-color: #0c85d0;outline: none; " title=" @if(session()->get('language') == 'bangla') ইচ্ছেতালিকা @else Wishlist @endif "> <i class="icon fa fa-heart" style="margin-top:8px;color: white;"></i>
+                                                    </button>
                                                     </a>
                                                     <a class="btn btn-primary" data-toggle="tooltip" data-placement="right" title="Add to Compare" href="#">
                                                         <i class="fa fa-signal"></i>

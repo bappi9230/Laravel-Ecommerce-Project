@@ -10,9 +10,6 @@
         $categories = App\Models\Category::latest()->get();
     @endphp
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-
 
     <div class="breadcrumb">
         <div class="container">
@@ -104,103 +101,12 @@
 
 
 
-                            <!-- ======================== MANUFACTURES=============================== -->
-                            {{--                            <div class="sidebar-widget wow fadeInUp">--}}
-                            {{--                                <div class="widget-header">--}}
-                            {{--                                    <h4 class="widget-title">Manufactures</h4>--}}
-                            {{--                                </div>--}}
-                            {{--                                <div class="sidebar-widget-body">--}}
-                            {{--                                    <ul class="list">--}}
-                            {{--                                        <li><a href="#">Forever 18</a></li>--}}
-                            {{--                                        <li><a href="#">Nike</a></li>--}}
-                            {{--                                        <li><a href="#">Dolce & Gabbana</a></li>--}}
-                            {{--                                        <li><a href="#">Alluare</a></li>--}}
-                            {{--                                        <li><a href="#">Chanel</a></li>--}}
-                            {{--                                        <li><a href="#">Other Brand</a></li>--}}
-                            {{--                                    </ul>--}}
-                            {{--                                    <!--<a href="#" class="lnk btn btn-primary">Show Now</a>-->--}}
-                            {{--                                </div>--}}
-                            {{--                                <!-- /.sidebar-widget-body -->--}}
-                            {{--                            </div>--}}
-                            <!-- /.sidebar-widget -->
-                            <!-- =================== MANUFACTURES: END ============================== -->
-
-
-                            <!-- ========================= COLOR======================== -->
-                            {{--                            <div class="sidebar-widget wow fadeInUp">--}}
-                            {{--                                <div class="widget-header">--}}
-                            {{--                                    <h4 class="widget-title">Colors</h4>--}}
-                            {{--                                </div>--}}
-                            {{--                                <div class="sidebar-widget-body">--}}
-                            {{--                                    <ul class="list">--}}
-                            {{--                                        <li><a href="#">Red</a></li>--}}
-                            {{--                                        <li><a href="#">Blue</a></li>--}}
-                            {{--                                        <li><a href="#">Yellow</a></li>--}}
-                            {{--                                        <li><a href="#">Pink</a></li>--}}
-                            {{--                                        <li><a href="#">Brown</a></li>--}}
-                            {{--                                        <li><a href="#">Teal</a></li>--}}
-                            {{--                                    </ul>--}}
-                            {{--                                </div>--}}
-                            {{--                                <!-- /.sidebar-widget-body -->--}}
-                            {{--                            </div>--}}
-                            <!-- /.sidebar-widget -->
-                            <!-- ===================== COLOR: END ============================== -->
-
-
-                            <!-- ==================== ==COMPARE============================ -->
-                            {{--                            <div class="sidebar-widget wow fadeInUp outer-top-vs">--}}
-                            {{--                                <h3 class="section-title">Compare products</h3>--}}
-                            {{--                                <div class="sidebar-widget-body">--}}
-                            {{--                                    <div class="compare-report">--}}
-                            {{--                                        <p>You have no <span>item(s)</span> to compare</p>--}}
-                            {{--                                    </div>--}}
-                            {{--                                    <!-- /.compare-report -->--}}
-                            {{--                                </div>--}}
-                            {{--                                <!-- /.sidebar-widget-body -->--}}
-                            {{--                            </div>--}}
-                            <!-- /.sidebar-widget -->
-                            <!-- ====================== COMPARE: END ======================== -->
-
 
                             <!-- ====================PRODUCT TAGS ========================== -->
                             @include('frontend.common_part.product_tags')
                             <!-- ====================END PRODUCT TAGS ========================== -->
 
-                            <!----------- Testimonials------------->
 
-                            {{--                            <div class="sidebar-widget  wow fadeInUp outer-top-vs ">--}}
-                            {{--                                <div id="advertisement" class="advertisement">--}}
-                            {{--                                    <div class="item">--}}
-                            {{--                                        <div class="avatar"><img src="assets/images/testimonials/member1.png" alt="Image"></div>--}}
-                            {{--                                        <div class="testimonials"><em>"</em> Vtae sodales aliq uam morbi non sem lacus port mollis. Nunc condime tum metus eud molest sed consectetuer.<em>"</em></div>--}}
-                            {{--                                        <div class="clients_author">John Doe <span>Abc Company</span> </div>--}}
-                            {{--                                        <!-- /.container-fluid -->--}}
-                            {{--                                    </div>--}}
-                            {{--                                    <!-- /.item -->--}}
-
-                            {{--                                    <div class="item">--}}
-                            {{--                                        <div class="avatar"><img src="assets/images/testimonials/member3.png" alt="Image"></div>--}}
-                            {{--                                        <div class="testimonials"><em>"</em>Vtae sodales aliq uam morbi non sem lacus port mollis. Nunc condime tum metus eud molest sed consectetuer.<em>"</em></div>--}}
-                            {{--                                        <div class="clients_author">Stephen Doe <span>Xperia Designs</span> </div>--}}
-                            {{--                                    </div>--}}
-                            {{--                                    <!-- /.item -->--}}
-
-                            {{--                                    <div class="item">--}}
-                            {{--                                        <div class="avatar"><img src="assets/images/testimonials/member2.png" alt="Image"></div>--}}
-                            {{--                                        <div class="testimonials"><em>"</em> Vtae sodales aliq uam morbi non sem lacus port mollis. Nunc condime tum metus eud molest sed consectetuer.<em>"</em></div>--}}
-                            {{--                                        <div class="clients_author">Saraha Smith <span>Datsun &amp; Co</span> </div>--}}
-                            {{--                                        <!-- /.container-fluid -->--}}
-                            {{--                                    </div>--}}
-                            {{--                                    <!-- /.item -->--}}
-
-                            {{--                                </div>--}}
-                            {{--                                <!-- /.owl-carousel -->--}}
-                            {{--                            </div>--}}
-
-
-                            <!-- ====================== Testimonials: END ========================== -->
-
-                            {{--                            <div class="home-banner"> <img src="assets/images/banners/LHS-banner.jpg" alt="Image"> </div>--}}
                         </div>
                         <!-- /.sidebar-filter -->
                     </div>
@@ -375,7 +281,7 @@
                     $('.ajax-loadmore-product').show();
                 },
                 complete:function (data) {
-                    alert(data);
+                    // alert(data);
                     $('.ajax-loadmore-product').hide();
                 }
 

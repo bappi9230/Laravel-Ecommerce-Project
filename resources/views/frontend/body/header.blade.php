@@ -6,7 +6,7 @@
       <div class="header-top-inner">
         <div class="cnt-account">
           <ul class="list-unstyled">
-            <li><a href="{{ route('login')}}"><i class="icon fa fa-user"></i>
+            <li><a href="{{ route('dashboard')}}"><i class="icon fa fa-user"></i>
             @if(session()->get('language') == 'bangla') আমার অ্যাকাউন্ট  @else My Account @endif
             </a></li>
             <li><a href="{{ url('/user/wishlist/view') }}"><i class="icon fa fa-heart"></i>
@@ -18,9 +18,9 @@
               <li><a href=""  type="button" data-toggle="modal" data-target="#ordertracking"><i class="icon fa fa-check"></i>@if(session()->get('language') == 'bangla') চেকআউট  @else Order Tracking @endif</a></li>
 
             @auth
-             <li><a href="{{ route('login')}}"><i class="icon fa fa-user"></i>@if(session()->get('language') == 'bangla') ব্যবহারকারী প্রোফাইল @else {{Illuminate\Support\Facades\Auth::user()->name}} @endif</a></li>
+             <li><a href="{{ route('dashboard')}}"><i class="icon fa fa-user"></i>@if(session()->get('language') == 'bangla') ব্যবহারকারী প্রোফাইল @else {{Illuminate\Support\Facades\Auth::user()->name}} @endif</a></li>
             @else
-            <li><a href="{{ route('login')}}"><i class="icon fa fa-lock"></i>@if(session()->get('language') == 'bangla') লগ ইন। নিবন্ধন @else Login|Register @endif</a></li>
+            <li><a href="{{ route('dashboard')}}"><i class="icon fa fa-lock"></i>@if(session()->get('language') == 'bangla') লগ ইন। নিবন্ধন @else Login|Register @endif</a></li>
             @endauth
           </ul>
         </div>
@@ -226,6 +226,10 @@
                     </ul>
                 </li>
             @endforeach <!-- //end category Foreach -->
+
+              <li> <a href="{{ route('shop.page') }}">Shop</a> </li>
+
+
                 <li class="dropdown  navbar-right special-menu"> <a href="#">Todays offer</a> </li>
               <li class="dropdown  navbar-right special-menu"> <a href="{{ route('home.blog') }}">Blog</a> </li>
               </ul>

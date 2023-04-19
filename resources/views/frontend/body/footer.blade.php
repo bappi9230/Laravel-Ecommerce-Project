@@ -45,8 +45,8 @@
 
           <div class="module-body">
             <ul class='list-unstyled'>
-              <li class="first"><a href="#" title="Contact us">My Account</a></li>
-              <li><a href="#" title="About us">Order History</a></li>
+              <li class="first"><a href="{{ url('dashboard') }}" title="Contact us">My Account</a></li>
+              <li><a href="{{route('user.order')}}" title="About us">Order History</a></li>
               <li><a href="#" title="faq">FAQ</a></li>
               <li><a href="#" title="Popular Searches">Specials</a></li>
               <li class="last"><a href="#" title="Where is my order?">Help Center</a></li>
@@ -84,7 +84,7 @@
           <div class="module-body">
             <ul class='list-unstyled'>
               <li class="first"><a href="#" title="About us">Shopping Guide</a></li>
-              <li><a href="#" title="Blog">Blog</a></li>
+              <li><a href="{{ url('/blog') }}" title="Blog">Blog</a></li>
               <li><a href="#" title="Company">Company</a></li>
               <li><a href="#" title="Investor Relations">Investor Relations</a></li>
               <li class=" last"><a href="contact-us.html" title="Suppliers">Contact Us</a></li>

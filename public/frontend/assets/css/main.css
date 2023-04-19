@@ -1304,8 +1304,8 @@ header{background:#609bc8}
 
 .top-cart-row .dropdown-cart .lnk-cart {
   padding: 0px;
-      background: #006cb4;
-    border: 1px solid #24609c;
+      background: #609bc8;
+    border: 1px solid #609bc8;
   border-radius: 3px;
   display: inline-block;
   color: #fff;
@@ -2613,7 +2613,7 @@ age-container #owl-main .owl-next {
 }
 
 .info-boxes-inner {
-  background-color: #0f6cb2;
+  background-color: #609bc8;
   box-shadow: 0 2px 4px 0 rgba(0,0,0,.08);
 }
 

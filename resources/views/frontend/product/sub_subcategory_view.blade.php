@@ -102,103 +102,11 @@
 
 
 
-                            <!-- ======================== MANUFACTURES=============================== -->
-                            {{--                            <div class="sidebar-widget wow fadeInUp">--}}
-                            {{--                                <div class="widget-header">--}}
-                            {{--                                    <h4 class="widget-title">Manufactures</h4>--}}
-                            {{--                                </div>--}}
-                            {{--                                <div class="sidebar-widget-body">--}}
-                            {{--                                    <ul class="list">--}}
-                            {{--                                        <li><a href="#">Forever 18</a></li>--}}
-                            {{--                                        <li><a href="#">Nike</a></li>--}}
-                            {{--                                        <li><a href="#">Dolce & Gabbana</a></li>--}}
-                            {{--                                        <li><a href="#">Alluare</a></li>--}}
-                            {{--                                        <li><a href="#">Chanel</a></li>--}}
-                            {{--                                        <li><a href="#">Other Brand</a></li>--}}
-                            {{--                                    </ul>--}}
-                            {{--                                    <!--<a href="#" class="lnk btn btn-primary">Show Now</a>-->--}}
-                            {{--                                </div>--}}
-                            {{--                                <!-- /.sidebar-widget-body -->--}}
-                            {{--                            </div>--}}
-                            <!-- /.sidebar-widget -->
-                            <!-- =================== MANUFACTURES: END ============================== -->
-
-
-                            <!-- ========================= COLOR======================== -->
-                            {{--                            <div class="sidebar-widget wow fadeInUp">--}}
-                            {{--                                <div class="widget-header">--}}
-                            {{--                                    <h4 class="widget-title">Colors</h4>--}}
-                            {{--                                </div>--}}
-                            {{--                                <div class="sidebar-widget-body">--}}
-                            {{--                                    <ul class="list">--}}
-                            {{--                                        <li><a href="#">Red</a></li>--}}
-                            {{--                                        <li><a href="#">Blue</a></li>--}}
-                            {{--                                        <li><a href="#">Yellow</a></li>--}}
-                            {{--                                        <li><a href="#">Pink</a></li>--}}
-                            {{--                                        <li><a href="#">Brown</a></li>--}}
-                            {{--                                        <li><a href="#">Teal</a></li>--}}
-                            {{--                                    </ul>--}}
-                            {{--                                </div>--}}
-                            {{--                                <!-- /.sidebar-widget-body -->--}}
-                            {{--                            </div>--}}
-                            <!-- /.sidebar-widget -->
-                            <!-- ===================== COLOR: END ============================== -->
-
-
-                            <!-- ==================== ==COMPARE============================ -->
-                            {{--                            <div class="sidebar-widget wow fadeInUp outer-top-vs">--}}
-                            {{--                                <h3 class="section-title">Compare products</h3>--}}
-                            {{--                                <div class="sidebar-widget-body">--}}
-                            {{--                                    <div class="compare-report">--}}
-                            {{--                                        <p>You have no <span>item(s)</span> to compare</p>--}}
-                            {{--                                    </div>--}}
-                            {{--                                    <!-- /.compare-report -->--}}
-                            {{--                                </div>--}}
-                            {{--                                <!-- /.sidebar-widget-body -->--}}
-                            {{--                            </div>--}}
-                            <!-- /.sidebar-widget -->
-                            <!-- ====================== COMPARE: END ======================== -->
-
 
                             <!-- ====================PRODUCT TAGS ========================== -->
                             @include('frontend.common_part.product_tags')
                             <!-- ====================END PRODUCT TAGS ========================== -->
 
-                            <!----------- Testimonials------------->
-
-                            {{--                            <div class="sidebar-widget  wow fadeInUp outer-top-vs ">--}}
-                            {{--                                <div id="advertisement" class="advertisement">--}}
-                            {{--                                    <div class="item">--}}
-                            {{--                                        <div class="avatar"><img src="assets/images/testimonials/member1.png" alt="Image"></div>--}}
-                            {{--                                        <div class="testimonials"><em>"</em> Vtae sodales aliq uam morbi non sem lacus port mollis. Nunc condime tum metus eud molest sed consectetuer.<em>"</em></div>--}}
-                            {{--                                        <div class="clients_author">John Doe <span>Abc Company</span> </div>--}}
-                            {{--                                        <!-- /.container-fluid -->--}}
-                            {{--                                    </div>--}}
-                            {{--                                    <!-- /.item -->--}}
-
-                            {{--                                    <div class="item">--}}
-                            {{--                                        <div class="avatar"><img src="assets/images/testimonials/member3.png" alt="Image"></div>--}}
-                            {{--                                        <div class="testimonials"><em>"</em>Vtae sodales aliq uam morbi non sem lacus port mollis. Nunc condime tum metus eud molest sed consectetuer.<em>"</em></div>--}}
-                            {{--                                        <div class="clients_author">Stephen Doe <span>Xperia Designs</span> </div>--}}
-                            {{--                                    </div>--}}
-                            {{--                                    <!-- /.item -->--}}
-
-                            {{--                                    <div class="item">--}}
-                            {{--                                        <div class="avatar"><img src="assets/images/testimonials/member2.png" alt="Image"></div>--}}
-                            {{--                                        <div class="testimonials"><em>"</em> Vtae sodales aliq uam morbi non sem lacus port mollis. Nunc condime tum metus eud molest sed consectetuer.<em>"</em></div>--}}
-                            {{--                                        <div class="clients_author">Saraha Smith <span>Datsun &amp; Co</span> </div>--}}
-                            {{--                                        <!-- /.container-fluid -->--}}
-                            {{--                                    </div>--}}
-                            {{--                                    <!-- /.item -->--}}
-
-                            {{--                                </div>--}}
-                            {{--                                <!-- /.owl-carousel -->--}}
-                            {{--                            </div>--}}
-
-
-                            <!-- ====================== Testimonials: END ========================== -->
-
-                            {{--                            <div class="home-banner"> <img src="assets/images/banners/LHS-banner.jpg" alt="Image"> </div>--}}
                         </div>
                         <!-- /.sidebar-filter -->
                     </div>
@@ -344,10 +252,13 @@
                                                             <div class="action">
                                                                 <ul class="list-unstyled">
                                                                     <li class="add-cart-button btn-group">
-                                                                        <button class="btn btn-primary icon" data-toggle="dropdown" type="button"> <i class="fa fa-shopping-cart"></i> </button>
+                                                                        <button class="btn btn-primary icon" type="button" title="@if(session()->get('language') == 'bangla') কার্টে যোগ করুন @else Add Cart @endif" data-toggle="modal" data-target="#exampleModal" id="{{ $product->id }}" onclick="productView(this.id)">
+                                                                            <i class="fa fa-shopping-cart"></i>
+                                                                        </button>
                                                                         <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
                                                                     </li>
-                                                                    <li class="lnk wishlist"> <a class="add-to-cart" href="detail.html" title="Wishlist"> <i class="icon fa fa-heart"></i> </a> </li>
+                                                                    <button  id="{{$product->id}}" onclick="addToWishlist(this.id)" class="add-to-cart rounded" style="padding-bottom:5px;background-color: #0c85d0;outline: none; " title=" @if(session()->get('language') == 'bangla') ইচ্ছেতালিকা @else Wishlist @endif "> <i class="icon fa fa-heart" style="margin-top:8px;color: white;"></i>
+                                                                    </button>
                                                                     <li class="lnk"> <a class="add-to-cart" href="detail.html" title="Compare"> <i class="fa fa-signal"></i> </a> </li>
                                                                 </ul>
                                                             </div>
