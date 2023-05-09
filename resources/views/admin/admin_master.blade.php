@@ -6,10 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="{{ asset('backend//images/favicon.ico') }}">
 
     <title>Ecommerce Admin - Dashboard</title>
-{{ asset('backend/') }}
 	<!-- Vendors Style-->
 	<link rel="stylesheet" href="{{ asset('backend/css/vendors_css.css') }}">
 
@@ -20,6 +18,7 @@
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
     <!-- Icons Css -->
     <link href="{{ asset('backend/assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
+
     <!-- <link href="{{ asset('backend/assets/icons/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css" /> -->
   </head>
 

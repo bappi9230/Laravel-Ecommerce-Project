@@ -3,7 +3,7 @@
 
 
 $(function () {
-    "use strict";   
+    "use strict";
 
 		$('#slimtest1').slimScroll({
             height: '300px'
@@ -18,10 +18,10 @@ $(function () {
             , alwaysVisible: true
         });
         $('#slimtest4').slimScroll({
-            color: '#0bb2d4'
+            color: '#fff'
             , size: '10px'
             , height: '300px'
             , alwaysVisible: true
         });
-	
+
   }); // End of use strict
